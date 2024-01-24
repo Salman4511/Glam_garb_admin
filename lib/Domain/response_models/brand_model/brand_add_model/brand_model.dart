@@ -21,7 +21,7 @@ class BrandModel {
 
 class Brand {
   String? brandName;
-  String? image;
+  dynamic image;
   bool? active;
   String? sId;
   int? iV;

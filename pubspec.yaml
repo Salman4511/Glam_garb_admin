@@ -41,6 +41,7 @@ dependencies:
   json_annotation: ^4.8.1
   json_serializable: ^6.7.1
   molten_navigationbar_flutter: ^1.0.1
+  multiple_images_picker: ^1.0.1
   shared_preferences: ^2.2.2
 
 dev_dependencies:

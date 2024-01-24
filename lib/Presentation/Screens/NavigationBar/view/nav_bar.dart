@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:glam_garb_admin/Presentation/Screens/Dashboard/view/dashboard.dart';
+import 'package:glam_garb_admin/Presentation/Screens/dashboard/view/dashboard.dart';
 import 'package:glam_garb_admin/Presentation/Screens/Orders/order_screen.dart';
 import 'package:glam_garb_admin/Presentation/Screens/Product/product_screen.dart';
 import 'package:glam_garb_admin/Presentation/Screens/SalesReport/sales_report.dart';

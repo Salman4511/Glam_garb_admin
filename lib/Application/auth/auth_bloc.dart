@@ -2,7 +2,7 @@ import 'package:bloc/bloc.dart';
 import 'package:glam_garb_admin/Domain/response_models/login_model/admin_login/admin_login.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:glam_garb_admin/Domain/response_models/logout_model/admin_logout.dart';
-import 'package:glam_garb_admin/Infrastructure/Services/Auth/Auth_repo.dart';
+import 'package:glam_garb_admin/Infrastructure/Services/auth/Auth_repo.dart';
 part 'auth_bloc.freezed.dart';
 
 part 'auth_event.dart';

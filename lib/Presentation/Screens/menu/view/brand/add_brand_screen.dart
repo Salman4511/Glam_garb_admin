@@ -1,3 +1,4 @@
+import 'dart:io'; // Import the 'dart:io' library for File
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:glam_garb_admin/Application/brand/brand_bloc.dart';
@@ -13,197 +14,218 @@ class AddBrand extends StatefulWidget {
 }
 
 class _AddBrandState extends State<AddBrand> {
-  List<String> list = [
-    "Active",
-    "non-Active",
-  ];
-
+  List<String> list = ["Active", "non-Active"];
   String dropdownValue = "Active";
-
+   final formkey = GlobalKey<FormState>();
   TextEditingController brandNameController = TextEditingController();
-  TextEditingController imageController = TextEditingController();
+  File? selectedImage; // Variable to hold the selected image as a File
+
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
     return Scaffold(
       backgroundColor: kblackcolor,
       body: SafeArea(
-          child: SingleChildScrollView(
-        child: Stack(children: [
-          Column(
+        child: SingleChildScrollView(
+          child: Stack(
             children: [
-              Row(
+              Column(
                 children: [
-                  IconButton(
-                      onPressed: () {
-                        Navigator.pop(context);
-                      },
-                      icon: kBackBtn),
+                  Row(
+                    children: [
+                      IconButton(
+                        onPressed: () {
+                          Navigator.pop(context);
+                        },
+                        icon: kBackBtn,
+                      ),
+                    ],
+                  ),
                 ],
               ),
-            ],
-          ),
-          Positioned(
-            top: 50,
-            child: const Text(
-              '  Add Brand',
-              style: TextStyle(
-                  color: Colors.white,
-                  fontSize: 30,
-                  fontWeight: FontWeight.w900),
-            ),
-          ),
-          Form(
-            child: Padding(
-              padding: const EdgeInsets.only(left: 10, right: 10, top: 70),
-              child: Column(
-                children: [
-                  kheight90,
-                  TextFieldWidget(
-                    title: 'Enter brand name',
-                    controller: brandNameController,
-                  ),
-                  kheight,
-
-                  // TextFieldWidget(title: 'Status', controller: statusController,),
-                  Container(
-                    width: 500,
-                    height: 60,
-                    decoration: BoxDecoration(
-                        color: kwhite, borderRadius: BorderRadius.circular(25)),
-                    child: Padding(
-                      padding: EdgeInsets.only(
-                          right: size.width * 0.2, left: 25, top: 10),
-                      child: DropdownButton<String>(
-                        value: dropdownValue,
-                        icon: const Icon(
-                          Icons.arrow_downward,
-                          color: Colors.black,
+              Positioned(
+                top: 50,
+                child: const Text(
+                  '  Add Brand',
+                  style: TextStyle(
+                      color: Colors.white,
+                      fontSize: 30,
+                      fontWeight: FontWeight.w900),
+                ),
+              ),
+              Form(
+                key: formkey,
+                child: Padding(
+                  padding: const EdgeInsets.only(left: 10, right: 10, top: 70),
+                  child: Column(
+                    children: [
+                      kheight90,
+                      TextFieldWidget(
+                          title: 'Enter brand name',
+                          controller: brandNameController,
+                          validator: (value){
+                            if(value!.isEmpty) return "Please enter the brand name";
+                            return null;
+                          },
+                          
+                          ),
+                      kheight,
+                      Container(
+                        width: 500,
+                        height: 60,
+                        decoration: BoxDecoration(
+                          color: kwhite,
+                          borderRadius: BorderRadius.circular(25),
                         ),
-                        elevation: 16,
-                        style: const TextStyle(
-                            color: Colors.black,
-                            fontWeight: FontWeight.bold,
-                            fontSize: 16),
-                        //    underline: Container(
-                        // height: 2,
-                        // color: Colors.deepPurpleAccent,
-                        //    ),
-                        onChanged: (String? value) {
-                          // This is called when the user selects an item.
-                          setState(() {
-                            dropdownValue = value!;
-                          });
-                        },
-                        items:
-                            list.map<DropdownMenuItem<String>>((String value) {
-                          return DropdownMenuItem<String>(
-                            value: value,
-                            child: Text(value),
-                          );
-                        }).toList(),
+                        child: Padding(
+                          padding: EdgeInsets.only(
+                            right: size.width * 0.2,
+                            left: 25,
+                            top: 10,
+                          ),
+                          child: DropdownButton<String>(
+                            value: dropdownValue,
+                            icon: const Icon(
+                              Icons.arrow_downward,
+                              color: Colors.black,
+                            ),
+                            elevation: 16,
+                            style: const TextStyle(
+                              color: Colors.black,
+                              fontWeight: FontWeight.bold,
+                              fontSize: 16,
+                            ),
+                            onChanged: (String? value) {
+                              setState(() {
+                                dropdownValue = value!;
+                              });
+                            },
+                            items: list
+                                .map<DropdownMenuItem<String>>((String value) {
+                              return DropdownMenuItem<String>(
+                                value: value,
+                                child: Text(value),
+                              );
+                            }).toList(),
+                          ),
+                        ),
                       ),
-                    ),
-                  ),
-                  kheight,
-                  TextFormField(
-                    controller: imageController,
-                    onTap: () {
-                      showDialog(
-                        context: context,
-                        builder: (context) {
-                          return AlertDialog(
-                            title: const Text("Pick image"),
-                            actions: [
-                              IconButton(
-                                onPressed: () async {
-                                  // Open gallery
-                                  final image = await ImagePicker().pickImage(
-                                    source: ImageSource.gallery,
-                                  );
-                                  if (image != null) {
-                                    // Process the selected image
-                                    print(
-                                        "Image selected from gallery: ${image.path}");
-                                    imageController.text = image.path;
-                                  }
-                                },
-                                icon: const Icon(Icons.browse_gallery),
+                      kheight,
+                      GestureDetector(
+                        onTap: () async {
+                          // Open gallery
+                          final image = await ImagePicker().pickImage(
+                            source: ImageSource.gallery,
+                          );
+                          if (image != null) {
+                            // Process the selected image
+                            setState(() {
+                              selectedImage = File(image.path);
+                            });
+                          }
+                        },
+                        child: Container(
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(25),
+                            color: kwhite,
+                          ),
+                          height: 60,
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              const Icon(
+                                Icons.file_copy_outlined,
+                                color: kblackcolor,
                               ),
-                              IconButton(
-                                onPressed: () async {
-                                  // Open camera
-                                  final image = await ImagePicker().pickImage(
-                                    source: ImageSource.camera,
-                                  );
-                                  if (image != null) {
-                                    // Process the captured image
-                                    print(
-                                        "Image captured from camera: ${image.path}");
-                                    imageController.text = image.path;
-                                  }
-                                },
-                                icon: const Icon(Icons.camera),
+                              const SizedBox(width: 10),
+                              Text(
+                                selectedImage != null
+                                    ? 'Image selected'
+                                    : 'Select Image',
+                                style: TextStyle(
+                                  color: kblackcolor,
+                                  fontSize: 16,
+                                ),
                               ),
                             ],
-                          );
-                        },
-                      );
-                    },
-                    showCursor: false,
-                    decoration: InputDecoration(
-                      prefixIcon: const Icon(
-                        Icons.file_copy_outlined,
-                        color: kblackcolor,
+                          ),
+                        ),
                       ),
-                      labelText: 'Upload Image',
-                      border: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(25),
-                      ),
-                      fillColor: kwhite,
-                      filled: true,
-                    ),
-                    keyboardType: TextInputType.none,
-                  )
-                ],
+                    ],
+                  ),
+                ),
               ),
-            ),
-          ),
-          Column(
-            children: [
-              const SizedBox(
-                height: 550,
-              ),
-              Row(
+              Column(
                 children: [
                   const SizedBox(
-                    width: 140,
+                    height: 550,
                   ),
-                  BlocConsumer<BrandBloc, BrandState>(
-                    listener: (context, state) {
-                      // TODO: implement listener
-                    },
-                    builder: (context, state) {
-                      return ElevatedButton(
-                        onPressed: () {
-                          context.read<BrandBloc>().add(BrandEvent.addBrand(
-                              brandNameController.text,
-                              imageController.text,
-                              dropdownValue));
+                  Row(
+                    children: [
+                      const SizedBox(
+                        width: 140,
+                      ),
+                      BlocConsumer<BrandBloc, BrandState>(
+                        listener: (context, state) {
+                          // TODO: implement listener
+                          if(state.brand!=null){
+                            if(state.brand!.message=="Brand added successfully"){
+                                 ScaffoldMessenger.of(context)
+                                  .showSnackBar(const SnackBar(
+                                content: Text('Added Successfully'),
+                                backgroundColor: Colors.red,
+                              )); 
+                            }else{
+                               ScaffoldMessenger.of(context)
+                                  .showSnackBar(const SnackBar(
+                                content: Text('Name already used'),
+                                backgroundColor: Colors.red,
+                              ));
+                            }
+                          }
                         },
-                        child: const Text('Submit'),
-                        style: const ButtonStyle(
-                            backgroundColor:
-                                MaterialStatePropertyAll(Colors.yellow)),
-                      );
-                    },
+                        builder: (context, state) {
+                          return ElevatedButton(
+                            onPressed: () {
+                              // Check if an image is selected
+                              if(formkey.currentState!.validate()){
+                              if (selectedImage != null) {
+                                // Pass the selectedImage along with other parameters
+                                context.read<BrandBloc>().add(
+                                      BrandEvent.addBrand(
+                                          brandNameController.text,
+                                          // selectedImage!,
+                                          dropdownValue,
+                                          selectedImage!),
+                                    );
+                              } else {
+                                // Handle case where no image is selected
+                                // You may want to show a message to the user
+                                ScaffoldMessenger.of(context)
+                                      .showSnackBar(const SnackBar(
+                                    content: Text('Please select an image'),
+                                    backgroundColor: Colors.red,
+                                  ));
+                              }
+                              }
+                            },
+                            style: const ButtonStyle(
+                              backgroundColor:
+                                  MaterialStatePropertyAll(Colors.yellow),
+                            ),
+                            child: const Text('Submit'),
+                          );
+                        },
+                      ),
+                      
+                    ],
                   ),
                 ],
               ),
             ],
           ),
-        ]),
-      )),
+        ),
+      ),
     );
   }
 }

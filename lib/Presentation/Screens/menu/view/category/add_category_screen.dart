@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:glam_garb_admin/Application/cateory/category_bloc.dart';
-import 'package:glam_garb_admin/Domain/body_models/category_pass_model.dart';
-import 'package:glam_garb_admin/Domain/response_models/category_model/category_add_model/category.dart';
 import 'package:glam_garb_admin/Presentation/Screens/menu/view/category/widgets/text_field_widget.dart';
 import 'package:glam_garb_admin/Shared/constants/constants.dart';
 import 'package:intl/intl.dart';
@@ -16,14 +14,14 @@ class AddCategory extends StatefulWidget {
 
 class _AddCategoryState extends State<AddCategory> {
 
-TextEditingController catNameController = TextEditingController();
+   final formkey = GlobalKey<FormState>();
+  TextEditingController catNameController = TextEditingController();
   TextEditingController catOfferController = TextEditingController();
   TextEditingController minAmountController = TextEditingController();
   TextEditingController maxDiscountController = TextEditingController();
   TextEditingController expiryController = TextEditingController();
   TextEditingController statusController = TextEditingController();
 
- 
   List<String> list = [
     "Active",
     "non-Active",
@@ -33,8 +31,6 @@ TextEditingController catNameController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
-    
-    
     final size = MediaQuery.of(context).size;
     return Scaffold(
       backgroundColor: kblackcolor,
@@ -54,11 +50,11 @@ TextEditingController catNameController = TextEditingController();
               ),
             ],
           ),
-          Positioned(
+          const Positioned(
             top: 50,
             child: Column(
               children: [
-                const Text(
+                Text(
                   '  Add Category',
                   style: TextStyle(
                       color: Colors.white,
@@ -69,29 +65,75 @@ TextEditingController catNameController = TextEditingController();
             ),
           ),
           Form(
+            key: formkey,
             child: Padding(
-              padding: EdgeInsets.only(left: 10, right: 10, top: 70),
+              padding: const EdgeInsets.only(left: 10, right: 10, top: 70),
               child: Column(
                 children: [
                   kheight90,
                   TextFieldWidget(
                     title: 'Enter category name',
                     controller: catNameController,
+                    validator: (value) {
+                      if (value == null || value.isEmpty) {
+                        return 'Category name is required';
+                      }
+                      return null;
+                    },
                   ),
                   kheight,
                   TextFieldWidget(
                     title: 'Category Offer (optional)',
                     controller: catOfferController,
+                    validator: (value) {
+                      try {
+                        if (value != null && value.isNotEmpty) {
+                          int? offerValue = int.tryParse(value);
+                          if (offerValue! < 0 || offerValue > 100) {
+                            return 'Category offer must be between 0 and 100';
+                          }
+                        }
+                      } catch (e) {
+                        return 'Please enter a valid integer for category offer';
+                      }
+                      return null; // Validation passed
+                    },
                   ),
                   kheight,
                   TextFieldWidget(
                     title: 'Minimum Amount (optional)',
                     controller: minAmountController,
+                    validator: (value) {
+                      try {
+                        if (value != null && value.isNotEmpty) {
+                        int? minamount = int.tryParse(value);
+                        if (minamount! < 0 || minamount > 100000) {
+                          return 'Category offer must be between 0 and 100';
+                        }
+                        }
+                      } catch (e) {
+                        return 'Please enter a valid integer for category offer';
+                      }
+                      return null;
+                    },
                   ),
                   kheight,
                   TextFieldWidget(
                     title: 'Maximum Discount (optional)',
                     controller: maxDiscountController,
+                    validator: (value) {
+                       try {
+                        if (value != null && value.isNotEmpty) {
+                        int? maxdiscount = int.tryParse(value);
+                        if (maxdiscount! < 0 || maxdiscount > 10000) {
+                          return 'Category offer must be between 0 and 100';
+                        }
+                        }
+                      } catch (e) {
+                        return 'Please enter a valid integer for category offer';
+                      }
+                      return null;
+                    },
                   ),
                   kheight,
                   TextFieldWidget(
@@ -104,15 +146,15 @@ TextEditingController catNameController = TextEditingController();
                           firstDate: DateTime(1950),
                           //DateTime.now() - not to allow to choose before today.
                           lastDate: DateTime(2100));
-                    print(pickedDate.runtimeType);
-          
+                      print(pickedDate.runtimeType);
+
                       if (pickedDate != null) {
                         print(
                             pickedDate); //pickedDate output format => 2021-03-10 00:00:00.000
                         String formattedDate =
                             DateFormat('yyyy-MM-dd').format(pickedDate);
-                        print(
-                            formattedDate.runtimeType); //formatted date output using intl package =>  2021-03-16
+                        print(formattedDate
+                            .runtimeType); //formatted date output using intl package =>  2021-03-16
                         setState(() {
                           expiryController.text =
                               formattedDate; //set output date to TextField value.
@@ -179,21 +221,47 @@ TextEditingController catNameController = TextEditingController();
                   BlocConsumer<CategoryBloc, CategoryState>(
                     listener: (context, state) {
                       // TODO: implement listener
+                      if (state.category!=null) {
+                        if(state.category!.status=="success"){
+                          ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+                            content: Text('Added Successfully'),
+                            backgroundColor: Colors.red,
+                            ));
+                            
+                        }
+                        else {
+                          ScaffoldMessenger.of(context)
+                              .showSnackBar(const SnackBar(
+                            content: Text('Name already used'),
+                            backgroundColor: Colors.red,
+                          ));
+                        }
+                      }
                     },
                     builder: (context, state) {
-                      return  ElevatedButton(
-                      
-                      onPressed: () {
-                        categoryPassModel newCategory= categoryPassModel(categoryName: catNameController.text,
-                         active: dropdownValue);
-                        context.read<CategoryBloc>().add(CategoryEvent.addCategory(catNameController.text,dropdownValue));
-                        
-                      },
-                      style: const ButtonStyle(
-                          backgroundColor:
-                              MaterialStatePropertyAll(Colors.yellow)),
-                      child: const Text('Submit'),
-                    );
+                      return ElevatedButton(
+                        onPressed: () {
+                           
+                         
+                              if (formkey.currentState!.validate()) {
+                          context.read<CategoryBloc>().add(
+                              CategoryEvent.addCategory(
+                                  catNameController.text,
+                                  dropdownValue,
+                                  
+                                    int.tryParse(catOfferController.text)??0,
+                                 int.tryParse(minAmountController.text)??0,
+                               
+                                    int.tryParse(maxDiscountController.text)??0,
+                                 expiryController.text,
+                              ));
+                        }
+                        },
+                        style: const ButtonStyle(
+                            backgroundColor:
+                                MaterialStatePropertyAll(Colors.yellow)),
+                        child: const Text('Submit'),
+                      );
                     },
                   )
                 ],

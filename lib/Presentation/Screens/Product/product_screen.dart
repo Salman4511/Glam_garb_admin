@@ -1,6 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:glam_garb_admin/Presentation/Screens/Product/add_product.dart';
+import 'package:glam_garb_admin/Presentation/Screens/product/add_product.dart';
 import 'package:glam_garb_admin/Shared/constants/constants.dart';
 
 class ProductScreen extends StatelessWidget {

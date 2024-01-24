@@ -19,19 +19,37 @@ mixin _$CategoryEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object?>(
     TResult Function() $default, {
-    required TResult Function(String name, dynamic active) addCategory,
+    required TResult Function(String name, dynamic active, int? categoryOffer,
+            int? minAmount, int? maxDiscount, String? date)
+        addCategory,
+    required TResult Function(String id) deleteCategory,
+    required TResult Function(String name, dynamic active, String id,
+            int? categoryOffer, int? minAmount, int? maxDiscount, String? date)
+        editCategory,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>(
     TResult? Function()? $default, {
-    TResult? Function(String name, dynamic active)? addCategory,
+    TResult? Function(String name, dynamic active, int? categoryOffer,
+            int? minAmount, int? maxDiscount, String? date)?
+        addCategory,
+    TResult? Function(String id)? deleteCategory,
+    TResult? Function(String name, dynamic active, String id,
+            int? categoryOffer, int? minAmount, int? maxDiscount, String? date)?
+        editCategory,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>(
     TResult Function()? $default, {
-    TResult Function(String name, dynamic active)? addCategory,
+    TResult Function(String name, dynamic active, int? categoryOffer,
+            int? minAmount, int? maxDiscount, String? date)?
+        addCategory,
+    TResult Function(String id)? deleteCategory,
+    TResult Function(String name, dynamic active, String id, int? categoryOffer,
+            int? minAmount, int? maxDiscount, String? date)?
+        editCategory,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -39,18 +57,24 @@ mixin _$CategoryEvent {
   TResult map<TResult extends Object?>(
     TResult Function(_CategoryEvent value) $default, {
     required TResult Function(_AddCategory value) addCategory,
+    required TResult Function(_DeleteCategory value) deleteCategory,
+    required TResult Function(_EditCategory value) editCategory,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>(
     TResult? Function(_CategoryEvent value)? $default, {
     TResult? Function(_AddCategory value)? addCategory,
+    TResult? Function(_DeleteCategory value)? deleteCategory,
+    TResult? Function(_EditCategory value)? editCategory,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>(
     TResult Function(_CategoryEvent value)? $default, {
     TResult Function(_AddCategory value)? addCategory,
+    TResult Function(_DeleteCategory value)? deleteCategory,
+    TResult Function(_EditCategory value)? editCategory,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -113,7 +137,13 @@ class _$CategoryEventImpl implements _CategoryEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object?>(
     TResult Function() $default, {
-    required TResult Function(String name, dynamic active) addCategory,
+    required TResult Function(String name, dynamic active, int? categoryOffer,
+            int? minAmount, int? maxDiscount, String? date)
+        addCategory,
+    required TResult Function(String id) deleteCategory,
+    required TResult Function(String name, dynamic active, String id,
+            int? categoryOffer, int? minAmount, int? maxDiscount, String? date)
+        editCategory,
   }) {
     return $default();
   }
@@ -122,7 +152,13 @@ class _$CategoryEventImpl implements _CategoryEvent {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>(
     TResult? Function()? $default, {
-    TResult? Function(String name, dynamic active)? addCategory,
+    TResult? Function(String name, dynamic active, int? categoryOffer,
+            int? minAmount, int? maxDiscount, String? date)?
+        addCategory,
+    TResult? Function(String id)? deleteCategory,
+    TResult? Function(String name, dynamic active, String id,
+            int? categoryOffer, int? minAmount, int? maxDiscount, String? date)?
+        editCategory,
   }) {
     return $default?.call();
   }
@@ -131,7 +167,13 @@ class _$CategoryEventImpl implements _CategoryEvent {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>(
     TResult Function()? $default, {
-    TResult Function(String name, dynamic active)? addCategory,
+    TResult Function(String name, dynamic active, int? categoryOffer,
+            int? minAmount, int? maxDiscount, String? date)?
+        addCategory,
+    TResult Function(String id)? deleteCategory,
+    TResult Function(String name, dynamic active, String id, int? categoryOffer,
+            int? minAmount, int? maxDiscount, String? date)?
+        editCategory,
     required TResult orElse(),
   }) {
     if ($default != null) {
@@ -145,6 +187,8 @@ class _$CategoryEventImpl implements _CategoryEvent {
   TResult map<TResult extends Object?>(
     TResult Function(_CategoryEvent value) $default, {
     required TResult Function(_AddCategory value) addCategory,
+    required TResult Function(_DeleteCategory value) deleteCategory,
+    required TResult Function(_EditCategory value) editCategory,
   }) {
     return $default(this);
   }
@@ -154,6 +198,8 @@ class _$CategoryEventImpl implements _CategoryEvent {
   TResult? mapOrNull<TResult extends Object?>(
     TResult? Function(_CategoryEvent value)? $default, {
     TResult? Function(_AddCategory value)? addCategory,
+    TResult? Function(_DeleteCategory value)? deleteCategory,
+    TResult? Function(_EditCategory value)? editCategory,
   }) {
     return $default?.call(this);
   }
@@ -163,6 +209,8 @@ class _$CategoryEventImpl implements _CategoryEvent {
   TResult maybeMap<TResult extends Object?>(
     TResult Function(_CategoryEvent value)? $default, {
     TResult Function(_AddCategory value)? addCategory,
+    TResult Function(_DeleteCategory value)? deleteCategory,
+    TResult Function(_EditCategory value)? editCategory,
     required TResult orElse(),
   }) {
     if ($default != null) {
@@ -182,7 +230,13 @@ abstract class _$$AddCategoryImplCopyWith<$Res> {
           _$AddCategoryImpl value, $Res Function(_$AddCategoryImpl) then) =
       __$$AddCategoryImplCopyWithImpl<$Res>;
   @useResult
-  $Res call({String name, dynamic active});
+  $Res call(
+      {String name,
+      dynamic active,
+      int? categoryOffer,
+      int? minAmount,
+      int? maxDiscount,
+      String? date});
 }
 
 /// @nodoc
@@ -198,6 +252,10 @@ class __$$AddCategoryImplCopyWithImpl<$Res>
   $Res call({
     Object? name = null,
     Object? active = freezed,
+    Object? categoryOffer = freezed,
+    Object? minAmount = freezed,
+    Object? maxDiscount = freezed,
+    Object? date = freezed,
   }) {
     return _then(_$AddCategoryImpl(
       null == name
@@ -208,6 +266,22 @@ class __$$AddCategoryImplCopyWithImpl<$Res>
           ? _value.active
           : active // ignore: cast_nullable_to_non_nullable
               as dynamic,
+      freezed == categoryOffer
+          ? _value.categoryOffer
+          : categoryOffer // ignore: cast_nullable_to_non_nullable
+              as int?,
+      freezed == minAmount
+          ? _value.minAmount
+          : minAmount // ignore: cast_nullable_to_non_nullable
+              as int?,
+      freezed == maxDiscount
+          ? _value.maxDiscount
+          : maxDiscount // ignore: cast_nullable_to_non_nullable
+              as int?,
+      freezed == date
+          ? _value.date
+          : date // ignore: cast_nullable_to_non_nullable
+              as String?,
     ));
   }
 }
@@ -215,16 +289,25 @@ class __$$AddCategoryImplCopyWithImpl<$Res>
 /// @nodoc
 
 class _$AddCategoryImpl implements _AddCategory {
-  _$AddCategoryImpl(this.name, this.active);
+  _$AddCategoryImpl(this.name, this.active, this.categoryOffer, this.minAmount,
+      this.maxDiscount, this.date);
 
   @override
   final String name;
   @override
   final dynamic active;
+  @override
+  final int? categoryOffer;
+  @override
+  final int? minAmount;
+  @override
+  final int? maxDiscount;
+  @override
+  final String? date;
 
   @override
   String toString() {
-    return 'CategoryEvent.addCategory(name: $name, active: $active)';
+    return 'CategoryEvent.addCategory(name: $name, active: $active, categoryOffer: $categoryOffer, minAmount: $minAmount, maxDiscount: $maxDiscount, date: $date)';
   }
 
   @override
@@ -233,12 +316,25 @@ class _$AddCategoryImpl implements _AddCategory {
         (other.runtimeType == runtimeType &&
             other is _$AddCategoryImpl &&
             (identical(other.name, name) || other.name == name) &&
-            const DeepCollectionEquality().equals(other.active, active));
+            const DeepCollectionEquality().equals(other.active, active) &&
+            (identical(other.categoryOffer, categoryOffer) ||
+                other.categoryOffer == categoryOffer) &&
+            (identical(other.minAmount, minAmount) ||
+                other.minAmount == minAmount) &&
+            (identical(other.maxDiscount, maxDiscount) ||
+                other.maxDiscount == maxDiscount) &&
+            (identical(other.date, date) || other.date == date));
   }
 
   @override
   int get hashCode => Object.hash(
-      runtimeType, name, const DeepCollectionEquality().hash(active));
+      runtimeType,
+      name,
+      const DeepCollectionEquality().hash(active),
+      categoryOffer,
+      minAmount,
+      maxDiscount,
+      date);
 
   @JsonKey(ignore: true)
   @override
@@ -250,29 +346,50 @@ class _$AddCategoryImpl implements _AddCategory {
   @optionalTypeArgs
   TResult when<TResult extends Object?>(
     TResult Function() $default, {
-    required TResult Function(String name, dynamic active) addCategory,
+    required TResult Function(String name, dynamic active, int? categoryOffer,
+            int? minAmount, int? maxDiscount, String? date)
+        addCategory,
+    required TResult Function(String id) deleteCategory,
+    required TResult Function(String name, dynamic active, String id,
+            int? categoryOffer, int? minAmount, int? maxDiscount, String? date)
+        editCategory,
   }) {
-    return addCategory(name, active);
+    return addCategory(
+        name, active, categoryOffer, minAmount, maxDiscount, date);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>(
     TResult? Function()? $default, {
-    TResult? Function(String name, dynamic active)? addCategory,
+    TResult? Function(String name, dynamic active, int? categoryOffer,
+            int? minAmount, int? maxDiscount, String? date)?
+        addCategory,
+    TResult? Function(String id)? deleteCategory,
+    TResult? Function(String name, dynamic active, String id,
+            int? categoryOffer, int? minAmount, int? maxDiscount, String? date)?
+        editCategory,
   }) {
-    return addCategory?.call(name, active);
+    return addCategory?.call(
+        name, active, categoryOffer, minAmount, maxDiscount, date);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>(
     TResult Function()? $default, {
-    TResult Function(String name, dynamic active)? addCategory,
+    TResult Function(String name, dynamic active, int? categoryOffer,
+            int? minAmount, int? maxDiscount, String? date)?
+        addCategory,
+    TResult Function(String id)? deleteCategory,
+    TResult Function(String name, dynamic active, String id, int? categoryOffer,
+            int? minAmount, int? maxDiscount, String? date)?
+        editCategory,
     required TResult orElse(),
   }) {
     if (addCategory != null) {
-      return addCategory(name, active);
+      return addCategory(
+          name, active, categoryOffer, minAmount, maxDiscount, date);
     }
     return orElse();
   }
@@ -282,6 +399,8 @@ class _$AddCategoryImpl implements _AddCategory {
   TResult map<TResult extends Object?>(
     TResult Function(_CategoryEvent value) $default, {
     required TResult Function(_AddCategory value) addCategory,
+    required TResult Function(_DeleteCategory value) deleteCategory,
+    required TResult Function(_EditCategory value) editCategory,
   }) {
     return addCategory(this);
   }
@@ -291,6 +410,8 @@ class _$AddCategoryImpl implements _AddCategory {
   TResult? mapOrNull<TResult extends Object?>(
     TResult? Function(_CategoryEvent value)? $default, {
     TResult? Function(_AddCategory value)? addCategory,
+    TResult? Function(_DeleteCategory value)? deleteCategory,
+    TResult? Function(_EditCategory value)? editCategory,
   }) {
     return addCategory?.call(this);
   }
@@ -300,6 +421,8 @@ class _$AddCategoryImpl implements _AddCategory {
   TResult maybeMap<TResult extends Object?>(
     TResult Function(_CategoryEvent value)? $default, {
     TResult Function(_AddCategory value)? addCategory,
+    TResult Function(_DeleteCategory value)? deleteCategory,
+    TResult Function(_EditCategory value)? editCategory,
     required TResult orElse(),
   }) {
     if (addCategory != null) {
@@ -310,13 +433,420 @@ class _$AddCategoryImpl implements _AddCategory {
 }
 
 abstract class _AddCategory implements CategoryEvent {
-  factory _AddCategory(final String name, final dynamic active) =
-      _$AddCategoryImpl;
+  factory _AddCategory(
+      final String name,
+      final dynamic active,
+      final int? categoryOffer,
+      final int? minAmount,
+      final int? maxDiscount,
+      final String? date) = _$AddCategoryImpl;
 
   String get name;
   dynamic get active;
+  int? get categoryOffer;
+  int? get minAmount;
+  int? get maxDiscount;
+  String? get date;
   @JsonKey(ignore: true)
   _$$AddCategoryImplCopyWith<_$AddCategoryImpl> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$DeleteCategoryImplCopyWith<$Res> {
+  factory _$$DeleteCategoryImplCopyWith(_$DeleteCategoryImpl value,
+          $Res Function(_$DeleteCategoryImpl) then) =
+      __$$DeleteCategoryImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({String id});
+}
+
+/// @nodoc
+class __$$DeleteCategoryImplCopyWithImpl<$Res>
+    extends _$CategoryEventCopyWithImpl<$Res, _$DeleteCategoryImpl>
+    implements _$$DeleteCategoryImplCopyWith<$Res> {
+  __$$DeleteCategoryImplCopyWithImpl(
+      _$DeleteCategoryImpl _value, $Res Function(_$DeleteCategoryImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? id = null,
+  }) {
+    return _then(_$DeleteCategoryImpl(
+      null == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$DeleteCategoryImpl implements _DeleteCategory {
+  _$DeleteCategoryImpl(this.id);
+
+  @override
+  final String id;
+
+  @override
+  String toString() {
+    return 'CategoryEvent.deleteCategory(id: $id)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$DeleteCategoryImpl &&
+            (identical(other.id, id) || other.id == id));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, id);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$DeleteCategoryImplCopyWith<_$DeleteCategoryImpl> get copyWith =>
+      __$$DeleteCategoryImplCopyWithImpl<_$DeleteCategoryImpl>(
+          this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>(
+    TResult Function() $default, {
+    required TResult Function(String name, dynamic active, int? categoryOffer,
+            int? minAmount, int? maxDiscount, String? date)
+        addCategory,
+    required TResult Function(String id) deleteCategory,
+    required TResult Function(String name, dynamic active, String id,
+            int? categoryOffer, int? minAmount, int? maxDiscount, String? date)
+        editCategory,
+  }) {
+    return deleteCategory(id);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>(
+    TResult? Function()? $default, {
+    TResult? Function(String name, dynamic active, int? categoryOffer,
+            int? minAmount, int? maxDiscount, String? date)?
+        addCategory,
+    TResult? Function(String id)? deleteCategory,
+    TResult? Function(String name, dynamic active, String id,
+            int? categoryOffer, int? minAmount, int? maxDiscount, String? date)?
+        editCategory,
+  }) {
+    return deleteCategory?.call(id);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>(
+    TResult Function()? $default, {
+    TResult Function(String name, dynamic active, int? categoryOffer,
+            int? minAmount, int? maxDiscount, String? date)?
+        addCategory,
+    TResult Function(String id)? deleteCategory,
+    TResult Function(String name, dynamic active, String id, int? categoryOffer,
+            int? minAmount, int? maxDiscount, String? date)?
+        editCategory,
+    required TResult orElse(),
+  }) {
+    if (deleteCategory != null) {
+      return deleteCategory(id);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>(
+    TResult Function(_CategoryEvent value) $default, {
+    required TResult Function(_AddCategory value) addCategory,
+    required TResult Function(_DeleteCategory value) deleteCategory,
+    required TResult Function(_EditCategory value) editCategory,
+  }) {
+    return deleteCategory(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>(
+    TResult? Function(_CategoryEvent value)? $default, {
+    TResult? Function(_AddCategory value)? addCategory,
+    TResult? Function(_DeleteCategory value)? deleteCategory,
+    TResult? Function(_EditCategory value)? editCategory,
+  }) {
+    return deleteCategory?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>(
+    TResult Function(_CategoryEvent value)? $default, {
+    TResult Function(_AddCategory value)? addCategory,
+    TResult Function(_DeleteCategory value)? deleteCategory,
+    TResult Function(_EditCategory value)? editCategory,
+    required TResult orElse(),
+  }) {
+    if (deleteCategory != null) {
+      return deleteCategory(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _DeleteCategory implements CategoryEvent {
+  factory _DeleteCategory(final String id) = _$DeleteCategoryImpl;
+
+  String get id;
+  @JsonKey(ignore: true)
+  _$$DeleteCategoryImplCopyWith<_$DeleteCategoryImpl> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$EditCategoryImplCopyWith<$Res> {
+  factory _$$EditCategoryImplCopyWith(
+          _$EditCategoryImpl value, $Res Function(_$EditCategoryImpl) then) =
+      __$$EditCategoryImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call(
+      {String name,
+      dynamic active,
+      String id,
+      int? categoryOffer,
+      int? minAmount,
+      int? maxDiscount,
+      String? date});
+}
+
+/// @nodoc
+class __$$EditCategoryImplCopyWithImpl<$Res>
+    extends _$CategoryEventCopyWithImpl<$Res, _$EditCategoryImpl>
+    implements _$$EditCategoryImplCopyWith<$Res> {
+  __$$EditCategoryImplCopyWithImpl(
+      _$EditCategoryImpl _value, $Res Function(_$EditCategoryImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? name = null,
+    Object? active = freezed,
+    Object? id = null,
+    Object? categoryOffer = freezed,
+    Object? minAmount = freezed,
+    Object? maxDiscount = freezed,
+    Object? date = freezed,
+  }) {
+    return _then(_$EditCategoryImpl(
+      null == name
+          ? _value.name
+          : name // ignore: cast_nullable_to_non_nullable
+              as String,
+      freezed == active
+          ? _value.active
+          : active // ignore: cast_nullable_to_non_nullable
+              as dynamic,
+      null == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as String,
+      freezed == categoryOffer
+          ? _value.categoryOffer
+          : categoryOffer // ignore: cast_nullable_to_non_nullable
+              as int?,
+      freezed == minAmount
+          ? _value.minAmount
+          : minAmount // ignore: cast_nullable_to_non_nullable
+              as int?,
+      freezed == maxDiscount
+          ? _value.maxDiscount
+          : maxDiscount // ignore: cast_nullable_to_non_nullable
+              as int?,
+      freezed == date
+          ? _value.date
+          : date // ignore: cast_nullable_to_non_nullable
+              as String?,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$EditCategoryImpl implements _EditCategory {
+  _$EditCategoryImpl(this.name, this.active, this.id, this.categoryOffer,
+      this.minAmount, this.maxDiscount, this.date);
+
+  @override
+  final String name;
+  @override
+  final dynamic active;
+  @override
+  final String id;
+  @override
+  final int? categoryOffer;
+  @override
+  final int? minAmount;
+  @override
+  final int? maxDiscount;
+  @override
+  final String? date;
+
+  @override
+  String toString() {
+    return 'CategoryEvent.editCategory(name: $name, active: $active, id: $id, categoryOffer: $categoryOffer, minAmount: $minAmount, maxDiscount: $maxDiscount, date: $date)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$EditCategoryImpl &&
+            (identical(other.name, name) || other.name == name) &&
+            const DeepCollectionEquality().equals(other.active, active) &&
+            (identical(other.id, id) || other.id == id) &&
+            (identical(other.categoryOffer, categoryOffer) ||
+                other.categoryOffer == categoryOffer) &&
+            (identical(other.minAmount, minAmount) ||
+                other.minAmount == minAmount) &&
+            (identical(other.maxDiscount, maxDiscount) ||
+                other.maxDiscount == maxDiscount) &&
+            (identical(other.date, date) || other.date == date));
+  }
+
+  @override
+  int get hashCode => Object.hash(
+      runtimeType,
+      name,
+      const DeepCollectionEquality().hash(active),
+      id,
+      categoryOffer,
+      minAmount,
+      maxDiscount,
+      date);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$EditCategoryImplCopyWith<_$EditCategoryImpl> get copyWith =>
+      __$$EditCategoryImplCopyWithImpl<_$EditCategoryImpl>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>(
+    TResult Function() $default, {
+    required TResult Function(String name, dynamic active, int? categoryOffer,
+            int? minAmount, int? maxDiscount, String? date)
+        addCategory,
+    required TResult Function(String id) deleteCategory,
+    required TResult Function(String name, dynamic active, String id,
+            int? categoryOffer, int? minAmount, int? maxDiscount, String? date)
+        editCategory,
+  }) {
+    return editCategory(
+        name, active, id, categoryOffer, minAmount, maxDiscount, date);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>(
+    TResult? Function()? $default, {
+    TResult? Function(String name, dynamic active, int? categoryOffer,
+            int? minAmount, int? maxDiscount, String? date)?
+        addCategory,
+    TResult? Function(String id)? deleteCategory,
+    TResult? Function(String name, dynamic active, String id,
+            int? categoryOffer, int? minAmount, int? maxDiscount, String? date)?
+        editCategory,
+  }) {
+    return editCategory?.call(
+        name, active, id, categoryOffer, minAmount, maxDiscount, date);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>(
+    TResult Function()? $default, {
+    TResult Function(String name, dynamic active, int? categoryOffer,
+            int? minAmount, int? maxDiscount, String? date)?
+        addCategory,
+    TResult Function(String id)? deleteCategory,
+    TResult Function(String name, dynamic active, String id, int? categoryOffer,
+            int? minAmount, int? maxDiscount, String? date)?
+        editCategory,
+    required TResult orElse(),
+  }) {
+    if (editCategory != null) {
+      return editCategory(
+          name, active, id, categoryOffer, minAmount, maxDiscount, date);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>(
+    TResult Function(_CategoryEvent value) $default, {
+    required TResult Function(_AddCategory value) addCategory,
+    required TResult Function(_DeleteCategory value) deleteCategory,
+    required TResult Function(_EditCategory value) editCategory,
+  }) {
+    return editCategory(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>(
+    TResult? Function(_CategoryEvent value)? $default, {
+    TResult? Function(_AddCategory value)? addCategory,
+    TResult? Function(_DeleteCategory value)? deleteCategory,
+    TResult? Function(_EditCategory value)? editCategory,
+  }) {
+    return editCategory?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>(
+    TResult Function(_CategoryEvent value)? $default, {
+    TResult Function(_AddCategory value)? addCategory,
+    TResult Function(_DeleteCategory value)? deleteCategory,
+    TResult Function(_EditCategory value)? editCategory,
+    required TResult orElse(),
+  }) {
+    if (editCategory != null) {
+      return editCategory(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _EditCategory implements CategoryEvent {
+  factory _EditCategory(
+      final String name,
+      final dynamic active,
+      final String id,
+      final int? categoryOffer,
+      final int? minAmount,
+      final int? maxDiscount,
+      final String? date) = _$EditCategoryImpl;
+
+  String get name;
+  dynamic get active;
+  String get id;
+  int? get categoryOffer;
+  int? get minAmount;
+  int? get maxDiscount;
+  String? get date;
+  @JsonKey(ignore: true)
+  _$$EditCategoryImplCopyWith<_$EditCategoryImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
@@ -324,6 +854,8 @@ abstract class _AddCategory implements CategoryEvent {
 mixin _$CategoryState {
   bool get isLoading => throw _privateConstructorUsedError;
   CategoryModel? get category => throw _privateConstructorUsedError;
+  CategoryDeleteModel? get delCategory => throw _privateConstructorUsedError;
+  CategoryEditModel? get editCategory => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $CategoryStateCopyWith<CategoryState> get copyWith =>
@@ -336,7 +868,11 @@ abstract class $CategoryStateCopyWith<$Res> {
           CategoryState value, $Res Function(CategoryState) then) =
       _$CategoryStateCopyWithImpl<$Res, CategoryState>;
   @useResult
-  $Res call({bool isLoading, CategoryModel? category});
+  $Res call(
+      {bool isLoading,
+      CategoryModel? category,
+      CategoryDeleteModel? delCategory,
+      CategoryEditModel? editCategory});
 }
 
 /// @nodoc
@@ -354,6 +890,8 @@ class _$CategoryStateCopyWithImpl<$Res, $Val extends CategoryState>
   $Res call({
     Object? isLoading = null,
     Object? category = freezed,
+    Object? delCategory = freezed,
+    Object? editCategory = freezed,
   }) {
     return _then(_value.copyWith(
       isLoading: null == isLoading
@@ -364,6 +902,14 @@ class _$CategoryStateCopyWithImpl<$Res, $Val extends CategoryState>
           ? _value.category
           : category // ignore: cast_nullable_to_non_nullable
               as CategoryModel?,
+      delCategory: freezed == delCategory
+          ? _value.delCategory
+          : delCategory // ignore: cast_nullable_to_non_nullable
+              as CategoryDeleteModel?,
+      editCategory: freezed == editCategory
+          ? _value.editCategory
+          : editCategory // ignore: cast_nullable_to_non_nullable
+              as CategoryEditModel?,
     ) as $Val);
   }
 }
@@ -376,7 +922,11 @@ abstract class _$$CategoryStateImplCopyWith<$Res>
       __$$CategoryStateImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({bool isLoading, CategoryModel? category});
+  $Res call(
+      {bool isLoading,
+      CategoryModel? category,
+      CategoryDeleteModel? delCategory,
+      CategoryEditModel? editCategory});
 }
 
 /// @nodoc
@@ -392,6 +942,8 @@ class __$$CategoryStateImplCopyWithImpl<$Res>
   $Res call({
     Object? isLoading = null,
     Object? category = freezed,
+    Object? delCategory = freezed,
+    Object? editCategory = freezed,
   }) {
     return _then(_$CategoryStateImpl(
       isLoading: null == isLoading
@@ -402,6 +954,14 @@ class __$$CategoryStateImplCopyWithImpl<$Res>
           ? _value.category
           : category // ignore: cast_nullable_to_non_nullable
               as CategoryModel?,
+      delCategory: freezed == delCategory
+          ? _value.delCategory
+          : delCategory // ignore: cast_nullable_to_non_nullable
+              as CategoryDeleteModel?,
+      editCategory: freezed == editCategory
+          ? _value.editCategory
+          : editCategory // ignore: cast_nullable_to_non_nullable
+              as CategoryEditModel?,
     ));
   }
 }
@@ -409,16 +969,24 @@ class __$$CategoryStateImplCopyWithImpl<$Res>
 /// @nodoc
 
 class _$CategoryStateImpl implements _CategoryState {
-  const _$CategoryStateImpl({required this.isLoading, this.category});
+  const _$CategoryStateImpl(
+      {required this.isLoading,
+      this.category,
+      this.delCategory,
+      this.editCategory});
 
   @override
   final bool isLoading;
   @override
   final CategoryModel? category;
+  @override
+  final CategoryDeleteModel? delCategory;
+  @override
+  final CategoryEditModel? editCategory;
 
   @override
   String toString() {
-    return 'CategoryState(isLoading: $isLoading, category: $category)';
+    return 'CategoryState(isLoading: $isLoading, category: $category, delCategory: $delCategory, editCategory: $editCategory)';
   }
 
   @override
@@ -429,11 +997,16 @@ class _$CategoryStateImpl implements _CategoryState {
             (identical(other.isLoading, isLoading) ||
                 other.isLoading == isLoading) &&
             (identical(other.category, category) ||
-                other.category == category));
+                other.category == category) &&
+            (identical(other.delCategory, delCategory) ||
+                other.delCategory == delCategory) &&
+            (identical(other.editCategory, editCategory) ||
+                other.editCategory == editCategory));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, isLoading, category);
+  int get hashCode =>
+      Object.hash(runtimeType, isLoading, category, delCategory, editCategory);
 
   @JsonKey(ignore: true)
   @override
@@ -445,12 +1018,18 @@ class _$CategoryStateImpl implements _CategoryState {
 abstract class _CategoryState implements CategoryState {
   const factory _CategoryState(
       {required final bool isLoading,
-      final CategoryModel? category}) = _$CategoryStateImpl;
+      final CategoryModel? category,
+      final CategoryDeleteModel? delCategory,
+      final CategoryEditModel? editCategory}) = _$CategoryStateImpl;
 
   @override
   bool get isLoading;
   @override
   CategoryModel? get category;
+  @override
+  CategoryDeleteModel? get delCategory;
+  @override
+  CategoryEditModel? get editCategory;
   @override
   @JsonKey(ignore: true)
   _$$CategoryStateImplCopyWith<_$CategoryStateImpl> get copyWith =>

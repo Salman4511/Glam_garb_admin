@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:glam_garb_admin/Infrastructure/Services/Auth/Auth_repo.dart';
+import 'package:glam_garb_admin/Infrastructure/Services/auth/Auth_repo.dart';
 import 'package:glam_garb_admin/Presentation/Screens/menu/view/brand/brand_screen.dart';
 import 'package:glam_garb_admin/Presentation/Screens/menu/view/category/category_screen.dart';
 import 'package:glam_garb_admin/Presentation/Screens/menu/widgets/logout_button_widget.dart';

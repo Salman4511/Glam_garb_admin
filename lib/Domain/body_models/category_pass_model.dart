@@ -12,7 +12,7 @@ class categoryPassModel {
       this.miniAmount,
       this.maxAmount,
       this.expiry,
-     required this.active});
+      required this.active});
 
   categoryPassModel.fromJson(Map<String, dynamic> json) {
     categoryName = json['categoryName'];
