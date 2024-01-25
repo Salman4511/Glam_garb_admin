@@ -7,28 +7,29 @@ part of 'product_model.dart';
 // **************************************************************************
 
 ProductPassModel _$ProductPassModelFromJson(Map<String, dynamic> json) =>
-    ProductPassModel()
-      ..productName = json['productName'] as String?
-      ..description = json['description'] as String?
-      ..color =
-          (json['color'] as List<dynamic>?)?.map((e) => e as String).toList()
-      ..sizes = (json['sizes'] as List<dynamic>?)
+    ProductPassModel(
+      productName: json['productName'] as String?,
+      description: json['description'] as String?,
+      color:
+          (json['color'] as List<dynamic>?)?.map((e) => e as String).toList(),
+      sizes: (json['sizes'] as List<dynamic>?)
           ?.map((e) => Size.fromJson(e as Map<String, dynamic>))
-          .toList()
-      ..brand = json['brand'] as String?
-      ..category = json['category'] as String?
-      ..regularPrice = (json['regularPrice'] as num?)?.toDouble()
-      ..salePrice = (json['salePrice'] as num?)?.toDouble()
-      ..offerPrice = (json['offerPrice'] as num?)?.toDouble()
-      ..images = (json['images'] as List<dynamic>?)
+          .toList(),
+      brand: json['brand'] as String?,
+      category: json['category'] as String?,
+      regularPrice: (json['regularPrice'] as num?)?.toDouble(),
+      salePrice: (json['salePrice'] as num?)?.toDouble(),
+      offerPrice: (json['offerPrice'] as num?)?.toDouble(),
+      images: (json['images'] as List<dynamic>?)
           ?.map((e) => Image.fromJson(e as Map<String, dynamic>))
-          .toList()
-      ..active = json['active'] as bool?
-      ..gender = json['gender'] as String?
-      ..createdOn = json['createdOn'] as String?
-      ..reviews = (json['reviews'] as List<dynamic>?)
+          .toList(),
+      active: json['active'] as bool? ?? false,
+      gender: json['gender'] as String?,
+      createdOn: json['createdOn'] as String?,
+      reviews: (json['reviews'] as List<dynamic>?)
           ?.map((e) => Review.fromJson(e as Map<String, dynamic>))
-          .toList();
+          .toList(),
+    );
 
 Map<String, dynamic> _$ProductPassModelToJson(ProductPassModel instance) =>
     <String, dynamic>{

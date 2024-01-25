@@ -13,8 +13,7 @@ class AddCategory extends StatefulWidget {
 }
 
 class _AddCategoryState extends State<AddCategory> {
-
-   final formkey = GlobalKey<FormState>();
+  final formkey = GlobalKey<FormState>();
   TextEditingController catNameController = TextEditingController();
   TextEditingController catOfferController = TextEditingController();
   TextEditingController minAmountController = TextEditingController();
@@ -106,10 +105,10 @@ class _AddCategoryState extends State<AddCategory> {
                     validator: (value) {
                       try {
                         if (value != null && value.isNotEmpty) {
-                        int? minamount = int.tryParse(value);
-                        if (minamount! < 0 || minamount > 100000) {
-                          return 'Category offer must be between 0 and 100';
-                        }
+                          int? minamount = int.tryParse(value);
+                          if (minamount! < 0 || minamount > 100000) {
+                            return 'Category offer must be between 0 and 100';
+                          }
                         }
                       } catch (e) {
                         return 'Please enter a valid integer for category offer';
@@ -122,12 +121,12 @@ class _AddCategoryState extends State<AddCategory> {
                     title: 'Maximum Discount (optional)',
                     controller: maxDiscountController,
                     validator: (value) {
-                       try {
+                      try {
                         if (value != null && value.isNotEmpty) {
-                        int? maxdiscount = int.tryParse(value);
-                        if (maxdiscount! < 0 || maxdiscount > 10000) {
-                          return 'Category offer must be between 0 and 100';
-                        }
+                          int? maxdiscount = int.tryParse(value);
+                          if (maxdiscount! < 0 || maxdiscount > 10000) {
+                            return 'Category offer must be between 0 and 100';
+                          }
                         }
                       } catch (e) {
                         return 'Please enter a valid integer for category offer';
@@ -221,15 +220,14 @@ class _AddCategoryState extends State<AddCategory> {
                   BlocConsumer<CategoryBloc, CategoryState>(
                     listener: (context, state) {
                       // TODO: implement listener
-                      if (state.category!=null) {
-                        if(state.category!.status=="success"){
-                          ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+                      if (state.category != null) {
+                        if (state.category!.status == "success") {
+                          ScaffoldMessenger.of(context)
+                              .showSnackBar(const SnackBar(
                             content: Text('Added Successfully'),
                             backgroundColor: Colors.red,
-                            ));
-                            
-                        }
-                        else {
+                          ));
+                        } else {
                           ScaffoldMessenger.of(context)
                               .showSnackBar(const SnackBar(
                             content: Text('Name already used'),
@@ -241,21 +239,18 @@ class _AddCategoryState extends State<AddCategory> {
                     builder: (context, state) {
                       return ElevatedButton(
                         onPressed: () {
-                           
-                         
-                              if (formkey.currentState!.validate()) {
-                          context.read<CategoryBloc>().add(
-                              CategoryEvent.addCategory(
+                          if (formkey.currentState!.validate()) {
+                            context
+                                .read<CategoryBloc>()
+                                .add(CategoryEvent.addCategory(
                                   catNameController.text,
                                   dropdownValue,
-                                  
-                                    int.tryParse(catOfferController.text)??0,
-                                 int.tryParse(minAmountController.text)??0,
-                               
-                                    int.tryParse(maxDiscountController.text)??0,
-                                 expiryController.text,
-                              ));
-                        }
+                                  int.tryParse(catOfferController.text) ?? 0,
+                                  int.tryParse(minAmountController.text) ?? 0,
+                                  int.tryParse(maxDiscountController.text) ?? 0,
+                                  expiryController.text,
+                                ));
+                          }
                         },
                         style: const ButtonStyle(
                             backgroundColor:

@@ -35,21 +35,21 @@ class BrandRepo {
 
   Future<BrandGetModel> getBrands() async {
     try {
-       final dio = Dio(BaseOptions(
-       headers: {
-          'Cookie': 'jwtAdmin=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY1OTZhNDg5YWQxM2Q1YWQ3MTllMjMyOSIsImlhdCI6MTcwNTkyOTE0NSwiZXhwIjoxNzA2MTg4MzQ1fQ.YCjZBxDB4k8SGIobxpzHRw-jDCzxGunTViyIEE1ruUM',
+      final dio = Dio(BaseOptions(
+        headers: {
+          'Cookie':
+              'jwtAdmin=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY1OTZhNDg5YWQxM2Q1YWQ3MTllMjMyOSIsImlhdCI6MTcwNTkyOTE0NSwiZXhwIjoxNzA2MTg4MzQ1fQ.YCjZBxDB4k8SGIobxpzHRw-jDCzxGunTViyIEE1ruUM',
           'Postman-Token': '<calculated when request is sent>',
           'Host': '<calculated when request is sent>',
           'User-Agent': 'PostmanRuntime/7.36.1',
           'Accept': '*/*',
           'Accept-Encoding': 'gzip, deflate, br',
-          'Connection': 'keep-alive', 
-
+          'Connection': 'keep-alive',
         },
-    ));
-    
+      ));
+
       final response = await dio.get("http://10.0.2.2:3000/admin/brands");
-      
+
       if (response.statusCode == 200) {
         print(response.data);
         return BrandGetModel.fromJson(response.data);
@@ -59,7 +59,7 @@ class BrandRepo {
     } catch (error) {
       throw Exception("Error: $error");
     }
-}
+  }
 
   Future<BrandDeleteModel> deleteBrand(String brandId) async {
     BrandDeleteModel delBrand = BrandDeleteModel(message: "");
@@ -78,23 +78,22 @@ class BrandRepo {
     return delBrand;
   }
 
-  Future<BrandEditModel> editBrand(
-      String name, dynamic active, dynamic image,String id,String oldName) async {
+  Future<BrandEditModel> editBrand(String name, dynamic active, dynamic image,
+      String id, String oldName) async {
     BrandEditModel brand = BrandEditModel(message: "");
     try {
       FormData formData = FormData.fromMap({
         "brandName": name,
         "active": active,
-        
         "image": await MultipartFile.fromFile(
           image.path,
           filename: "image.jpg",
         ),
-        "id":id,
-        "oldName":oldName,
+        "id": id,
+        "oldName": oldName,
       });
-      final response =
-          await Dio().put("http://10.0.2.2:3000/admin/brands/edit", data: formData);
+      final response = await Dio()
+          .put("http://10.0.2.2:3000/admin/brands/edit", data: formData);
       if (response.statusCode == 201 || response.statusCode == 200) {
         print("the response get is oky");
         print(response.data);
@@ -108,5 +107,4 @@ class BrandRepo {
       return brand;
     }
   }
-
 }

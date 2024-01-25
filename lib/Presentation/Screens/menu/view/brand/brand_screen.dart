@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:glam_garb_admin/Domain/response_models/brand_model/brand_get_model/brand_get_model.dart';
 import 'package:glam_garb_admin/Infrastructure/Services/brand/brand_repo.dart';
@@ -18,7 +17,6 @@ class BrandScreen extends StatelessWidget {
       body: SafeArea(
         child: Stack(
           children: [
-           
             FutureBuilder<BrandGetModel>(
               // Replace String with your Brand model
               future:
@@ -28,7 +26,7 @@ class BrandScreen extends StatelessWidget {
                   return Center(child: CircularProgressIndicator());
                 } else if (snapshot.hasError) {
                   return Text('Error: ${snapshot.error}');
-                } else if (!snapshot.hasData || snapshot.data?.brands==null) {
+                } else if (!snapshot.hasData || snapshot.data?.brands == null) {
                   return Text('No brands found.');
                 } else {
                   final brands = snapshot.data!;
@@ -44,16 +42,16 @@ class BrandScreen extends StatelessWidget {
                             mainAxisSpacing: 20,
                             crossAxisCount: 2,
                           ),
-                          itemCount:brands.brands!.length,
+                          itemCount: brands.brands!.length,
                           itemBuilder: (context, index) => GestureDetector(
                             onTap: () {
                               // Handle brand item tap
                             },
                             child: BrandCard(
                               width: 180,
-                              bName: brands.brands![index].brandName??"", 
-                              image: brands.brands![index].image??"",
-                               id:brands.brands![index].sId??"" ,
+                              bName: brands.brands![index].brandName ?? "",
+                              image: brands.brands![index].image ?? "",
+                              id: brands.brands![index].sId ?? "",
                             ),
                           ),
                         ),
@@ -90,7 +88,7 @@ class BrandScreen extends StatelessWidget {
                 ),
               ),
             ),
-             Column(
+            Column(
               children: [
                 Row(
                   children: [

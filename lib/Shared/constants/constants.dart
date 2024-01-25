@@ -35,8 +35,8 @@ BorderRadius kradius30 = BorderRadius.circular(30);
 
 TextStyle ktextstyleformenu =
     const TextStyle(color: kwhite, fontSize: 17, fontWeight: FontWeight.bold);
- TextStyle textstyle1 =
-    const TextStyle(color: Colors.black, fontSize: 18, fontWeight: FontWeight.bold);
+TextStyle textstyle1 = const TextStyle(
+    color: Colors.black, fontSize: 18, fontWeight: FontWeight.bold);
 
 //buttonStyle
 

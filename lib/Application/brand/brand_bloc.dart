@@ -17,14 +17,14 @@ class BrandBloc extends Bloc<BrandEvent, BrandState> {
           await repo.addBrand(event.brandName, event.active, event.image);
       emit(state.copyWith(isloading: false, brand: brand));
     });
-     on<_DeleteBrand>((event, emit) async {
-      final delbrand =
-          await repo.deleteBrand(event.id);
-      emit(state.copyWith(isloading: false, delBrand:delbrand ));
+    on<_DeleteBrand>((event, emit) async {
+      final delbrand = await repo.deleteBrand(event.id);
+      emit(state.copyWith(isloading: false, delBrand: delbrand));
     });
 
     on<_EditBrand>((event, emit) async {
-      final editbrand = await repo.editBrand(event.brandName, event.active, event.image, event.id, event.oldName);
+      final editbrand = await repo.editBrand(
+          event.brandName, event.active, event.image, event.id, event.oldName);
       emit(state.copyWith(isloading: false, editBrand: editbrand));
     });
   }

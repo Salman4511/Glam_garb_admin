@@ -3,13 +3,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:glam_garb_admin/Application/brand/brand_bloc.dart';
 import 'package:glam_garb_admin/Domain/response_models/brand_model/brand_add_model/brand_model.dart';
-import 'package:glam_garb_admin/Infrastructure/Services/brand/brand_repo.dart';
+import 'package:glam_garb_admin/Infrastructure/Services/Brand/brand_repo.dart';
 import 'package:glam_garb_admin/Presentation/Screens/menu/view/category/widgets/text_field_widget.dart';
 import 'package:glam_garb_admin/Shared/constants/constants.dart';
 import 'package:image_picker/image_picker.dart';
 
 class EditBrand extends StatefulWidget {
-    final Brand initialBrand;
+  final Brand initialBrand;
 
   EditBrand({super.key, required this.initialBrand});
 
@@ -206,14 +206,13 @@ class _EditBrandState extends State<EditBrand> {
                                 if (selectedImage != null) {
                                   // Pass the selectedImage along with other parameters
                                   context.read<BrandBloc>().add(
-                                        BrandEvent.editBrand(
-                                          brandNameController.text, 
-                                        dropdownValue, 
-                                        selectedImage,
-                                        widget.initialBrand.sId!,
-                                         widget.initialBrand.brandName!)
-                                      );
-                                      print('id-->${widget.initialBrand.sId}');
+                                      BrandEvent.editBrand(
+                                          brandNameController.text,
+                                          dropdownValue,
+                                          selectedImage,
+                                          widget.initialBrand.sId!,
+                                          widget.initialBrand.brandName!));
+                                  print('id-->${widget.initialBrand.sId}');
                                 } else {
                                   // Handle case where no image is selected
                                   // You may want to show a message to the user
@@ -233,7 +232,6 @@ class _EditBrandState extends State<EditBrand> {
                           );
                         },
                       ),
-                     
                     ],
                   ),
                 ],

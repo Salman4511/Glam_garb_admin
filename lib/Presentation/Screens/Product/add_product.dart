@@ -1,6 +1,8 @@
 import 'dart:io';
 
 import 'package:flutter/material.dart';
+import 'package:glam_garb_admin/Domain/body_models/product_model.dart';
+import 'package:glam_garb_admin/Infrastructure/Services/Product/product_repo.dart';
 import 'package:glam_garb_admin/Presentation/Screens/product/widgets/product_text_form_fields.dart';
 import 'package:glam_garb_admin/Presentation/Screens/product/widgets/row_text_field.dart';
 import 'package:glam_garb_admin/Shared/constants/constants.dart';
@@ -17,13 +19,19 @@ class _AddProductState extends State<AddProduct> {
   File? selectedImage1;
   File? selectedImage2;
   File? selectedImage3;
-
+  TextEditingController productNameController=TextEditingController();
+    TextEditingController productDescrController = TextEditingController();
+  TextEditingController colorController = TextEditingController();
+  TextEditingController brandController = TextEditingController();
+  TextEditingController categoryController = TextEditingController();
+  TextEditingController regPriceController = TextEditingController();
+  TextEditingController salePriceController = TextEditingController();
   List<TextEditingController> sizeControllers = [TextEditingController()];
   List<TextEditingController> stockControllers = [TextEditingController()];
 
-  List<File?> selectedImages = [null, null, null]; 
- 
- int selectedGender = 1;
+  List<File?> selectedImages = [null, null, null];
+  List<String> colorsList=[];
+  int selectedGender = 1;
   void addMoreFields() {
     setState(() {
       sizeControllers.add(TextEditingController());
@@ -53,16 +61,20 @@ class _AddProductState extends State<AddProduct> {
                     ],
                   ),
                   kheight,
-                  const ProductTextFieldWidget(
+                   ProductTextFieldWidget(
+                    controller: productNameController,
                     title: '     Product Name',
                   ),
                   kheight,
-                  const ProductTextFieldWidget(
+                   ProductTextFieldWidget(
+                    controller: productDescrController,
                     title: '     Product Description',
                     maxlines: 4,
                   ),
                   kheight,
-                  const ProductTextFieldWidget(title: '     Color'),
+                   ProductTextFieldWidget(
+                    controller: colorController,
+                    title: '     Color'),
                   kheight20,
                   Row(
                     children: [
@@ -72,7 +84,7 @@ class _AddProductState extends State<AddProduct> {
                       ),
                     ],
                   ),
-                 Theme(
+                  Theme(
                     data: ThemeData(
                       unselectedWidgetColor: Colors.grey,
                     ),
@@ -109,7 +121,7 @@ class _AddProductState extends State<AddProduct> {
                     ),
                   ),
                   kheight,
-                 for (int i = 0; i < sizeControllers.length; i++)
+                  for (int i = 0; i < sizeControllers.length; i++)
                     RowTextFormField(
                       title1: '     Size',
                       title2: '     Stoke',
@@ -120,22 +132,27 @@ class _AddProductState extends State<AddProduct> {
                   Row(
                     children: [
                       ElevatedButton(
-                          onPressed: addMoreFields, child: const Text('Add more')),
+                          onPressed: addMoreFields,
+                          child: const Text('Add more')),
                     ],
                   ),
                   kheight,
                   // dynamically build size and stock fields
-                  
-                  const RowTextFormField(
+
+                   RowTextFormField(
+                    controller1: brandController,
+                    controller2: categoryController,
                     title1: '     Brand',
-                    title2: '     Category', 
+                    title2: '     Category',
                   ),
                   kheight,
-                  const ProductTextFieldWidget(
+                   ProductTextFieldWidget(
+                    controller: regPriceController,
                     title: '     Regular Prize',
                   ),
                   kheight,
-                  const ProductTextFieldWidget(
+                   ProductTextFieldWidget(
+                    controller: salePriceController,
                     title: '     Sale Prize',
                   ),
                   kheight,
@@ -280,7 +297,31 @@ class _AddProductState extends State<AddProduct> {
                   ),
                   kheight20,
                   ElevatedButton(
-                    onPressed: () {},
+                    onPressed: () {
+                      List<String> newColors = colorController.text.split(',');
+                      colorsList.addAll(newColors);
+                      String getSelectedGender() {
+                       if (selectedGender == 1) {
+                            return 'Male';
+                        } else if (selectedGender == 2) {
+                            return 'Female';
+                        } else {
+                        return 'Unknown';
+                         }
+                       }
+                      ProductRepo repo = ProductRepo();
+                      ProductPassModel product =ProductPassModel(
+                        productName: productNameController.text,
+                        description: productDescrController.text,
+                        color: colorsList,
+                        gender: getSelectedGender(),
+                        
+                      );
+                      repo.addProduct(
+                      product
+                      );
+                      
+                    },
                     style: submitbuttonStyle,
                     child: Text(
                       'Submit',

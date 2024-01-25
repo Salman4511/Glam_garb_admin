@@ -34,17 +34,16 @@ class _EditCategoryState extends State<EditCategory> {
   @override
   void initState() {
     // TODO: implement initState
-     catNameController.text=widget.initialCategory.categoryName??"";
-     catOfferController.text=widget.initialCategory.categoryOffer.toString();
-     minAmountController.text=widget.initialCategory.minAmount.toString();
-     maxDiscountController.text=widget.initialCategory.maxDiscount.toString();
-     expiryController.text=widget.initialCategory.expiry??'00/00/00';
+    catNameController.text = widget.initialCategory.categoryName ?? "";
+    catOfferController.text = widget.initialCategory.categoryOffer.toString();
+    minAmountController.text = widget.initialCategory.minAmount.toString();
+    maxDiscountController.text = widget.initialCategory.maxDiscount.toString();
+    expiryController.text = widget.initialCategory.expiry ?? '00/00/00';
     super.initState();
   }
 
   @override
   Widget build(BuildContext context) {
-  
     final size = MediaQuery.of(context).size;
     return Scaffold(
       backgroundColor: kblackcolor,
@@ -242,16 +241,15 @@ class _EditCategoryState extends State<EditCategory> {
                             content: Text('Updated Successfully'),
                             backgroundColor: Colors.red,
                           ));
-
                         } else {
                           ScaffoldMessenger.of(context)
                               .showSnackBar(const SnackBar(
                             content: Text('Name already used'),
                             backgroundColor: Colors.red,
                           ));
-                        }Navigator.pop(context);
+                        }
+                        Navigator.pop(context);
                       }
-                      
                     },
                     builder: (context, state) {
                       return ElevatedButton(
@@ -266,13 +264,13 @@ class _EditCategoryState extends State<EditCategory> {
                                   catNameController.text,
                                   dropdownValue,
                                   widget.initialCategory.sId!,
-                                 
-                                      int.tryParse(catOfferController.text),
-                                 
-                                      int.tryParse(minAmountController.text),
-                                 
-                                      int.tryParse(maxDiscountController.text),
-                                   expiryController.text,
+
+                                  int.tryParse(catOfferController.text),
+
+                                  int.tryParse(minAmountController.text),
+
+                                  int.tryParse(maxDiscountController.text),
+                                  expiryController.text,
                                 ));
                           }
                           print("id==>${widget.initialCategory.sId}");

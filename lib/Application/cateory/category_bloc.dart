@@ -13,17 +13,30 @@ class CategoryBloc extends Bloc<CategoryEvent, CategoryState> {
   final CategoryRepo repo;
   CategoryBloc(this.repo) : super(CategoryState.initial()) {
     on<_AddCategory>((event, emit) async {
-      final category = await repo.addCategory(event.name, event.active,event.categoryOffer??0, event.minAmount??0, event.maxDiscount??0, event.date??'0');
+      final category = await repo.addCategory(
+          event.name,
+          event.active,
+          event.categoryOffer ?? 0,
+          event.minAmount ?? 0,
+          event.maxDiscount ?? 0,
+          event.date ?? '0');
       emit(state.copyWith(isLoading: false, category: category));
     });
 
     on<_DeleteCategory>((event, emit) async {
       final delCategory = await repo.deleteCategory(event.id);
-      emit(state.copyWith(isLoading: false,delCategory: delCategory ));
+      emit(state.copyWith(isLoading: false, delCategory: delCategory));
     });
 
-     on<_EditCategory>((event, emit) async {
-      final editCategory = await repo.editCategory(event.name,event.active,event.id,event.categoryOffer??0,event.minAmount??0,event.maxDiscount??0,event.date??'0');
+    on<_EditCategory>((event, emit) async {
+      final editCategory = await repo.editCategory(
+          event.name,
+          event.active,
+          event.id,
+          event.categoryOffer ?? 0,
+          event.minAmount ?? 0,
+          event.maxDiscount ?? 0,
+          event.date ?? '0');
       emit(state.copyWith(isLoading: false, editCategory: editCategory));
     });
   }

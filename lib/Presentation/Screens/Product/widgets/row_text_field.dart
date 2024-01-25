@@ -5,12 +5,14 @@ class RowTextFormField extends StatelessWidget {
   const RowTextFormField({
     super.key,
     required this.title1,
-    required this.title2,  this.controller1,  this.controller2,
+    required this.title2,
+    this.controller1,
+    this.controller2,
   });
   final String title1;
   final String title2;
- final TextEditingController? controller1 ;
- final TextEditingController? controller2 ;
+  final TextEditingController? controller1;
+  final TextEditingController? controller2;
 
   @override
   Widget build(BuildContext context) {

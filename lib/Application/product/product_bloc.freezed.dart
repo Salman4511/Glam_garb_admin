@@ -15,7 +15,46 @@ final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
 /// @nodoc
-mixin _$ProductEvent {}
+mixin _$ProductEvent {
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>(
+    TResult Function() $default, {
+    required TResult Function(ProductPassModel newProduct) addProduct,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>(
+    TResult? Function()? $default, {
+    TResult? Function(ProductPassModel newProduct)? addProduct,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>(
+    TResult Function()? $default, {
+    TResult Function(ProductPassModel newProduct)? addProduct,
+    required TResult orElse(),
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>(
+    TResult Function(_ProductEvent value) $default, {
+    required TResult Function(_AddProduct value) addProduct,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>(
+    TResult? Function(_ProductEvent value)? $default, {
+    TResult? Function(_AddProduct value)? addProduct,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>(
+    TResult Function(_ProductEvent value)? $default, {
+    TResult Function(_AddProduct value)? addProduct,
+    required TResult orElse(),
+  }) =>
+      throw _privateConstructorUsedError;
+}
 
 /// @nodoc
 abstract class $ProductEventCopyWith<$Res> {
@@ -69,6 +108,68 @@ class _$ProductEventImpl implements _ProductEvent {
 
   @override
   int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>(
+    TResult Function() $default, {
+    required TResult Function(ProductPassModel newProduct) addProduct,
+  }) {
+    return $default();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>(
+    TResult? Function()? $default, {
+    TResult? Function(ProductPassModel newProduct)? addProduct,
+  }) {
+    return $default?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>(
+    TResult Function()? $default, {
+    TResult Function(ProductPassModel newProduct)? addProduct,
+    required TResult orElse(),
+  }) {
+    if ($default != null) {
+      return $default();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>(
+    TResult Function(_ProductEvent value) $default, {
+    required TResult Function(_AddProduct value) addProduct,
+  }) {
+    return $default(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>(
+    TResult? Function(_ProductEvent value)? $default, {
+    TResult? Function(_AddProduct value)? addProduct,
+  }) {
+    return $default?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>(
+    TResult Function(_ProductEvent value)? $default, {
+    TResult Function(_AddProduct value)? addProduct,
+    required TResult orElse(),
+  }) {
+    if ($default != null) {
+      return $default(this);
+    }
+    return orElse();
+  }
 }
 
 abstract class _ProductEvent implements ProductEvent {
@@ -76,9 +177,143 @@ abstract class _ProductEvent implements ProductEvent {
 }
 
 /// @nodoc
+abstract class _$$AddProductImplCopyWith<$Res> {
+  factory _$$AddProductImplCopyWith(
+          _$AddProductImpl value, $Res Function(_$AddProductImpl) then) =
+      __$$AddProductImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({ProductPassModel newProduct});
+}
+
+/// @nodoc
+class __$$AddProductImplCopyWithImpl<$Res>
+    extends _$ProductEventCopyWithImpl<$Res, _$AddProductImpl>
+    implements _$$AddProductImplCopyWith<$Res> {
+  __$$AddProductImplCopyWithImpl(
+      _$AddProductImpl _value, $Res Function(_$AddProductImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? newProduct = null,
+  }) {
+    return _then(_$AddProductImpl(
+      null == newProduct
+          ? _value.newProduct
+          : newProduct // ignore: cast_nullable_to_non_nullable
+              as ProductPassModel,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$AddProductImpl implements _AddProduct {
+  _$AddProductImpl(this.newProduct);
+
+  @override
+  final ProductPassModel newProduct;
+
+  @override
+  String toString() {
+    return 'ProductEvent.addProduct(newProduct: $newProduct)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$AddProductImpl &&
+            (identical(other.newProduct, newProduct) ||
+                other.newProduct == newProduct));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, newProduct);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$AddProductImplCopyWith<_$AddProductImpl> get copyWith =>
+      __$$AddProductImplCopyWithImpl<_$AddProductImpl>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>(
+    TResult Function() $default, {
+    required TResult Function(ProductPassModel newProduct) addProduct,
+  }) {
+    return addProduct(newProduct);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>(
+    TResult? Function()? $default, {
+    TResult? Function(ProductPassModel newProduct)? addProduct,
+  }) {
+    return addProduct?.call(newProduct);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>(
+    TResult Function()? $default, {
+    TResult Function(ProductPassModel newProduct)? addProduct,
+    required TResult orElse(),
+  }) {
+    if (addProduct != null) {
+      return addProduct(newProduct);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>(
+    TResult Function(_ProductEvent value) $default, {
+    required TResult Function(_AddProduct value) addProduct,
+  }) {
+    return addProduct(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>(
+    TResult? Function(_ProductEvent value)? $default, {
+    TResult? Function(_AddProduct value)? addProduct,
+  }) {
+    return addProduct?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>(
+    TResult Function(_ProductEvent value)? $default, {
+    TResult Function(_AddProduct value)? addProduct,
+    required TResult orElse(),
+  }) {
+    if (addProduct != null) {
+      return addProduct(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _AddProduct implements ProductEvent {
+  factory _AddProduct(final ProductPassModel newProduct) = _$AddProductImpl;
+
+  ProductPassModel get newProduct;
+  @JsonKey(ignore: true)
+  _$$AddProductImplCopyWith<_$AddProductImpl> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
 mixin _$ProductState {
   bool get isloading => throw _privateConstructorUsedError;
-  BrandModel? get brand => throw _privateConstructorUsedError;
+  ProductModel? get product => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $ProductStateCopyWith<ProductState> get copyWith =>
@@ -91,7 +326,7 @@ abstract class $ProductStateCopyWith<$Res> {
           ProductState value, $Res Function(ProductState) then) =
       _$ProductStateCopyWithImpl<$Res, ProductState>;
   @useResult
-  $Res call({bool isloading, BrandModel? brand});
+  $Res call({bool isloading, ProductModel? product});
 }
 
 /// @nodoc
@@ -108,17 +343,17 @@ class _$ProductStateCopyWithImpl<$Res, $Val extends ProductState>
   @override
   $Res call({
     Object? isloading = null,
-    Object? brand = freezed,
+    Object? product = freezed,
   }) {
     return _then(_value.copyWith(
       isloading: null == isloading
           ? _value.isloading
           : isloading // ignore: cast_nullable_to_non_nullable
               as bool,
-      brand: freezed == brand
-          ? _value.brand
-          : brand // ignore: cast_nullable_to_non_nullable
-              as BrandModel?,
+      product: freezed == product
+          ? _value.product
+          : product // ignore: cast_nullable_to_non_nullable
+              as ProductModel?,
     ) as $Val);
   }
 }
@@ -131,7 +366,7 @@ abstract class _$$ProductStateImplCopyWith<$Res>
       __$$ProductStateImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({bool isloading, BrandModel? brand});
+  $Res call({bool isloading, ProductModel? product});
 }
 
 /// @nodoc
@@ -146,17 +381,17 @@ class __$$ProductStateImplCopyWithImpl<$Res>
   @override
   $Res call({
     Object? isloading = null,
-    Object? brand = freezed,
+    Object? product = freezed,
   }) {
     return _then(_$ProductStateImpl(
       isloading: null == isloading
           ? _value.isloading
           : isloading // ignore: cast_nullable_to_non_nullable
               as bool,
-      brand: freezed == brand
-          ? _value.brand
-          : brand // ignore: cast_nullable_to_non_nullable
-              as BrandModel?,
+      product: freezed == product
+          ? _value.product
+          : product // ignore: cast_nullable_to_non_nullable
+              as ProductModel?,
     ));
   }
 }
@@ -164,16 +399,16 @@ class __$$ProductStateImplCopyWithImpl<$Res>
 /// @nodoc
 
 class _$ProductStateImpl implements _ProductState {
-  const _$ProductStateImpl({required this.isloading, this.brand});
+  const _$ProductStateImpl({required this.isloading, this.product});
 
   @override
   final bool isloading;
   @override
-  final BrandModel? brand;
+  final ProductModel? product;
 
   @override
   String toString() {
-    return 'ProductState(isloading: $isloading, brand: $brand)';
+    return 'ProductState(isloading: $isloading, product: $product)';
   }
 
   @override
@@ -183,11 +418,11 @@ class _$ProductStateImpl implements _ProductState {
             other is _$ProductStateImpl &&
             (identical(other.isloading, isloading) ||
                 other.isloading == isloading) &&
-            (identical(other.brand, brand) || other.brand == brand));
+            (identical(other.product, product) || other.product == product));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, isloading, brand);
+  int get hashCode => Object.hash(runtimeType, isloading, product);
 
   @JsonKey(ignore: true)
   @override
@@ -199,12 +434,12 @@ class _$ProductStateImpl implements _ProductState {
 abstract class _ProductState implements ProductState {
   const factory _ProductState(
       {required final bool isloading,
-      final BrandModel? brand}) = _$ProductStateImpl;
+      final ProductModel? product}) = _$ProductStateImpl;
 
   @override
   bool get isloading;
   @override
-  BrandModel? get brand;
+  ProductModel? get product;
   @override
   @JsonKey(ignore: true)
   _$$ProductStateImplCopyWith<_$ProductStateImpl> get copyWith =>

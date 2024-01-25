@@ -20,7 +20,11 @@ class CategoryCard extends StatefulWidget {
     required this.isActive,
     required this.categoryName,
     required this.id,
-    required this.parentContext, required this.catOffer, required this.minAmount, required this.maxDiscount, required this.date, 
+    required this.parentContext,
+    required this.catOffer,
+    required this.minAmount,
+    required this.maxDiscount,
+    required this.date,
   }) : super(key: key);
 
   @override
@@ -52,18 +56,20 @@ class _CategoryCardState extends State<CategoryCard> {
             IconButton(
               icon: Icon(Icons.edit),
               onPressed: () {
-                Navigator.push(context, MaterialPageRoute(builder: (context) =>EditCategory(
-                  initialCategory: Category(
-                    categoryName: widget.categoryName,
-                          active: widget.isActive,
-                          sId: widget.id,
-                          categoryOffer: widget.catOffer,
-                          minAmount: widget.minAmount,
-                          maxDiscount: widget.maxDiscount,
-                          expiry: widget.date
-                          
-                  ),
-                ) ,));
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => EditCategory(
+                        initialCategory: Category(
+                            categoryName: widget.categoryName,
+                            active: widget.isActive,
+                            sId: widget.id,
+                            categoryOffer: widget.catOffer,
+                            minAmount: widget.minAmount,
+                            maxDiscount: widget.maxDiscount,
+                            expiry: widget.date),
+                      ),
+                    ));
               },
             ),
             BlocConsumer<CategoryBloc, CategoryState>(

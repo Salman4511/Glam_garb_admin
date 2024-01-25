@@ -1,6 +1,8 @@
 import 'package:bloc/bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:glam_garb_admin/Domain/body_models/product_model.dart';
 import 'package:glam_garb_admin/Domain/response_models/brand_model/brand_add_model/brand_model.dart';
+import 'package:glam_garb_admin/Domain/response_models/product_model/product_add_model/product_model.dart';
 import 'package:glam_garb_admin/Infrastructure/Services/product/product_repo.dart';
 
 part 'product_event.dart';

@@ -16,7 +16,7 @@ class AddBrand extends StatefulWidget {
 class _AddBrandState extends State<AddBrand> {
   List<String> list = ["Active", "non-Active"];
   String dropdownValue = "Active";
-   final formkey = GlobalKey<FormState>();
+  final formkey = GlobalKey<FormState>();
   TextEditingController brandNameController = TextEditingController();
   File? selectedImage; // Variable to hold the selected image as a File
 
@@ -61,14 +61,14 @@ class _AddBrandState extends State<AddBrand> {
                     children: [
                       kheight90,
                       TextFieldWidget(
-                          title: 'Enter brand name',
-                          controller: brandNameController,
-                          validator: (value){
-                            if(value!.isEmpty) return "Please enter the brand name";
-                            return null;
-                          },
-                          
-                          ),
+                        title: 'Enter brand name',
+                        controller: brandNameController,
+                        validator: (value) {
+                          if (value!.isEmpty)
+                            return "Please enter the brand name";
+                          return null;
+                        },
+                      ),
                       kheight,
                       Container(
                         width: 500,
@@ -168,15 +168,16 @@ class _AddBrandState extends State<AddBrand> {
                       BlocConsumer<BrandBloc, BrandState>(
                         listener: (context, state) {
                           // TODO: implement listener
-                          if(state.brand!=null){
-                            if(state.brand!.message=="Brand added successfully"){
-                                 ScaffoldMessenger.of(context)
+                          if (state.brand != null) {
+                            if (state.brand!.message ==
+                                "Brand added successfully") {
+                              ScaffoldMessenger.of(context)
                                   .showSnackBar(const SnackBar(
                                 content: Text('Added Successfully'),
                                 backgroundColor: Colors.red,
-                              )); 
-                            }else{
-                               ScaffoldMessenger.of(context)
+                              ));
+                            } else {
+                              ScaffoldMessenger.of(context)
                                   .showSnackBar(const SnackBar(
                                 content: Text('Name already used'),
                                 backgroundColor: Colors.red,
@@ -188,25 +189,25 @@ class _AddBrandState extends State<AddBrand> {
                           return ElevatedButton(
                             onPressed: () {
                               // Check if an image is selected
-                              if(formkey.currentState!.validate()){
-                              if (selectedImage != null) {
-                                // Pass the selectedImage along with other parameters
-                                context.read<BrandBloc>().add(
-                                      BrandEvent.addBrand(
-                                          brandNameController.text,
-                                          // selectedImage!,
-                                          dropdownValue,
-                                          selectedImage!),
-                                    );
-                              } else {
-                                // Handle case where no image is selected
-                                // You may want to show a message to the user
-                                ScaffoldMessenger.of(context)
+                              if (formkey.currentState!.validate()) {
+                                if (selectedImage != null) {
+                                  // Pass the selectedImage along with other parameters
+                                  context.read<BrandBloc>().add(
+                                        BrandEvent.addBrand(
+                                            brandNameController.text,
+                                            // selectedImage!,
+                                            dropdownValue,
+                                            selectedImage!),
+                                      );
+                                } else {
+                                  // Handle case where no image is selected
+                                  // You may want to show a message to the user
+                                  ScaffoldMessenger.of(context)
                                       .showSnackBar(const SnackBar(
                                     content: Text('Please select an image'),
                                     backgroundColor: Colors.red,
                                   ));
-                              }
+                                }
                               }
                             },
                             style: const ButtonStyle(
@@ -217,7 +218,6 @@ class _AddBrandState extends State<AddBrand> {
                           );
                         },
                       ),
-                      
                     ],
                   ),
                 ],

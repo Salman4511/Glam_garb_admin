@@ -55,13 +55,11 @@ class _CategoryScreenState extends State<CategoryScreen> {
                                 categoryName: categories[index].categoryName ??
                                     'Unnamed Category',
                                 id: categories[index].sId ?? '',
-                                 parentContext: context,
-                                 catOffer: categories[index].categoryOffer??0,
-                                  minAmount: categories[index].minAmount??0, 
-                                  maxDiscount: categories[index].maxDiscount??0, 
-                                  date: categories[index].expiry??'', 
-                                
-                      
+                                parentContext: context,
+                                catOffer: categories[index].categoryOffer ?? 0,
+                                minAmount: categories[index].minAmount ?? 0,
+                                maxDiscount: categories[index].maxDiscount ?? 0,
+                                date: categories[index].expiry ?? '',
                               ),
                             ),
                           ),
