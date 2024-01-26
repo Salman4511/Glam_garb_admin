@@ -1,5 +1,6 @@
 import 'dart:io';
 
+import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:glam_garb_admin/Domain/body_models/product_model.dart';
 import 'package:glam_garb_admin/Infrastructure/Services/Product/product_repo.dart';
@@ -19,24 +20,51 @@ class _AddProductState extends State<AddProduct> {
   File? selectedImage1;
   File? selectedImage2;
   File? selectedImage3;
-  TextEditingController productNameController=TextEditingController();
-    TextEditingController productDescrController = TextEditingController();
+  TextEditingController productNameController = TextEditingController();
+  TextEditingController productDescrController = TextEditingController();
   TextEditingController colorController = TextEditingController();
   TextEditingController brandController = TextEditingController();
   TextEditingController categoryController = TextEditingController();
   TextEditingController regPriceController = TextEditingController();
   TextEditingController salePriceController = TextEditingController();
-  List<TextEditingController> sizeControllers = [TextEditingController()];
-  List<TextEditingController> stockControllers = [TextEditingController()];
+  TextEditingController sizeControllers = TextEditingController();
+  TextEditingController stockControllers = TextEditingController();
 
   List<File?> selectedImages = [null, null, null];
-  List<String> colorsList=[];
+  List<String> colorsList = [];
+  List<dynamic> sizess = [];
+  List<dynamic> stocks = [];
+
   int selectedGender = 1;
+
   void addMoreFields() {
     setState(() {
-      sizeControllers.add(TextEditingController());
-      stockControllers.add(TextEditingController());
+      sizess.add(sizeControllers.text);
+      stocks.add(stockControllers.text);
+
+      // Clear the fields after adding to the lists
+      sizeControllers.clear();
+      stockControllers.clear();
     });
+  }
+
+  // Future<void> pickImage(int index) async {
+  //   final image = await ImagePicker().pickImage(
+  //     source: ImageSource.gallery,
+  //   );
+
+  //   if (image != null) {
+  //     setState(() async {
+  //       // Update selected image file
+  //       selectedImages[index] = await MultipartFile.fromFile(
+  //         image.path,
+  //         filename: "image_$index.jpg",
+  //       );
+  //     });
+  //   }
+  // }
+  String getImageFieldText(int index) {
+    return selectedImages[index] != null ? 'Image Selected' : 'Select Image';
   }
 
   @override
@@ -61,20 +89,21 @@ class _AddProductState extends State<AddProduct> {
                     ],
                   ),
                   kheight,
-                   ProductTextFieldWidget(
+                  ProductTextFieldWidget(
                     controller: productNameController,
                     title: '     Product Name',
                   ),
                   kheight,
-                   ProductTextFieldWidget(
+                  ProductTextFieldWidget(
                     controller: productDescrController,
                     title: '     Product Description',
                     maxlines: 4,
                   ),
                   kheight,
-                   ProductTextFieldWidget(
+                  ProductTextFieldWidget(
                     controller: colorController,
-                    title: '     Color'),
+                    title: '     Color',
+                  ),
                   kheight20,
                   Row(
                     children: [
@@ -121,94 +150,54 @@ class _AddProductState extends State<AddProduct> {
                     ),
                   ),
                   kheight,
-                  for (int i = 0; i < sizeControllers.length; i++)
-                    RowTextFormField(
-                      title1: '     Size',
-                      title2: '     Stoke',
-                      controller1: sizeControllers[i],
-                      controller2: stockControllers[i],
-                    ),
+                  RowTextFormField(
+                    title1: '     Size',
+                    title2: '     Stoke',
+                    controller1: sizeControllers,
+                    controller2: stockControllers,
+                  ),
                   kheight,
                   Row(
                     children: [
                       ElevatedButton(
-                          onPressed: addMoreFields,
-                          child: const Text('Add more')),
+                        onPressed: addMoreFields,
+                        child: const Text('Add more'),
+                      ),
                     ],
                   ),
                   kheight,
                   // dynamically build size and stock fields
 
-                   RowTextFormField(
+                  RowTextFormField(
                     controller1: brandController,
                     controller2: categoryController,
                     title1: '     Brand',
                     title2: '     Category',
                   ),
                   kheight,
-                   ProductTextFieldWidget(
+                  ProductTextFieldWidget(
                     controller: regPriceController,
                     title: '     Regular Prize',
                   ),
                   kheight,
-                   ProductTextFieldWidget(
+                  ProductTextFieldWidget(
                     controller: salePriceController,
                     title: '     Sale Prize',
                   ),
                   kheight,
-                  //      GestureDetector(
-                  //   onTap: () async {
-                  //     List<Asset> images = await MultipleImagesPicker.pickImages(
-                  //       maxImages:
-                  //           3, // Set the maximum number of images you want to pick
-                  //       enableCamera: true,
-                  //     );
-
-                  //     if (images.isNotEmpty) {
-                  //       // Process the selected image(s)
-                  //       setState(() {
-                  //         for (int i = 0; i < images.length; i++) {
-                  //           selectedImages[i] = File(images[i].identifier!);
-                  //         }
-                  //       });
-                  //     }
-                  //   },
-                  //   child: Container(
-                  //     decoration: BoxDecoration(
-                  //       borderRadius: BorderRadius.circular(25),
-                  //       color: kwhite,
-                  //     ),
-                  //     height: 60,
-                  //     child: Row(
-                  //       mainAxisAlignment: MainAxisAlignment.center,
-                  //       children: [
-                  //         const Icon(
-                  //           Icons.file_copy_outlined,
-                  //           color: kblackcolor,
-                  //         ),
-                  //         const SizedBox(width: 10),
-                  //         Text(
-                  //           selectedImages.any((image) => image != null)
-                  //               ? 'Images Selected'
-                  //               : 'Select Images',
-                  //           style: TextStyle(
-                  //             color: kblackcolor,
-                  //             fontSize: 16,
-                  //           ),
-                  //         ),
-                  //       ],
-                  //     ),
-                  //   ),
-                  // ),
                   TextFormField(
                     scribbleEnabled: false,
-                    onTap: () async {
+                    onTap: 
+                    () async {
+                      // Open gallery
                       final image = await ImagePicker().pickImage(
                         source: ImageSource.gallery,
                       );
                       if (image != null) {
+                        // Process the selected image
                         setState(() {
                           selectedImage1 = File(image.path);
+                          selectedImages[0]=selectedImage1;
                         });
                       }
                     },
@@ -220,8 +209,9 @@ class _AddProductState extends State<AddProduct> {
                         Icons.file_copy_outlined,
                         color: kblackcolor,
                       ),
-                      hintText: selectedImage1 != null
-                          ? 'Image Selected'
+                      hintText:  
+                      selectedImage1 != null
+                          ? 'Image selected'
                           : 'Select Image',
                       border: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(25),
@@ -235,12 +225,15 @@ class _AddProductState extends State<AddProduct> {
                   TextFormField(
                     scribbleEnabled: false,
                     onTap: () async {
+                      // Open gallery
                       final image = await ImagePicker().pickImage(
                         source: ImageSource.gallery,
                       );
                       if (image != null) {
+                        // Process the selected image
                         setState(() {
                           selectedImage2 = File(image.path);
+                          selectedImages[1] = selectedImage2;
                         });
                       }
                     },
@@ -253,7 +246,7 @@ class _AddProductState extends State<AddProduct> {
                         color: kblackcolor,
                       ),
                       hintText: selectedImage2 != null
-                          ? 'Image Selected'
+                          ? 'Image selected'
                           : 'Select Image',
                       border: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(25),
@@ -267,12 +260,15 @@ class _AddProductState extends State<AddProduct> {
                   TextFormField(
                     scribbleEnabled: false,
                     onTap: () async {
+                      // Open gallery
                       final image = await ImagePicker().pickImage(
                         source: ImageSource.gallery,
                       );
                       if (image != null) {
+                        // Process the selected image
                         setState(() {
                           selectedImage3 = File(image.path);
+                          selectedImages[2] = selectedImage3;
                         });
                       }
                     },
@@ -284,8 +280,8 @@ class _AddProductState extends State<AddProduct> {
                         Icons.file_copy_outlined,
                         color: kblackcolor,
                       ),
-                      hintText: selectedImage3 != null
-                          ? 'Image Selected'
+                      hintText:  selectedImage3 != null
+                          ? 'Image selected'
                           : 'Select Image',
                       border: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(25),
@@ -300,27 +296,33 @@ class _AddProductState extends State<AddProduct> {
                     onPressed: () {
                       List<String> newColors = colorController.text.split(',');
                       colorsList.addAll(newColors);
+
                       String getSelectedGender() {
-                       if (selectedGender == 1) {
-                            return 'Male';
+                        if (selectedGender == 1) {
+                          return 'Male';
                         } else if (selectedGender == 2) {
-                            return 'Female';
+                          return 'Female';
                         } else {
-                        return 'Unknown';
-                         }
-                       }
+                          return 'Unknown';
+                        }
+                      }
+
                       ProductRepo repo = ProductRepo();
-                      ProductPassModel product =ProductPassModel(
-                        productName: productNameController.text,
-                        description: productDescrController.text,
-                        color: colorsList,
-                        gender: getSelectedGender(),
-                        
-                      );
+
                       repo.addProduct(
-                      product
+                        selectedImages,
+                        productNameController.text,
+                        productDescrController.text,
+                        colorController.text,
+                        sizess,
+                        stocks,
+                        brandController.text,
+                        categoryController.text,
+                        double.parse(regPriceController.text),
+                        double.parse(salePriceController.text),
+                        getSelectedGender(),
                       );
-                      
+                      print('selected images${selectedImages}');
                     },
                     style: submitbuttonStyle,
                     child: Text(
