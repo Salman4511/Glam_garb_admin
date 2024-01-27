@@ -38,7 +38,7 @@ class BrandRepo {
       final dio = Dio(BaseOptions(
         headers: {
           'Cookie':
-              'jwtAdmin=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY1OTZhNDg5YWQxM2Q1YWQ3MTllMjMyOSIsImlhdCI6MTcwNTkyOTE0NSwiZXhwIjoxNzA2MTg4MzQ1fQ.YCjZBxDB4k8SGIobxpzHRw-jDCzxGunTViyIEE1ruUM',
+              'jwtAdmin=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY1OTZhNDg5YWQxM2Q1YWQ3MTllMjMyOSIsImlhdCI6MTcwNjMwNzQ4NiwiZXhwIjoxNzA2NTY2Njg2fQ.t91auOf3dCaj8O_NoQdsmmvhqp4BUBVD5GLd-PR6JKE',
           'Postman-Token': '<calculated when request is sent>',
           'Host': '<calculated when request is sent>',
           'User-Agent': 'PostmanRuntime/7.36.1',

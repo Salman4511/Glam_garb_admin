@@ -4,10 +4,10 @@ import 'package:glam_garb_admin/Application/auth/auth_bloc.dart';
 import 'package:glam_garb_admin/Application/brand/brand_bloc.dart';
 import 'package:glam_garb_admin/Application/cateory/category_bloc.dart';
 import 'package:glam_garb_admin/Application/product/product_bloc.dart';
+import 'package:glam_garb_admin/Infrastructure/Services/Product/product_repo.dart';
 import 'package:glam_garb_admin/Infrastructure/Services/auth/Auth_repo.dart';
 import 'package:glam_garb_admin/Infrastructure/Services/brand/brand_repo.dart';
 import 'package:glam_garb_admin/Infrastructure/Services/category/category_repo.dart';
-import 'package:glam_garb_admin/Infrastructure/Services/product/product_repo.dart';
 import 'package:glam_garb_admin/Presentation/Screens/splash/splash_screen.dart';
 
 void main() {
@@ -19,7 +19,7 @@ class MyApp extends StatelessWidget {
   final repo = AuthRepo();
   final catRepo = CategoryRepo();
   final brandRepo = BrandRepo();
-  final productRepo = ProductRepo();
+  final productRepo = ProductRepoo();
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {

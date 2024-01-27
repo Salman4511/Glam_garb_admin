@@ -1,37 +1,30 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:glam_garb_admin/Domain/response_models/product_model/product_get_model/product_get_model.dart';
-import 'package:glam_garb_admin/Infrastructure/Services/product/product_repo.dart';
+import 'package:glam_garb_admin/Infrastructure/Services/Product/product_repo.dart';
 import 'package:glam_garb_admin/Presentation/Screens/product/add_product.dart';
 import 'package:glam_garb_admin/Presentation/Screens/product/widgets/product_tile_widget.dart';
 import 'package:glam_garb_admin/Shared/constants/constants.dart';
 
-class ProductScreen extends StatelessWidget {
+class ProductScreen extends StatefulWidget {
   const ProductScreen({super.key});
 
   @override
+  State<ProductScreen> createState() => _ProductScreenState();
+}
+
+class _ProductScreenState extends State<ProductScreen> {
+  @override
   Widget build(BuildContext context) {
-   ProductRepo repo = ProductRepo();
+   ProductRepoo repo = ProductRepoo();
     return Scaffold(
       backgroundColor: kblackcolor,
       body: SafeArea(
           child: Stack(
         children: [
-          const Column(
-            children: [
-              kheight20,
-              Padding(
-                padding: EdgeInsets.all(8.0),
-                child: CupertinoSearchTextField(
-                  placeholder: 'Search Product',
-                  backgroundColor: Colors.grey,
-                  placeholderStyle: TextStyle(),
-                ),
-              ),
-            ],
-          ),
+          
          FutureBuilder<ProductGetModel>(
-            future: repo.,
+            future: repo.getProducts(),
             builder: (context, snapshot) {
               if (snapshot.connectionState == ConnectionState.waiting) {
                 return const Center(child: CircularProgressIndicator());
@@ -40,22 +33,37 @@ class ProductScreen extends StatelessWidget {
               } else if (!snapshot.hasData || snapshot.data?.products == null) {
                 return const Text('No categories found.');
               } else {
-                final categories = snapshot.data!.products!;
-                return ListView.builder(
-                  shrinkWrap: true,
-                  physics: const NeverScrollableScrollPhysics(),
-                  itemCount: categories.length,
-                  itemBuilder: (context, index) => GestureDetector(
-                    onTap: () {
-                      // Navigate or do something with the selected category
-                    },
-                    child: Container(
-                      margin: const EdgeInsets.symmetric(
-                        horizontal: 8,
-                        vertical: 8,
+                final products = snapshot.data!.products!;
+                
+                return SingleChildScrollView(
+                  child: Column(
+                    children: [
+                     kheight80,
+                      ListView.builder(
+                        shrinkWrap: true,
+                        physics: const NeverScrollableScrollPhysics(),
+                        itemCount: products.length,
+                        itemBuilder: (context, index) => GestureDetector(
+                          onTap: () {
+                            // Navigate or do something with the selected category
+                          },
+                          child: Container(
+                            margin: const EdgeInsets.symmetric(
+                              horizontal: 8,
+                              vertical: 8,
+                            ),
+                            child: ProductCard(name: products[index].productName??"",
+                             description: products[index].description??"",
+                              id:products[index].id??'', 
+                              imageUrl: products[index].images![1].url??'',
+                              
+                              
+                              
+                             )
+                          ),
+                        ),
                       ),
-                      child: ProductTile(name: name, description: description, imageUrl: imageUrl)
-                    ),
+                    ],
                   ),
                 );
               }
@@ -82,6 +90,19 @@ class ProductScreen extends StatelessWidget {
                   backgroundColor: MaterialStatePropertyAll(Colors.amberAccent),
                   elevation: MaterialStatePropertyAll(10)),
             ),
+          ),
+          const Column(
+            children: [
+              kheight20,
+              Padding(
+                padding: EdgeInsets.all(8.0),
+                child: CupertinoSearchTextField(
+                  placeholder: 'Search Product',
+                  backgroundColor: Colors.grey,
+                  placeholderStyle: TextStyle(),
+                ),
+              ),
+            ],
           ),
         ],
       )),

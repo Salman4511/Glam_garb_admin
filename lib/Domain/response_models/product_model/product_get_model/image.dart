@@ -1,13 +1,21 @@
+
 class Image {
-  Image();
+  String? url;
+  String? id;
+
+  Image({this.url, this.id});
 
   factory Image.fromJson(Map<String, dynamic> json) {
-    // TODO: implement fromJson
-    throw UnimplementedError('Image.fromJson($json) is not implemented');
+    return Image(
+      url: json['url'] as String?,
+      id: json['_id'] as String?,
+    );
   }
 
   Map<String, dynamic> toJson() {
-    // TODO: implement toJson
-    throw UnimplementedError();
+    return {
+      'url': url,
+      '_id': id,
+    };
   }
 }

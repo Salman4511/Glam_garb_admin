@@ -25,6 +25,9 @@ const kheight60 = SizedBox(
 const kheight90 = SizedBox(
   height: 90,
 );
+const kheight80 = SizedBox(
+  height: 80,
+);
 
 //BorderRadius
 

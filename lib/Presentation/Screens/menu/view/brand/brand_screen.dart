@@ -52,7 +52,9 @@ class BrandScreen extends StatelessWidget {
                               bName: brands.brands![index].brandName ?? "",
                               image: brands.brands![index].image ?? "",
                               id: brands.brands![index].sId ?? "",
+                              
                             ),
+                            
                           ),
                         ),
                       ],
