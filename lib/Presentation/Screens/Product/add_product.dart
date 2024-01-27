@@ -2,6 +2,8 @@ import 'dart:io';
 
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:glam_garb_admin/Application/product/product_bloc.dart';
 import 'package:glam_garb_admin/Domain/body_models/product_model.dart';
 import 'package:glam_garb_admin/Infrastructure/Services/Product/product_repo.dart';
 import 'package:glam_garb_admin/Presentation/Screens/product/widgets/product_text_form_fields.dart';
@@ -187,8 +189,7 @@ class _AddProductState extends State<AddProduct> {
                   kheight,
                   TextFormField(
                     scribbleEnabled: false,
-                    onTap: 
-                    () async {
+                    onTap: () async {
                       // Open gallery
                       final image = await ImagePicker().pickImage(
                         source: ImageSource.gallery,
@@ -197,7 +198,7 @@ class _AddProductState extends State<AddProduct> {
                         // Process the selected image
                         setState(() {
                           selectedImage1 = File(image.path);
-                          selectedImages[0]=selectedImage1;
+                          selectedImages[0] = selectedImage1;
                         });
                       }
                     },
@@ -209,8 +210,7 @@ class _AddProductState extends State<AddProduct> {
                         Icons.file_copy_outlined,
                         color: kblackcolor,
                       ),
-                      hintText:  
-                      selectedImage1 != null
+                      hintText: selectedImage1 != null
                           ? 'Image selected'
                           : 'Select Image',
                       border: OutlineInputBorder(
@@ -280,7 +280,7 @@ class _AddProductState extends State<AddProduct> {
                         Icons.file_copy_outlined,
                         color: kblackcolor,
                       ),
-                      hintText:  selectedImage3 != null
+                      hintText: selectedImage3 != null
                           ? 'Image selected'
                           : 'Select Image',
                       border: OutlineInputBorder(
@@ -292,44 +292,83 @@ class _AddProductState extends State<AddProduct> {
                     keyboardType: TextInputType.none,
                   ),
                   kheight20,
-                  ElevatedButton(
-                    onPressed: () {
-                      List<String> newColors = colorController.text.split(',');
-                      colorsList.addAll(newColors);
-
-                      String getSelectedGender() {
-                        if (selectedGender == 1) {
-                          return 'Male';
-                        } else if (selectedGender == 2) {
-                          return 'Female';
+                  BlocConsumer<ProductBloc, ProductState>(
+                    listener: (context, state) {
+                      // TODO: implement listener
+                      if (state.product != null) {
+                        if (state.product!.message == "Product Added") {
+                          ScaffoldMessenger.of(context)
+                              .showSnackBar(const SnackBar(
+                            content: Text('Added Successfully'),
+                            backgroundColor: Colors.red,
+                          ));
                         } else {
-                          return 'Unknown';
+                          ScaffoldMessenger.of(context)
+                              .showSnackBar(const SnackBar(
+                            content: Text('Error Occurred! Try again later.'),
+                            backgroundColor: Colors.red,
+                          ));
                         }
                       }
-
-                      ProductRepo repo = ProductRepo();
-
-                      repo.addProduct(
-                        selectedImages,
-                        productNameController.text,
-                        productDescrController.text,
-                        colorController.text,
-                        sizess,
-                        stocks,
-                        brandController.text,
-                        categoryController.text,
-                        double.parse(regPriceController.text),
-                        double.parse(salePriceController.text),
-                        getSelectedGender(),
-                      );
-                      print('selected images${selectedImages}');
                     },
-                    style: submitbuttonStyle,
-                    child: Text(
-                      'Submit',
-                      style: ktextstyleformenu,
-                    ),
-                  ),
+                    builder: (context, state) {
+                      return ElevatedButton(
+                        onPressed: () {
+                          List<String> newColors =
+                              colorController.text.split(',');
+                          colorsList.addAll(newColors);
+
+                          String getSelectedGender() {
+                            if (selectedGender == 1) {
+                              return 'Male';
+                            } else if (selectedGender == 2) {
+                              return 'Female';
+                            } else {
+                              return 'Unknown';
+                            }
+                          }
+
+                          context
+                              .read<ProductBloc>()
+                              .add(ProductEvent.addProduct(
+                                selectedImages,
+                                productNameController.text,
+                                productDescrController.text,
+                                colorController.text,
+                                sizess,
+                                stocks,
+                                brandController.text,
+                                categoryController.text,
+                                double.parse(regPriceController.text),
+                                double.parse(salePriceController.text),
+                                getSelectedGender(),
+                              ));
+
+                          // ProductRepo repo = ProductRepo();
+
+                          // repo.addProduct(
+                          //   selectedImages,
+                          //   productNameController.text,
+                          //   productDescrController.text,
+                          //   colorController.text,
+                          //   sizess,
+                          //   stocks,
+                          //   brandController.text,
+                          //   categoryController.text,
+                          //   double.parse(regPriceController.text),
+                          //   double.parse(salePriceController.text),
+                          //   getSelectedGender(),
+                          // );
+                          print('selected images${selectedImages}');
+                        },
+                        style: submitbuttonStyle,
+                        child: Text(
+                          'Submit',
+                          style: ktextstyleformenu,
+                        ),
+                      );
+                    },
+                  )
                 ],
               ),
             ),

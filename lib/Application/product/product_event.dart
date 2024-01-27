@@ -4,5 +4,17 @@ part of 'product_bloc.dart';
 class ProductEvent with _$ProductEvent {
   const factory ProductEvent() = _ProductEvent;
 
-  factory ProductEvent.addProduct(ProductPassModel newProduct)=_AddProduct;
+  factory ProductEvent.addProduct(
+    List<File?> images,
+    String prodname,
+    String proddesc,
+    String prodcolor,
+    List<dynamic> sizes,
+    List<dynamic> stocks,
+    String prodbrand,
+    String prodcategory,
+    double prodregprice,
+    double prodsprice,
+    String gender,
+  ) = _AddProduct;
 }

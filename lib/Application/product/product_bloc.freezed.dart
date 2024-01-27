@@ -19,19 +19,55 @@ mixin _$ProductEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object?>(
     TResult Function() $default, {
-    required TResult Function(ProductPassModel newProduct) addProduct,
+    required TResult Function(
+            List<File?> images,
+            String prodname,
+            String proddesc,
+            String prodcolor,
+            List<dynamic> sizes,
+            List<dynamic> stocks,
+            String prodbrand,
+            String prodcategory,
+            double prodregprice,
+            double prodsprice,
+            String gender)
+        addProduct,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>(
     TResult? Function()? $default, {
-    TResult? Function(ProductPassModel newProduct)? addProduct,
+    TResult? Function(
+            List<File?> images,
+            String prodname,
+            String proddesc,
+            String prodcolor,
+            List<dynamic> sizes,
+            List<dynamic> stocks,
+            String prodbrand,
+            String prodcategory,
+            double prodregprice,
+            double prodsprice,
+            String gender)?
+        addProduct,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>(
     TResult Function()? $default, {
-    TResult Function(ProductPassModel newProduct)? addProduct,
+    TResult Function(
+            List<File?> images,
+            String prodname,
+            String proddesc,
+            String prodcolor,
+            List<dynamic> sizes,
+            List<dynamic> stocks,
+            String prodbrand,
+            String prodcategory,
+            double prodregprice,
+            double prodsprice,
+            String gender)?
+        addProduct,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -113,7 +149,19 @@ class _$ProductEventImpl implements _ProductEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object?>(
     TResult Function() $default, {
-    required TResult Function(ProductPassModel newProduct) addProduct,
+    required TResult Function(
+            List<File?> images,
+            String prodname,
+            String proddesc,
+            String prodcolor,
+            List<dynamic> sizes,
+            List<dynamic> stocks,
+            String prodbrand,
+            String prodcategory,
+            double prodregprice,
+            double prodsprice,
+            String gender)
+        addProduct,
   }) {
     return $default();
   }
@@ -122,7 +170,19 @@ class _$ProductEventImpl implements _ProductEvent {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>(
     TResult? Function()? $default, {
-    TResult? Function(ProductPassModel newProduct)? addProduct,
+    TResult? Function(
+            List<File?> images,
+            String prodname,
+            String proddesc,
+            String prodcolor,
+            List<dynamic> sizes,
+            List<dynamic> stocks,
+            String prodbrand,
+            String prodcategory,
+            double prodregprice,
+            double prodsprice,
+            String gender)?
+        addProduct,
   }) {
     return $default?.call();
   }
@@ -131,7 +191,19 @@ class _$ProductEventImpl implements _ProductEvent {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>(
     TResult Function()? $default, {
-    TResult Function(ProductPassModel newProduct)? addProduct,
+    TResult Function(
+            List<File?> images,
+            String prodname,
+            String proddesc,
+            String prodcolor,
+            List<dynamic> sizes,
+            List<dynamic> stocks,
+            String prodbrand,
+            String prodcategory,
+            double prodregprice,
+            double prodsprice,
+            String gender)?
+        addProduct,
     required TResult orElse(),
   }) {
     if ($default != null) {
@@ -182,7 +254,18 @@ abstract class _$$AddProductImplCopyWith<$Res> {
           _$AddProductImpl value, $Res Function(_$AddProductImpl) then) =
       __$$AddProductImplCopyWithImpl<$Res>;
   @useResult
-  $Res call({ProductPassModel newProduct});
+  $Res call(
+      {List<File?> images,
+      String prodname,
+      String proddesc,
+      String prodcolor,
+      List<dynamic> sizes,
+      List<dynamic> stocks,
+      String prodbrand,
+      String prodcategory,
+      double prodregprice,
+      double prodsprice,
+      String gender});
 }
 
 /// @nodoc
@@ -196,13 +279,63 @@ class __$$AddProductImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? newProduct = null,
+    Object? images = null,
+    Object? prodname = null,
+    Object? proddesc = null,
+    Object? prodcolor = null,
+    Object? sizes = null,
+    Object? stocks = null,
+    Object? prodbrand = null,
+    Object? prodcategory = null,
+    Object? prodregprice = null,
+    Object? prodsprice = null,
+    Object? gender = null,
   }) {
     return _then(_$AddProductImpl(
-      null == newProduct
-          ? _value.newProduct
-          : newProduct // ignore: cast_nullable_to_non_nullable
-              as ProductPassModel,
+      null == images
+          ? _value._images
+          : images // ignore: cast_nullable_to_non_nullable
+              as List<File?>,
+      null == prodname
+          ? _value.prodname
+          : prodname // ignore: cast_nullable_to_non_nullable
+              as String,
+      null == proddesc
+          ? _value.proddesc
+          : proddesc // ignore: cast_nullable_to_non_nullable
+              as String,
+      null == prodcolor
+          ? _value.prodcolor
+          : prodcolor // ignore: cast_nullable_to_non_nullable
+              as String,
+      null == sizes
+          ? _value._sizes
+          : sizes // ignore: cast_nullable_to_non_nullable
+              as List<dynamic>,
+      null == stocks
+          ? _value._stocks
+          : stocks // ignore: cast_nullable_to_non_nullable
+              as List<dynamic>,
+      null == prodbrand
+          ? _value.prodbrand
+          : prodbrand // ignore: cast_nullable_to_non_nullable
+              as String,
+      null == prodcategory
+          ? _value.prodcategory
+          : prodcategory // ignore: cast_nullable_to_non_nullable
+              as String,
+      null == prodregprice
+          ? _value.prodregprice
+          : prodregprice // ignore: cast_nullable_to_non_nullable
+              as double,
+      null == prodsprice
+          ? _value.prodsprice
+          : prodsprice // ignore: cast_nullable_to_non_nullable
+              as double,
+      null == gender
+          ? _value.gender
+          : gender // ignore: cast_nullable_to_non_nullable
+              as String,
     ));
   }
 }
@@ -210,14 +343,66 @@ class __$$AddProductImplCopyWithImpl<$Res>
 /// @nodoc
 
 class _$AddProductImpl implements _AddProduct {
-  _$AddProductImpl(this.newProduct);
+  _$AddProductImpl(
+      final List<File?> images,
+      this.prodname,
+      this.proddesc,
+      this.prodcolor,
+      final List<dynamic> sizes,
+      final List<dynamic> stocks,
+      this.prodbrand,
+      this.prodcategory,
+      this.prodregprice,
+      this.prodsprice,
+      this.gender)
+      : _images = images,
+        _sizes = sizes,
+        _stocks = stocks;
+
+  final List<File?> _images;
+  @override
+  List<File?> get images {
+    if (_images is EqualUnmodifiableListView) return _images;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_images);
+  }
 
   @override
-  final ProductPassModel newProduct;
+  final String prodname;
+  @override
+  final String proddesc;
+  @override
+  final String prodcolor;
+  final List<dynamic> _sizes;
+  @override
+  List<dynamic> get sizes {
+    if (_sizes is EqualUnmodifiableListView) return _sizes;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_sizes);
+  }
+
+  final List<dynamic> _stocks;
+  @override
+  List<dynamic> get stocks {
+    if (_stocks is EqualUnmodifiableListView) return _stocks;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_stocks);
+  }
+
+  @override
+  final String prodbrand;
+  @override
+  final String prodcategory;
+  @override
+  final double prodregprice;
+  @override
+  final double prodsprice;
+  @override
+  final String gender;
 
   @override
   String toString() {
-    return 'ProductEvent.addProduct(newProduct: $newProduct)';
+    return 'ProductEvent.addProduct(images: $images, prodname: $prodname, proddesc: $proddesc, prodcolor: $prodcolor, sizes: $sizes, stocks: $stocks, prodbrand: $prodbrand, prodcategory: $prodcategory, prodregprice: $prodregprice, prodsprice: $prodsprice, gender: $gender)';
   }
 
   @override
@@ -225,12 +410,40 @@ class _$AddProductImpl implements _AddProduct {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$AddProductImpl &&
-            (identical(other.newProduct, newProduct) ||
-                other.newProduct == newProduct));
+            const DeepCollectionEquality().equals(other._images, _images) &&
+            (identical(other.prodname, prodname) ||
+                other.prodname == prodname) &&
+            (identical(other.proddesc, proddesc) ||
+                other.proddesc == proddesc) &&
+            (identical(other.prodcolor, prodcolor) ||
+                other.prodcolor == prodcolor) &&
+            const DeepCollectionEquality().equals(other._sizes, _sizes) &&
+            const DeepCollectionEquality().equals(other._stocks, _stocks) &&
+            (identical(other.prodbrand, prodbrand) ||
+                other.prodbrand == prodbrand) &&
+            (identical(other.prodcategory, prodcategory) ||
+                other.prodcategory == prodcategory) &&
+            (identical(other.prodregprice, prodregprice) ||
+                other.prodregprice == prodregprice) &&
+            (identical(other.prodsprice, prodsprice) ||
+                other.prodsprice == prodsprice) &&
+            (identical(other.gender, gender) || other.gender == gender));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, newProduct);
+  int get hashCode => Object.hash(
+      runtimeType,
+      const DeepCollectionEquality().hash(_images),
+      prodname,
+      proddesc,
+      prodcolor,
+      const DeepCollectionEquality().hash(_sizes),
+      const DeepCollectionEquality().hash(_stocks),
+      prodbrand,
+      prodcategory,
+      prodregprice,
+      prodsprice,
+      gender);
 
   @JsonKey(ignore: true)
   @override
@@ -242,29 +455,68 @@ class _$AddProductImpl implements _AddProduct {
   @optionalTypeArgs
   TResult when<TResult extends Object?>(
     TResult Function() $default, {
-    required TResult Function(ProductPassModel newProduct) addProduct,
+    required TResult Function(
+            List<File?> images,
+            String prodname,
+            String proddesc,
+            String prodcolor,
+            List<dynamic> sizes,
+            List<dynamic> stocks,
+            String prodbrand,
+            String prodcategory,
+            double prodregprice,
+            double prodsprice,
+            String gender)
+        addProduct,
   }) {
-    return addProduct(newProduct);
+    return addProduct(images, prodname, proddesc, prodcolor, sizes, stocks,
+        prodbrand, prodcategory, prodregprice, prodsprice, gender);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>(
     TResult? Function()? $default, {
-    TResult? Function(ProductPassModel newProduct)? addProduct,
+    TResult? Function(
+            List<File?> images,
+            String prodname,
+            String proddesc,
+            String prodcolor,
+            List<dynamic> sizes,
+            List<dynamic> stocks,
+            String prodbrand,
+            String prodcategory,
+            double prodregprice,
+            double prodsprice,
+            String gender)?
+        addProduct,
   }) {
-    return addProduct?.call(newProduct);
+    return addProduct?.call(images, prodname, proddesc, prodcolor, sizes,
+        stocks, prodbrand, prodcategory, prodregprice, prodsprice, gender);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>(
     TResult Function()? $default, {
-    TResult Function(ProductPassModel newProduct)? addProduct,
+    TResult Function(
+            List<File?> images,
+            String prodname,
+            String proddesc,
+            String prodcolor,
+            List<dynamic> sizes,
+            List<dynamic> stocks,
+            String prodbrand,
+            String prodcategory,
+            double prodregprice,
+            double prodsprice,
+            String gender)?
+        addProduct,
     required TResult orElse(),
   }) {
     if (addProduct != null) {
-      return addProduct(newProduct);
+      return addProduct(images, prodname, proddesc, prodcolor, sizes, stocks,
+          prodbrand, prodcategory, prodregprice, prodsprice, gender);
     }
     return orElse();
   }
@@ -302,9 +554,30 @@ class _$AddProductImpl implements _AddProduct {
 }
 
 abstract class _AddProduct implements ProductEvent {
-  factory _AddProduct(final ProductPassModel newProduct) = _$AddProductImpl;
+  factory _AddProduct(
+      final List<File?> images,
+      final String prodname,
+      final String proddesc,
+      final String prodcolor,
+      final List<dynamic> sizes,
+      final List<dynamic> stocks,
+      final String prodbrand,
+      final String prodcategory,
+      final double prodregprice,
+      final double prodsprice,
+      final String gender) = _$AddProductImpl;
 
-  ProductPassModel get newProduct;
+  List<File?> get images;
+  String get prodname;
+  String get proddesc;
+  String get prodcolor;
+  List<dynamic> get sizes;
+  List<dynamic> get stocks;
+  String get prodbrand;
+  String get prodcategory;
+  double get prodregprice;
+  double get prodsprice;
+  String get gender;
   @JsonKey(ignore: true)
   _$$AddProductImplCopyWith<_$AddProductImpl> get copyWith =>
       throw _privateConstructorUsedError;

@@ -199,7 +199,7 @@ class _AddBrandState extends State<AddBrand> {
                                             dropdownValue,
                                             selectedImage!),
                                       );
-                                      print('image---->$selectedImage');
+                                  print('image---->$selectedImage');
                                 } else {
                                   // Handle case where no image is selected
                                   // You may want to show a message to the user
