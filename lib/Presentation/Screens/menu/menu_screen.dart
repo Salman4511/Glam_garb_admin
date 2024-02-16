@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:glam_garb_admin/Infrastructure/Services/auth/Auth_repo.dart';
+import 'package:glam_garb_admin/Presentation/Screens/menu/view/banner/banner_screen.dart';
 import 'package:glam_garb_admin/Presentation/Screens/menu/view/brand/brand_screen.dart';
 import 'package:glam_garb_admin/Presentation/Screens/menu/view/category/category_screen.dart';
+import 'package:glam_garb_admin/Presentation/Screens/menu/view/coupons/coupon_screen.dart';
 import 'package:glam_garb_admin/Presentation/Screens/menu/widgets/logout_button_widget.dart';
 import 'package:glam_garb_admin/Presentation/Screens/menu/widgets/menu_bar_widget.dart';
 import 'package:glam_garb_admin/Presentation/Screens/menu/widgets/menu_list_tile.dart';
@@ -23,11 +25,11 @@ class _MenuScreenState extends State<MenuScreen> {
       backgroundColor: kblackcolor,
       body: Column(
         children: [
-          MenuBarWidget(),
-          SizedBox(
+          const MenuBarWidget(),
+          const SizedBox(
             height: 40,
           ),
-          MenuListTile(
+          const MenuListTile(
             icon: Icons.person_4,
             title: 'Users',
           ),
@@ -38,7 +40,7 @@ class _MenuScreenState extends State<MenuScreen> {
             ontap: () => Navigator.push(
                 context,
                 MaterialPageRoute(
-                  builder: (context) => BrandScreen(),
+                  builder: (context) => const BrandScreen(),
                 )),
           ),
           kheight,
@@ -48,15 +50,31 @@ class _MenuScreenState extends State<MenuScreen> {
             ontap: () => Navigator.push(
                 context,
                 MaterialPageRoute(
-                  builder: (context) => CategoryScreen(),
+                  builder: (context) => const CategoryScreen(),
                 )),
           ),
           kheight,
-          MenuListTile(icon: Icons.card_giftcard, title: 'Coupons'),
+          MenuListTile(
+            icon: Icons.card_giftcard,
+            title: 'Coupons',
+            ontap: () => Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => const CouponScreen(),
+                )),
+          ),
           kheight,
-          MenuListTile(icon: Icons.screenshot, title: 'Banner'),
+          MenuListTile(
+            icon: Icons.screenshot,
+            title: 'Banner',
+            ontap: () => Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => const BannerScreen(),
+                )),
+          ),
           kheight,
-          SizedBox(
+          const SizedBox(
             height: 80,
           ),
           LogoutButtonWidget(repo: repo)

@@ -26,12 +26,14 @@ class ProductTextFieldWidget extends StatelessWidget {
       validator: validator,
       controller: controller,
       decoration: InputDecoration(
-          contentPadding: EdgeInsets.symmetric(vertical: 8),
+          contentPadding: EdgeInsets.only(left: 16.0, top: 8),
           border: OutlineInputBorder(
             borderSide: BorderSide(color: Colors.grey),
             borderRadius: BorderRadius.circular(25),
           ),
           alignLabelWithHint: true,
+          floatingLabelStyle: TextStyle(
+              fontWeight: FontWeight.bold, fontSize: 20, color: Colors.blue),
           labelText: title,
           labelStyle: TextStyle(color: Colors.grey),
           fillColor: kwhite,

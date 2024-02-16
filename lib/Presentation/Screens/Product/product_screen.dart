@@ -1,5 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:glam_garb_admin/Application/product/product_bloc.dart';
 import 'package:glam_garb_admin/Domain/response_models/product_model/product_get_model/product_get_model.dart';
 import 'package:glam_garb_admin/Infrastructure/Services/Product/product_repo.dart';
 import 'package:glam_garb_admin/Presentation/Screens/product/add_product.dart';
@@ -16,57 +18,61 @@ class ProductScreen extends StatefulWidget {
 class _ProductScreenState extends State<ProductScreen> {
   @override
   Widget build(BuildContext context) {
-   ProductRepoo repo = ProductRepoo();
+    ProductRepoo repo = ProductRepoo();
     return Scaffold(
       backgroundColor: kblackcolor,
       body: SafeArea(
           child: Stack(
         children: [
-          
-         FutureBuilder<ProductGetModel>(
-            future: repo.getProducts(),
-            builder: (context, snapshot) {
-              if (snapshot.connectionState == ConnectionState.waiting) {
-                return const Center(child: CircularProgressIndicator());
-              } else if (snapshot.hasError) {
-                return Text('Error: ${snapshot.error}');
-              } else if (!snapshot.hasData || snapshot.data?.products == null) {
-                return const Text('No categories found.');
-              } else {
-                final products = snapshot.data!.products!;
-                
-                return SingleChildScrollView(
-                  child: Column(
-                    children: [
-                     kheight80,
-                      ListView.builder(
-                        shrinkWrap: true,
-                        physics: const NeverScrollableScrollPhysics(),
-                        itemCount: products.length,
-                        itemBuilder: (context, index) => GestureDetector(
-                          onTap: () {
-                            // Navigate or do something with the selected category
-                          },
-                          child: Container(
-                            margin: const EdgeInsets.symmetric(
-                              horizontal: 8,
-                              vertical: 8,
+          BlocBuilder<ProductBloc, ProductState>(
+            builder: (context, state) {
+              return FutureBuilder<ProductGetModel>(
+                future: repo.getProducts(),
+                builder: (context, snapshot) {
+                  if (snapshot.connectionState == ConnectionState.waiting) {
+                    return const Center(child: CircularProgressIndicator());
+                  } else if (snapshot.hasError) {
+                    return Text('Error: ${snapshot.error}');
+                  } else if (!snapshot.hasData ||
+                      snapshot.data?.products == null) {
+                    return const Text('No categories found.');
+                  } else {
+                    final products = snapshot.data!.products!;
+
+                    return SingleChildScrollView(
+                      child: Column(
+                        children: [
+                          kheight80,
+                          ListView.builder(
+                            shrinkWrap: true,
+                            physics: const NeverScrollableScrollPhysics(),
+                            itemCount: products.length,
+                            itemBuilder: (context, index) => GestureDetector(
+                              onTap: () {
+                                // Navigate or do something with the selected category
+                              },
+                              child: Container(
+                                  margin: const EdgeInsets.symmetric(
+                                    horizontal: 8,
+                                    vertical: 8,
+                                  ),
+                                  child: ProductCard(
+                                    name: products[index].productName ?? "",
+                                    description:
+                                        products[index].description ?? "",
+                                    id: products[index].id ?? '',
+                                    imageUrl:
+                                        products[index].images![1].url ?? '',
+                                    isActive: products[index].active ?? true,
+                                  )),
                             ),
-                            child: ProductCard(name: products[index].productName??"",
-                             description: products[index].description??"",
-                              id:products[index].id??'', 
-                              imageUrl: products[index].images![1].url??'',
-                              
-                              
-                              
-                             )
                           ),
-                        ),
+                        ],
                       ),
-                    ],
-                  ),
-                );
-              }
+                    );
+                  }
+                },
+              );
             },
           ),
           Positioned(
@@ -80,15 +86,15 @@ class _ProductScreenState extends State<ProductScreen> {
                       builder: (context) => AddProduct(),
                     ));
               },
-              child: Text(
+              style: const ButtonStyle(
+                  shadowColor: MaterialStatePropertyAll(Colors.white),
+                  backgroundColor: MaterialStatePropertyAll(Colors.amberAccent),
+                  elevation: MaterialStatePropertyAll(10)),
+              child: const Text(
                 'Add Product',
                 style: TextStyle(
                     fontSize: 17, color: kwhite, fontWeight: FontWeight.w800),
               ),
-              style: ButtonStyle(
-                  shadowColor: MaterialStatePropertyAll(Colors.white),
-                  backgroundColor: MaterialStatePropertyAll(Colors.amberAccent),
-                  elevation: MaterialStatePropertyAll(10)),
             ),
           ),
           const Column(

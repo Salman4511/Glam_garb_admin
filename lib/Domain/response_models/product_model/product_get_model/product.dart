@@ -18,7 +18,7 @@ class Product {
   int? regularPrice;
   int? salePrice;
   int? offerPrice;
-  List<Image>? images;
+  List<Images>? images;
   bool? active;
   String? gender;
   String? createdOn;

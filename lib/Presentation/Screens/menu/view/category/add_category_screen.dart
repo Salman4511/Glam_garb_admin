@@ -227,6 +227,7 @@ class _AddCategoryState extends State<AddCategory> {
                             content: Text('Added Successfully'),
                             backgroundColor: Colors.red,
                           ));
+                          Navigator.pop(context);
                         } else {
                           ScaffoldMessenger.of(context)
                               .showSnackBar(const SnackBar(
@@ -250,6 +251,7 @@ class _AddCategoryState extends State<AddCategory> {
                                   int.tryParse(maxDiscountController.text) ?? 0,
                                   expiryController.text,
                                 ));
+                            Navigator.pop(context);
                           }
                         },
                         style: const ButtonStyle(

@@ -5,6 +5,9 @@ import 'package:glam_garb_admin/Domain/response_models/category_model/category_e
 import 'package:glam_garb_admin/Domain/response_models/category_model/category_get_model/category_get_model.dart';
 
 class CategoryRepo {
+  static const String _jwt =
+      'jwtAdmin=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY1OTZhNDg5YWQxM2Q1YWQ3MTllMjMyOSIsImlhdCI6MTcwODA3Nzg4MSwiZXhwIjoxNzA4MzM3MDgxfQ.AXlFs0SHsUSRsGuexgDadamqwXsyXom0O9V54-q4jVQ';
+
   Future<CategoryModel> addCategory(
       String name,
       dynamic active,
@@ -41,8 +44,7 @@ class CategoryRepo {
     try {
       final dio = Dio(BaseOptions(
         headers: {
-          'Cookie':
-              'jwtAdmin=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY1OTZhNDg5YWQxM2Q1YWQ3MTllMjMyOSIsImlhdCI6MTcwNTkyOTE0NSwiZXhwIjoxNzA2MTg4MzQ1fQ.YCjZBxDB4k8SGIobxpzHRw-jDCzxGunTViyIEE1ruUM',
+          'Cookie': _jwt,
           'Postman-Token': '<calculated when request is sent>',
           'Host': '<calculated when request is sent>',
           'User-Agent': 'PostmanRuntime/7.36.1',

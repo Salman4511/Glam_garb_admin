@@ -142,7 +142,7 @@ class _AddBrandState extends State<AddBrand> {
                                 selectedImage != null
                                     ? 'Image selected'
                                     : 'Select Image',
-                                style: TextStyle(
+                                style: const TextStyle(
                                   color: kblackcolor,
                                   fontSize: 16,
                                 ),
@@ -151,6 +151,26 @@ class _AddBrandState extends State<AddBrand> {
                           ),
                         ),
                       ),
+                      kheight20,
+                      Row(
+                        children: [
+                          kwidth,
+                          Container(
+                            width: 200,
+                            height: 150,
+                            decoration: BoxDecoration(
+                              image: DecorationImage(
+                                image: selectedImage != null
+                                    ? FileImage(File(selectedImage!.path))
+                                        as ImageProvider<Object>
+                                    : const NetworkImage(
+                                        'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRjSv5On_L7Rd8K7njM9SyLn-M9tFwJqbahfIM5sFWz9G2ZwcZWI7DsEDTfivpr_gx7HWw&usqp=CAU'),
+                                fit: BoxFit.cover,
+                              ),
+                            ),
+                          ),
+                        ],
+                      )
                     ],
                   ),
                 ),
@@ -176,6 +196,7 @@ class _AddBrandState extends State<AddBrand> {
                                 content: Text('Added Successfully'),
                                 backgroundColor: Colors.red,
                               ));
+                              Navigator.pop(context);
                             } else {
                               ScaffoldMessenger.of(context)
                                   .showSnackBar(const SnackBar(
@@ -199,10 +220,9 @@ class _AddBrandState extends State<AddBrand> {
                                             dropdownValue,
                                             selectedImage!),
                                       );
+                                  Navigator.pop(context);
                                   print('image---->$selectedImage');
                                 } else {
-                                  // Handle case where no image is selected
-                                  // You may want to show a message to the user
                                   ScaffoldMessenger.of(context)
                                       .showSnackBar(const SnackBar(
                                     content: Text('Please select an image'),

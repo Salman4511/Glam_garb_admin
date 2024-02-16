@@ -21,7 +21,7 @@ Product _$ProductFromJson(Map<String, dynamic> json) => Product(
       salePrice: json['salePrice'] as int?,
       offerPrice: json['offerPrice'] as int?,
       images: (json['images'] as List<dynamic>?)
-          ?.map((e) => Image.fromJson(e as Map<String, dynamic>))
+          ?.map((e) => Images.fromJson(e as Map<String, dynamic>))
           .toList(),
       active: json['active'] as bool?,
       gender: json['gender'] as String?,

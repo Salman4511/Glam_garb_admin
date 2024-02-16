@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:glam_garb_admin/Application/cateory/category_bloc.dart';
-import 'package:glam_garb_admin/Domain/response_models/category_model/category_add_model/category.dart';
 import 'package:glam_garb_admin/Domain/response_models/category_model/category_add_model/category_model.dart';
-import 'package:glam_garb_admin/Infrastructure/Services/category/category_repo.dart';
 import 'package:glam_garb_admin/Presentation/Screens/menu/view/category/widgets/text_field_widget.dart';
 import 'package:glam_garb_admin/Shared/constants/constants.dart';
 import 'package:intl/intl.dart';
@@ -241,6 +239,7 @@ class _EditCategoryState extends State<EditCategory> {
                             content: Text('Updated Successfully'),
                             backgroundColor: Colors.red,
                           ));
+                          Navigator.pop(context);
                         } else {
                           ScaffoldMessenger.of(context)
                               .showSnackBar(const SnackBar(
@@ -272,6 +271,7 @@ class _EditCategoryState extends State<EditCategory> {
                                   int.tryParse(maxDiscountController.text),
                                   expiryController.text,
                                 ));
+                            Navigator.pop(context);
                           }
                           print("id==>${widget.initialCategory.sId}");
                         },

@@ -1,11 +1,25 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:glam_garb_admin/Application/product/product_bloc.dart';
+import 'package:glam_garb_admin/Domain/response_models/product_model/product_get_model/image.dart';
+import 'package:glam_garb_admin/Domain/response_models/product_model/product_get_model/product.dart';
+import 'package:glam_garb_admin/Presentation/Screens/product/edit_product.dart';
 import 'package:glam_garb_admin/Shared/constants/constants.dart';
 
-class ProductCard extends StatelessWidget {
+class ProductCard extends StatefulWidget {
   final String name;
   final String description;
   final String id;
   final String imageUrl;
+  final String? brand;
+  final String? category;
+  final int? regularPrice;
+  final int? salePrice;
+  final int? offerPrice;
+  final String? gender;
+  final List<String>? color;
+  final List<Images>? images;
+  final bool isActive;
 
   const ProductCard({
     Key? key,
@@ -13,8 +27,22 @@ class ProductCard extends StatelessWidget {
     required this.description,
     required this.id,
     required this.imageUrl,
+    this.brand,
+    this.category,
+    this.regularPrice,
+    this.salePrice,
+    this.offerPrice,
+    this.gender,
+    this.color,
+    required this.isActive,
+    this.images,
   }) : super(key: key);
 
+  @override
+  State<ProductCard> createState() => _ProductCardState();
+}
+
+class _ProductCardState extends State<ProductCard> {
   @override
   Widget build(BuildContext context) {
     var baseUrl = 'http://10.0.2.2:3000/admin/assets/imgs/products/';
@@ -30,7 +58,7 @@ class ProductCard extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             // You can customize the height and aspect ratio of the image container
-           
+
             Padding(
               padding: const EdgeInsets.all(16),
               child: Row(
@@ -38,49 +66,104 @@ class ProductCard extends StatelessWidget {
                   Container(
                     decoration: BoxDecoration(
                       image: DecorationImage(
-                        image: NetworkImage(baseUrl + imageUrl),
+                        image: NetworkImage(baseUrl + widget.imageUrl),
                         fit: BoxFit.cover,
                       ),
                     ),
                     height: 80,
                     width: 80,
                   ),
-                  SizedBox(width: 20),
+                  const SizedBox(width: 20),
                   Expanded(
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(
-                          name,
-                          style: TextStyle(
-                            fontSize: 18,
-                            fontWeight: FontWeight.bold,
-                          ),
+                          widget.name,
+                          style: ktextstyle3,
+                          overflow: TextOverflow.ellipsis,
                         ),
-                        SizedBox(height: 8),
+                        const SizedBox(height: 8),
                         Text(
-                          description,
-                          style: TextStyle(fontSize: 16),
+                          widget.description,
+                          style: const TextStyle(
+                            fontSize: 16,
+                          ),
+                          overflow: TextOverflow.ellipsis,
                         ),
                       ],
                     ),
                   ),
-                  SizedBox(width: 20),
+                  const SizedBox(width: 20),
                   Column(
                     children: [
                       ElevatedButton.icon(
-                        icon: Icon(Icons.edit),
+                        icon: const Icon(Icons.edit),
                         onPressed: () {
-                          // Handle edit button press
-                          // You may want to navigate to the edit screen
-                        }, label: Text('Edit'),
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => EditProduct(
+                                    initialProduct: Product(
+                                  id: widget.id,
+                                  productName: widget.name,
+                                  description: widget.description,
+                                  brand: widget.brand,
+                                  category: widget.category,
+                                  regularPrice: widget.regularPrice,
+                                  salePrice: widget.salePrice,
+                                  color: widget.color,
+                                )),
+                              ));
+                        },
+                        label: const Text('Edit'),
                       ),
                       ElevatedButton.icon(
-                        icon: Icon(Icons.delete),
+                        icon: const Icon(Icons.delete),
                         onPressed: () {
-                          // Handle delete button press
-                          // You may want to show a confirmation dialog
-                        }, label: Text('Delete'),
+                          showDialog(
+                            context: context,
+                            builder: (context) => AlertDialog(
+                                title: Text("Delete this item?"),
+                                content: Text("This action cannot be undone."),
+                                actions: <Widget>[
+                                  ElevatedButton(
+                                      onPressed: () =>
+                                          Navigator.pop(context, false),
+                                      child: Text("Cancel")),
+                                  BlocConsumer<ProductBloc, ProductState>(
+                                    listener: (context, state) {
+                                      // TODO: implement listener
+                                    },
+                                    builder: (context, state) {
+                                      return ElevatedButton.icon(
+                                        icon: const Icon(Icons.delete),
+                                        onPressed: () {
+                                          widget.isActive
+                                              ? context.read<ProductBloc>().add(
+                                                    ProductEvent.deleteProduct(
+                                                        widget.id),
+                                                  )
+                                              : ScaffoldMessenger.of(context)
+                                                  .showSnackBar(const SnackBar(
+                                                  content:
+                                                      Text('Already Blocked'),
+                                                  backgroundColor: Colors.red,
+                                                ));
+                                          // ProductRepoo repo = ProductRepoo();
+                                          // repo.deleteProduct(widget.id);
+                                          print(widget.id);
+                                        },
+                                        label: Text(widget.isActive
+                                            ? 'Delete'
+                                            : 'Blocked'),
+                                      );
+                                    },
+                                  )
+                                ]),
+                          );
+                        },
+                        label: Text(widget.isActive ? 'Delete' : 'Blocked'),
                       ),
                     ],
                   ),

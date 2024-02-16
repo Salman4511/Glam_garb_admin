@@ -41,6 +41,11 @@ TextStyle ktextstyleformenu =
 TextStyle textstyle1 = const TextStyle(
     color: Colors.black, fontSize: 18, fontWeight: FontWeight.bold);
 
+TextStyle ktextstyle3 = const TextStyle(
+  fontSize: 18,
+  fontWeight: FontWeight.bold,
+  overflow: TextOverflow.fade,
+);
 //buttonStyle
 
 const submitbuttonStyle = ButtonStyle(

@@ -188,6 +188,7 @@ class _EditBrandState extends State<EditBrand> {
                                 content: Text('Updated Successfully'),
                                 backgroundColor: Colors.red,
                               ));
+                              Navigator.pop(context);
                             } else {
                               ScaffoldMessenger.of(context)
                                   .showSnackBar(const SnackBar(
@@ -212,6 +213,7 @@ class _EditBrandState extends State<EditBrand> {
                                           selectedImage,
                                           widget.initialBrand.sId!,
                                           widget.initialBrand.brandName!));
+                                  Navigator.pop(context);
                                   print('id-->${widget.initialBrand.sId}');
                                 } else {
                                   // Handle case where no image is selected

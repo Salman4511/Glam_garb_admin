@@ -5,6 +5,9 @@ import 'package:glam_garb_admin/Domain/response_models/brand_model/brand_edit_mo
 import 'package:glam_garb_admin/Domain/response_models/brand_model/brand_get_model/brand_get_model.dart';
 
 class BrandRepo {
+  static const String _jwt =
+      'jwtAdmin=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY1OTZhNDg5YWQxM2Q1YWQ3MTllMjMyOSIsImlhdCI6MTcwODA3Nzg4MSwiZXhwIjoxNzA4MzM3MDgxfQ.AXlFs0SHsUSRsGuexgDadamqwXsyXom0O9V54-q4jVQ';
+
   Future<BrandModel> addBrand(
       String name, dynamic active, dynamic image) async {
     BrandModel brand = BrandModel(message: "");
@@ -22,6 +25,7 @@ class BrandRepo {
       if (response.statusCode == 201 || response.statusCode == 200) {
         print("the response get is oky");
         print(response.data);
+
         return BrandModel.fromJson(response.data);
       } else {
         print("the response get is not oky");
@@ -37,8 +41,7 @@ class BrandRepo {
     try {
       final dio = Dio(BaseOptions(
         headers: {
-          'Cookie':
-              'jwtAdmin=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY1OTZhNDg5YWQxM2Q1YWQ3MTllMjMyOSIsImlhdCI6MTcwNjMwNzQ4NiwiZXhwIjoxNzA2NTY2Njg2fQ.t91auOf3dCaj8O_NoQdsmmvhqp4BUBVD5GLd-PR6JKE',
+          'Cookie': _jwt,
           'Postman-Token': '<calculated when request is sent>',
           'Host': '<calculated when request is sent>',
           'User-Agent': 'PostmanRuntime/7.36.1',
