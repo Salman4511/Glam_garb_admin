@@ -25,7 +25,7 @@ class MyApp extends StatelessWidget {
   final brandRepo = BrandRepo();
   final productRepo = ProductRepoo();
   final couponRepo = CouponRepo();
-  final bannerRepo=BannerRepo();
+  final bannerRepo = BannerRepo();
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
@@ -46,7 +46,7 @@ class MyApp extends StatelessWidget {
         BlocProvider(
           create: (context) => CouponBloc(couponRepo),
         ),
-         BlocProvider(
+        BlocProvider(
           create: (context) => BannerBloc(bannerRepo),
         ),
       ],

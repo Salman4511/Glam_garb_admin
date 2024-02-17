@@ -5,6 +5,8 @@ class BannerState with _$BannerState {
   const factory BannerState({
     required bool isLoading,
     BannerAddModel? addBanner,
+    BannerEditModel? editBanner,
+    BannerDeleteModel? delBanner,
   }) = _BannerState;
 
   factory BannerState.initial() {

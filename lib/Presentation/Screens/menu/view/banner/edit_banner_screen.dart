@@ -3,19 +3,20 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:glam_garb_admin/Application/banner/banner_bloc.dart';
+import 'package:glam_garb_admin/Domain/response_models/banner_model/banner_get_model/banner.dart';
 import 'package:glam_garb_admin/Presentation/Screens/menu/view/banner/widgets/banner_text_field_widget.dart';
 import 'package:glam_garb_admin/Shared/constants/constants.dart';
 import 'package:image_picker/image_picker.dart';
-import 'package:intl/intl.dart';
 
-class AddBannerScreen extends StatefulWidget {
-  const AddBannerScreen({super.key});
+class EditBannerScreen extends StatefulWidget {
+  final Banners initialBanner;
+  const EditBannerScreen({super.key, required this.initialBanner});
 
   @override
-  State<AddBannerScreen> createState() => _AddBannerScreenState();
+  State<EditBannerScreen> createState() => _EditBannerScreenState();
 }
 
-class _AddBannerScreenState extends State<AddBannerScreen> {
+class _EditBannerScreenState extends State<EditBannerScreen> {
   TextEditingController mainHeadController = TextEditingController();
   TextEditingController sub1Controller = TextEditingController();
   TextEditingController sub2Controller = TextEditingController();
@@ -24,6 +25,19 @@ class _AddBannerScreenState extends State<AddBannerScreen> {
   TextEditingController statusController = TextEditingController();
   TextEditingController imageController = TextEditingController();
 
+  void initState() {
+    // TODO: implement initState
+    mainHeadController.text = widget.initialBanner.p1 ?? '';
+    sub1Controller.text = widget.initialBanner.h1 ?? '';
+    sub2Controller.text = widget.initialBanner.h2.toString();
+    sub3Controller.text = widget.initialBanner.h3.toString();
+    descrController.text = widget.initialBanner.description ?? '';
+    statusController.text = widget.initialBanner.status.toString() == 'true'
+        ? 'Active'
+        : 'Inactive';
+    super.initState();
+  }
+
   File? selectedImage;
   @override
   Widget build(BuildContext context) {
@@ -31,7 +45,7 @@ class _AddBannerScreenState extends State<AddBannerScreen> {
       backgroundColor: kblackcolor,
       appBar: AppBar(
           title: const Text(
-            'Add Banner',
+            'Edit Banner',
             style: TextStyle(color: kwhite, fontWeight: FontWeight.bold),
           ),
           backgroundColor: kblackcolor,
@@ -119,7 +133,8 @@ class _AddBannerScreenState extends State<AddBannerScreen> {
                   builder: (context, state) {
                     return ElevatedButton.icon(
                       onPressed: () {
-                        context.read<BannerBloc>().add(BannerEvent.addBanner(
+                        context.read<BannerBloc>().add(BannerEvent.editBanner(
+                            widget.initialBanner.id ?? '',
                             descrController.text,
                             sub1Controller.text,
                             sub2Controller.text,
