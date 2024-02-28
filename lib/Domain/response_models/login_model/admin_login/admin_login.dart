@@ -8,8 +8,9 @@ class AdminLogin {
   String? id;
   String? email;
   String? password;
+  String? token;
 
-  AdminLogin({this.id, this.email, this.password});
+  AdminLogin({this.id, this.email, this.password, this.token});
 
   factory AdminLogin.fromJson(Map<String, dynamic> json) {
     return _$AdminLoginFromJson(json);

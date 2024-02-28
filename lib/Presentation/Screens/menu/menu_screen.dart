@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:glam_garb_admin/Infrastructure/Services/auth/Auth_repo.dart';
 import 'package:glam_garb_admin/Presentation/Screens/menu/view/banner/banner_screen.dart';
-import 'package:glam_garb_admin/Presentation/Screens/menu/view/brand/brand_screen.dart';
 import 'package:glam_garb_admin/Presentation/Screens/menu/view/category/category_screen.dart';
 import 'package:glam_garb_admin/Presentation/Screens/menu/view/coupons/coupon_screen.dart';
+import 'package:glam_garb_admin/Presentation/Screens/menu/view/users/users_screen.dart';
 import 'package:glam_garb_admin/Presentation/Screens/menu/widgets/logout_button_widget.dart';
 import 'package:glam_garb_admin/Presentation/Screens/menu/widgets/menu_bar_widget.dart';
 import 'package:glam_garb_admin/Presentation/Screens/menu/widgets/menu_list_tile.dart';
+import 'package:glam_garb_admin/Presentation/Screens/menu/widgets/policy_dialog.dart';
 import 'package:glam_garb_admin/Shared/constants/constants.dart';
 
 class MenuScreen extends StatefulWidget {
@@ -29,28 +30,13 @@ class _MenuScreenState extends State<MenuScreen> {
           const SizedBox(
             height: 40,
           ),
-          const MenuListTile(
+          MenuListTile(
             icon: Icons.person_4,
             title: 'Users',
-          ),
-          kheight,
-          MenuListTile(
-            icon: Icons.branding_watermark,
-            title: 'Brand',
             ontap: () => Navigator.push(
                 context,
                 MaterialPageRoute(
-                  builder: (context) => const BrandScreen(),
-                )),
-          ),
-          kheight,
-          MenuListTile(
-            icon: Icons.category,
-            title: 'Category',
-            ontap: () => Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (context) => const CategoryScreen(),
+                  builder: (context) => const UsersScreen(),
                 )),
           ),
           kheight,
@@ -73,6 +59,27 @@ class _MenuScreenState extends State<MenuScreen> {
                   builder: (context) => const BannerScreen(),
                 )),
           ),
+          kheight,
+          MenuListTile(
+              icon: Icons.branding_watermark,
+              title: 'Privacy Policy',
+              ontap: () {
+                showDialog(
+                    context: context,
+                    builder: (context) {
+                      return privacydialoge(mdFileName: 'privacy_policy.md');
+                    });
+              }),
+          kheight,
+          // MenuListTile(
+          //   icon: Icons.category,
+          //   title: 'Terms And Conditions',
+          //   ontap: () => Navigator.push(
+          //       context,
+          //       MaterialPageRoute(
+          //         builder: (context) => const CategoryScreen(),
+          //       )),
+          // ),
           kheight,
           const SizedBox(
             height: 80,

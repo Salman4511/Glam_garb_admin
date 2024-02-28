@@ -82,7 +82,7 @@ class _CategoryScreenState extends State<CategoryScreen> {
               ),
             ),
             Positioned(
-              top: 650,
+              top: 500,
               left: 120,
               child: ElevatedButton(
                 onPressed: () {
@@ -108,20 +108,7 @@ class _CategoryScreenState extends State<CategoryScreen> {
                 ),
               ),
             ),
-            Column(
-              children: [
-                Row(
-                  children: [
-                    IconButton(
-                      onPressed: () {
-                        Navigator.pop(context);
-                      },
-                      icon: kBackBtn,
-                    ),
-                  ],
-                ),
-              ],
-            ),
+            Column(),
           ],
         ),
       ),

@@ -10,6 +10,7 @@ AdminLogin _$AdminLoginFromJson(Map<String, dynamic> json) => AdminLogin(
       id: json['_id'] as String?,
       email: json['email'] as String?,
       password: json['password'] as String?,
+      token: json['token'] as String?,
     );
 
 Map<String, dynamic> _$AdminLoginToJson(AdminLogin instance) =>
@@ -17,4 +18,5 @@ Map<String, dynamic> _$AdminLoginToJson(AdminLogin instance) =>
       '_id': instance.id,
       'email': instance.email,
       'password': instance.password,
+      'token': instance.token,
     };

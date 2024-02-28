@@ -32,7 +32,7 @@ class AuthRepo {
       if (response.statusCode == 201 || response.statusCode == 200) {
         print("the response get is oky");
         logiAdmin = AdminLogin.fromJson(response.data);
-        await _saveAuthId(logiAdmin.id!);
+        await _saveAuthId(logiAdmin.token!);
         return logiAdmin;
       } else {
         print("the response get is not oky");
@@ -50,6 +50,14 @@ class AuthRepo {
       await _loadAuthId();
     }
     return _authId != null;
+  }
+
+  Future<String?> getAuthToken() async {
+    // If authId is not loaded, load it from SharedPreferences asynchronously
+    if (_authId == null) {
+      await _loadAuthId();
+    }
+    return _authId;
   }
 
   Future<LogoutModel> logOut() async {

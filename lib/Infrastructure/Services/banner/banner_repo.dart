@@ -3,13 +3,33 @@ import 'package:glam_garb_admin/Domain/response_models/banner_model/banner_add_m
 import 'package:glam_garb_admin/Domain/response_models/banner_model/banner_delete_model/banner_delete_model.dart';
 import 'package:glam_garb_admin/Domain/response_models/banner_model/banner_edit_model/banner_edit_model.dart';
 import 'package:glam_garb_admin/Domain/response_models/banner_model/banner_get_model/banner_get_model.dart';
+import 'package:glam_garb_admin/Infrastructure/Services/Auth/Auth_repo.dart';
 
 class BannerRepo {
-  static const String _jwt =
-      'jwtAdmin=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY1OTZhNDg5YWQxM2Q1YWQ3MTllMjMyOSIsImlhdCI6MTcwODA5NzM0NCwiZXhwIjoxNzA4MzU2NTQ0fQ.RZyFo5aczV-0PGGLga94iD0fq_CuomLtq8Rf9VibgSQ';
+  late AuthRepo repo;
+  String? authToken;
+  late String _jwt;
+  late Dio dio;
+  BannerRepo() {
+    _jwt = "";
+    repo = AuthRepo();
+    initialize();
+  }
+
+  Future<void> initialize() async {
+    authToken = await repo.getAuthToken();
+    _jwt = "jwtAdmin=$authToken";
+
+    dio = Dio(BaseOptions(headers: {'Cookie': _jwt}));
+  }
 
   Future<BannerAddModel> addBanner(String description, String h1, String h2,
       String h3, String p1, String status, dynamic image) async {
+    if (_jwt.isEmpty) {
+      await initialize();
+    }
+
+    print('jwt------->$_jwt');
     BannerAddModel banner = BannerAddModel();
     try {
       FormData formData = FormData.fromMap({
@@ -57,12 +77,17 @@ class BannerRepo {
   }
 
   Future<BannerGetModel> getBanner() async {
+    if (_jwt.isEmpty) {
+      await initialize();
+    }
+
+    print('jwt------->$_jwt');
     try {
-      final dio = Dio(BaseOptions(
-        headers: {
-          'Cookie': _jwt,
-        },
-      ));
+      // final dio = Dio(BaseOptions(
+      //   headers: {
+      //     'Cookie': _jwt,
+      //   },
+      // ));
 
       final response = await dio.get("http://10.0.2.2:3000/admin/banner");
 
@@ -79,6 +104,10 @@ class BannerRepo {
 
   Future<BannerEditModel> editBanner(String id, String description, String h1,
       String h2, String h3, String p1, String status, dynamic image) async {
+    if (_jwt.isEmpty) {
+      await initialize();
+    }
+
     BannerEditModel banner = BannerEditModel();
     try {
       FormData formData = FormData.fromMap({
@@ -126,12 +155,16 @@ class BannerRepo {
     }
   }
 
-   Future<BannerDeleteModel> deleteBanner(String bannerId) async {
+  Future<BannerDeleteModel> deleteBanner(String bannerId) async {
+    if (_jwt.isEmpty) {
+      await initialize();
+    }
+
     BannerDeleteModel delBanner = BannerDeleteModel(message: "");
     try {
-      final dio = Dio(BaseOptions(headers: {'Cookie': _jwt}));
-      final response = await dio.delete(
-          'http://10.0.2.2:3000/admin/deleteBanner?bannerId=$bannerId');
+      // final dio = Dio(BaseOptions(headers: {'Cookie': _jwt}));
+      final response = await dio
+          .delete('http://10.0.2.2:3000/admin/deleteBanner?bannerId=$bannerId');
 
       if (response.statusCode == 200) {
         print('banner deleted successfully');
@@ -143,5 +176,4 @@ class BannerRepo {
     }
     return delBanner;
   }
-
 }

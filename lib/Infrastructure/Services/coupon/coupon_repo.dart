@@ -1,20 +1,37 @@
-import 'dart:ffi';
-
 import 'package:dio/dio.dart';
 import 'package:glam_garb_admin/Domain/response_models/coupon_model/coupon_add_model/coupon_add_model.dart';
 import 'package:glam_garb_admin/Domain/response_models/coupon_model/coupon_del_model/coupon_del_model.dart';
 import 'package:glam_garb_admin/Domain/response_models/coupon_model/coupon_edit_model/coupon_edit_model.dart';
 import 'package:glam_garb_admin/Domain/response_models/coupon_model/coupon_get_model/coupon_get_model.dart';
+import 'package:glam_garb_admin/Infrastructure/Services/Auth/Auth_repo.dart';
 
 class CouponRepo {
-  static const String _jwt =
-      'jwtAdmin=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY1OTZhNDg5YWQxM2Q1YWQ3MTllMjMyOSIsImlhdCI6MTcwODA3Nzg4MSwiZXhwIjoxNzA4MzM3MDgxfQ.AXlFs0SHsUSRsGuexgDadamqwXsyXom0O9V54-q4jVQ';
+  late AuthRepo repo;
+  String? authToken;
+  late String _jwt;
+  late Dio dio;
+  CouponRepo() {
+    _jwt = "";
+    repo = AuthRepo();
+    initialize();
+  }
+
+  Future<void> initialize() async {
+    authToken = await repo.getAuthToken();
+    _jwt = "jwtAdmin=$authToken";
+
+    dio = Dio(BaseOptions(headers: {'Cookie': _jwt}));
+  }
 
   Future<CouponAddModel> addCoupon(String couponCode, String couponDescr,
       int discount, int minAmount, int maxAmount, String expiry) async {
+    if (_jwt.isEmpty) {
+      await initialize();
+    }
+
     CouponAddModel coupon = CouponAddModel(message: "");
     try {
-      final dio = Dio(BaseOptions(headers: {'Cookie': _jwt}));
+      // final dio = Dio(BaseOptions(headers: {'Cookie': _jwt}));
 
       final response = await dio.post(
         "http://10.0.2.2:3000/admin/coupons",
@@ -42,12 +59,16 @@ class CouponRepo {
   }
 
   Future<CouponGetModel> getCoupons() async {
+    if (_jwt.isEmpty) {
+      await initialize();
+    }
+
     try {
-      final dio = Dio(BaseOptions(
-        headers: {
-          'Cookie': _jwt,
-        },
-      ));
+      // final dio = Dio(BaseOptions(
+      //   headers: {
+      //     'Cookie': _jwt,
+      //   },
+      // ));
 
       final response = await dio.get("http://10.0.2.2:3000/admin/coupons");
 
@@ -70,9 +91,13 @@ class CouponRepo {
       int minAmount,
       int maxAmount,
       String expiry) async {
+    if (_jwt.isEmpty) {
+      await initialize();
+    }
+
     CouponEditModel coupon = CouponEditModel();
     try {
-      final dio = Dio(BaseOptions(headers: {'Cookie': _jwt}));
+      // final dio = Dio(BaseOptions(headers: {'Cookie': _jwt}));
 
       final response = await dio.put(
         "http://10.0.2.2:3000/admin/coupons/edit",
@@ -101,9 +126,13 @@ class CouponRepo {
   }
 
   Future<CouponDelModel> deleteCategory(String couponId) async {
+    if (_jwt.isEmpty) {
+      await initialize();
+    }
+
     CouponDelModel delcoupon = CouponDelModel(message: "");
     try {
-      final dio = Dio(BaseOptions(headers: {'Cookie': _jwt}));
+      // final dio = Dio(BaseOptions(headers: {'Cookie': _jwt}));
       final response = await dio.delete(
           'http://10.0.2.2:3000/admin/coupons/delete?couponId=$couponId');
 

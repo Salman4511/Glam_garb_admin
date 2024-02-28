@@ -25,8 +25,8 @@ class BannerBloc extends Bloc<BannerEvent, BannerState> {
     });
 
     on<_DeleteBanner>((event, emit) async {
-      final delBanner= await repo.deleteBanner(event.bannerId);
+      final delBanner = await repo.deleteBanner(event.bannerId);
       emit(state.copyWith(isLoading: false, delBanner: delBanner));
-      });
+    });
   }
 }

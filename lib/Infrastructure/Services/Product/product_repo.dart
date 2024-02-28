@@ -5,10 +5,25 @@ import 'package:glam_garb_admin/Domain/response_models/product_model/product_add
 import 'package:glam_garb_admin/Domain/response_models/product_model/product_delete_model/product_delete_model.dart';
 import 'package:glam_garb_admin/Domain/response_models/product_model/product_edit_model/product_edit_model.dart';
 import 'package:glam_garb_admin/Domain/response_models/product_model/product_get_model/product_get_model.dart';
+import 'package:glam_garb_admin/Infrastructure/Services/Auth/Auth_repo.dart';
 
 class ProductRepoo {
-  static const String _jwt =
-      'jwtAdmin=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY1OTZhNDg5YWQxM2Q1YWQ3MTllMjMyOSIsImlhdCI6MTcwODA3Nzg4MSwiZXhwIjoxNzA4MzM3MDgxfQ.AXlFs0SHsUSRsGuexgDadamqwXsyXom0O9V54-q4jVQ';
+  late AuthRepo repo;
+  String? authToken;
+  late String _jwt;
+  late Dio dio;
+  ProductRepoo() {
+    _jwt = "";
+    repo = AuthRepo();
+    initialize();
+  }
+
+  Future<void> initialize() async {
+    authToken = await repo.getAuthToken();
+    _jwt = "jwtAdmin=$authToken";
+
+    dio = Dio(BaseOptions(headers: {'Cookie': _jwt}));
+  }
 
   Future<ProductModel> addProduct(
     List<File?> images,
@@ -67,18 +82,22 @@ class ProductRepoo {
   }
 
   Future<ProductGetModel> getProducts() async {
+    if (_jwt.isEmpty) {
+      await initialize();
+    }
+
     try {
-      final dio = Dio(BaseOptions(
-        headers: {
-          'Cookie': _jwt,
-          'Postman-Token': '<calculated when request is sent>',
-          'Host': '<calculated when request is sent>',
-          'User-Agent': 'PostmanRuntime/7.36.1',
-          'Accept': '*/*',
-          'Accept-Encoding': 'gzip, deflate, br',
-          'Connection': 'keep-alive',
-        },
-      ));
+      // final dio = Dio(BaseOptions(
+      //   headers: {
+      //     'Cookie': _jwt,
+      //     'Postman-Token': '<calculated when request is sent>',
+      //     'Host': '<calculated when request is sent>',
+      //     'User-Agent': 'PostmanRuntime/7.36.1',
+      //     'Accept': '*/*',
+      //     'Accept-Encoding': 'gzip, deflate, br',
+      //     'Connection': 'keep-alive',
+      //   },
+      // ));
 
       final response = await dio.get("http://10.0.2.2:3000/admin/products");
 

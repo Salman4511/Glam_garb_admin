@@ -3,13 +3,32 @@ import 'package:glam_garb_admin/Domain/response_models/brand_model/brand_add_mod
 import 'package:glam_garb_admin/Domain/response_models/brand_model/brand_delete_model/brand_delete_model.dart';
 import 'package:glam_garb_admin/Domain/response_models/brand_model/brand_edit_model/brand_edit_model.dart';
 import 'package:glam_garb_admin/Domain/response_models/brand_model/brand_get_model/brand_get_model.dart';
+import 'package:glam_garb_admin/Infrastructure/Services/Auth/Auth_repo.dart';
 
 class BrandRepo {
-  static const String _jwt =
-      'jwtAdmin=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY1OTZhNDg5YWQxM2Q1YWQ3MTllMjMyOSIsImlhdCI6MTcwODA3Nzg4MSwiZXhwIjoxNzA4MzM3MDgxfQ.AXlFs0SHsUSRsGuexgDadamqwXsyXom0O9V54-q4jVQ';
+  late AuthRepo repo;
+  String? authToken;
+  late String _jwt;
+  late Dio dio;
+  BrandRepo() {
+    _jwt = "";
+    repo = AuthRepo();
+    initialize();
+  }
+
+  Future<void> initialize() async {
+    authToken = await repo.getAuthToken();
+    _jwt = "jwtAdmin=$authToken";
+
+    dio = Dio(BaseOptions(headers: {'Cookie': _jwt}));
+  }
 
   Future<BrandModel> addBrand(
       String name, dynamic active, dynamic image) async {
+    if (_jwt.isEmpty) {
+      await initialize();
+    }
+
     BrandModel brand = BrandModel(message: "");
     try {
       FormData formData = FormData.fromMap({
@@ -38,6 +57,10 @@ class BrandRepo {
   }
 
   Future<BrandGetModel> getBrands() async {
+    if (_jwt.isEmpty) {
+      await initialize();
+    }
+
     try {
       final dio = Dio(BaseOptions(
         headers: {

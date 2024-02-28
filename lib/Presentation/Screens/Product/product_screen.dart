@@ -97,17 +97,15 @@ class _ProductScreenState extends State<ProductScreen> {
               ),
             ),
           ),
-          const Column(
+          Column(
             children: [
               kheight20,
               Padding(
-                padding: EdgeInsets.all(8.0),
-                child: CupertinoSearchTextField(
-                  placeholder: 'Search Product',
-                  backgroundColor: Colors.grey,
-                  placeholderStyle: TextStyle(),
-                ),
-              ),
+                  padding: EdgeInsets.all(8.0),
+                  child: Text(
+                    'Product Details',
+                    style: ktextStyleForAppBar,
+                  )),
             ],
           ),
         ],

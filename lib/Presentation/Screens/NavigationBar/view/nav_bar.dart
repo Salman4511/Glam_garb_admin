@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:glam_garb_admin/Presentation/Screens/dashboard/view/dashboard.dart';
 import 'package:glam_garb_admin/Presentation/Screens/Orders/order_screen.dart';
 import 'package:glam_garb_admin/Presentation/Screens/Product/product_screen.dart';
 import 'package:glam_garb_admin/Presentation/Screens/SalesReport/sales_report.dart';
+import 'package:glam_garb_admin/Presentation/Screens/catalog/view/catalog_management.dart';
 import 'package:glam_garb_admin/Presentation/Screens/menu/menu_screen.dart';
 import 'package:molten_navigationbar_flutter/molten_navigationbar_flutter.dart';
 
@@ -21,8 +21,8 @@ class _navPageState extends State<navPage> {
 
   // Define your pages
   final List<Widget> _pages = [
-    const DashBoard(),
     const SalesReport(),
+    const CatalogScreen(),
     const ProductScreen(),
     const OrderScreen(),
     MenuScreen(), // Replace with your actual page widget
@@ -80,13 +80,13 @@ class _navPageState extends State<navPage> {
             tabs: [
               MoltenTab(
                 icon: const Icon(
-                  Icons.home,
+                  Icons.data_saver_off_rounded,
                   size: 35,
                 ),
               ),
               MoltenTab(
                 icon: const Icon(
-                  Icons.data_saver_off_rounded,
+                  Icons.inventory,
                   size: 35,
                 ),
                 // title: Text('home'),

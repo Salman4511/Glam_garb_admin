@@ -69,7 +69,7 @@ class BrandScreen extends StatelessWidget {
               },
             ),
             Positioned(
-              top: 650,
+              top: 500,
               left: 120,
               child: ElevatedButton(
                 onPressed: () {
@@ -95,20 +95,7 @@ class BrandScreen extends StatelessWidget {
                 ),
               ),
             ),
-            Column(
-              children: [
-                Row(
-                  children: [
-                    IconButton(
-                      onPressed: () {
-                        Navigator.pop(context);
-                      },
-                      icon: kBackBtn,
-                    ),
-                  ],
-                ),
-              ],
-            ),
+            Column()
           ],
         ),
       ),

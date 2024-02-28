@@ -3,10 +3,25 @@ import 'package:glam_garb_admin/Domain/response_models/category_model/category_a
 import 'package:glam_garb_admin/Domain/response_models/category_model/category_delete_model/category_delete_model.dart';
 import 'package:glam_garb_admin/Domain/response_models/category_model/category_edit_model/category_edit_model.dart';
 import 'package:glam_garb_admin/Domain/response_models/category_model/category_get_model/category_get_model.dart';
+import 'package:glam_garb_admin/Infrastructure/Services/Auth/Auth_repo.dart';
 
 class CategoryRepo {
-  static const String _jwt =
-      'jwtAdmin=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY1OTZhNDg5YWQxM2Q1YWQ3MTllMjMyOSIsImlhdCI6MTcwODA3Nzg4MSwiZXhwIjoxNzA4MzM3MDgxfQ.AXlFs0SHsUSRsGuexgDadamqwXsyXom0O9V54-q4jVQ';
+  late AuthRepo repo;
+  String? authToken;
+  late String _jwt;
+  late Dio dio;
+  CategoryRepo() {
+    _jwt = "";
+    repo = AuthRepo();
+    initialize();
+  }
+
+  Future<void> initialize() async {
+    authToken = await repo.getAuthToken();
+    _jwt = "jwtAdmin=$authToken";
+
+    dio = Dio(BaseOptions(headers: {'Cookie': _jwt}));
+  }
 
   Future<CategoryModel> addCategory(
       String name,
@@ -15,6 +30,10 @@ class CategoryRepo {
       int? minAmount,
       int? maxDiscount,
       String? date) async {
+    if (_jwt.isEmpty) {
+      await initialize();
+    }
+
     CategoryModel category = CategoryModel(message: "");
     try {
       final response = await Dio().post("http://10.0.2.2:3000/admin/categories",
@@ -41,18 +60,21 @@ class CategoryRepo {
   }
 
   Future<CategoryGetModel> getCategories() async {
+    if (_jwt.isEmpty) {
+      await initialize();
+    }
     try {
-      final dio = Dio(BaseOptions(
-        headers: {
-          'Cookie': _jwt,
-          'Postman-Token': '<calculated when request is sent>',
-          'Host': '<calculated when request is sent>',
-          'User-Agent': 'PostmanRuntime/7.36.1',
-          'Accept': '*/*',
-          'Accept-Encoding': 'gzip, deflate, br',
-          'Connection': 'keep-alive',
-        },
-      ));
+      // final dio = Dio(BaseOptions(
+      //   headers: {
+      //     'Cookie': _jwt,
+      //     'Postman-Token': '<calculated when request is sent>',
+      //     'Host': '<calculated when request is sent>',
+      //     'User-Agent': 'PostmanRuntime/7.36.1',
+      //     'Accept': '*/*',
+      //     'Accept-Encoding': 'gzip, deflate, br',
+      //     'Connection': 'keep-alive',
+      //   },
+      // ));
 
       final response = await dio.get("http://10.0.2.2:3000/admin/categories");
 

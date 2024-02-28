@@ -6,6 +6,10 @@ const kwidth = SizedBox(
 const kwidth07 = SizedBox(
   width: 07,
 );
+
+const kwidth50 = SizedBox(
+  width: 50,
+);
 const kwhite = Colors.white;
 final buttoncolorblue = Colors.blueAccent[700];
 const buttoncolorWhite = Colors.white;
@@ -29,6 +33,10 @@ const kheight80 = SizedBox(
   height: 80,
 );
 
+const kheight130 = SizedBox(
+  height: 130,
+);
+
 //BorderRadius
 
 BorderRadius kradius = BorderRadius.circular(10);
@@ -46,6 +54,36 @@ TextStyle ktextstyle3 = const TextStyle(
   fontWeight: FontWeight.bold,
   overflow: TextOverflow.fade,
 );
+
+TextStyle ktextstyle4 = const TextStyle(
+    fontSize: 16,
+    fontWeight: FontWeight.bold,
+    overflow: TextOverflow.fade,
+    color: kwhite);
+
+TextStyle ktextstyle5 = const TextStyle(
+    fontSize: 20,
+    fontWeight: FontWeight.bold,
+    overflow: TextOverflow.fade,
+    color: kwhite);
+
+TextStyle ktextstyle6 = const TextStyle(
+    fontSize: 15,
+    // fontWeight: FontWeight.bold,
+    overflow: TextOverflow.fade,
+    color: kwhite);
+
+TextStyle ktextStyleForAppBar = const TextStyle(
+    color: Colors.white, fontSize: 30, fontWeight: FontWeight.w900);
+
+TextStyle ktextStyleforstatus1 = const TextStyle(
+    color: Colors.red, fontWeight: FontWeight.w900, fontSize: 15);
+TextStyle ktextStyleforstatus2 = const TextStyle(
+    color: Colors.green, fontWeight: FontWeight.w900, fontSize: 15);
+
+TextStyle ktextStyleforstatus3 = const TextStyle(
+    color: Colors.blue, fontWeight: FontWeight.w900, fontSize: 15);
+
 //buttonStyle
 
 const submitbuttonStyle = ButtonStyle(

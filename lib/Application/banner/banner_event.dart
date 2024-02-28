@@ -17,5 +17,5 @@ class BannerEvent with _$BannerEvent {
       String status,
       dynamic image) = _EditBanner;
 
-  factory BannerEvent.deleteBanner(String bannerId)= _DeleteBanner;
+  factory BannerEvent.deleteBanner(String bannerId) = _DeleteBanner;
 }
