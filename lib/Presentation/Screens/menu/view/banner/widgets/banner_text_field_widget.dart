@@ -31,7 +31,7 @@ class _BannerTextFieldWidgetState extends State<BannerTextFieldWidget> {
   Widget build(BuildContext context) {
     return TextFormField(
       readOnly: widget.readonly ?? false,
-      style: const TextStyle(color: kwhite),
+      style: const TextStyle(color: kblackcolor),
       onTap: widget.onTap,
       controller: widget.textFieldController,
       keyboardType: widget.keyboardType,
@@ -46,7 +46,9 @@ class _BannerTextFieldWidgetState extends State<BannerTextFieldWidget> {
         ),
         labelStyle: const TextStyle(color: Colors.grey),
         helperText: widget.helperText,
-        helperStyle: const TextStyle(color: kwhite),
+        helperStyle: const TextStyle(color: kblackcolor),
+        fillColor: kwhite,
+        filled: true
       ),
     );
   }

@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:glam_garb_admin/Infrastructure/Services/auth/Auth_repo.dart';
 import 'package:glam_garb_admin/Presentation/Screens/menu/view/banner/banner_screen.dart';
-import 'package:glam_garb_admin/Presentation/Screens/menu/view/category/category_screen.dart';
 import 'package:glam_garb_admin/Presentation/Screens/menu/view/coupons/coupon_screen.dart';
 import 'package:glam_garb_admin/Presentation/Screens/menu/view/users/users_screen.dart';
 import 'package:glam_garb_admin/Presentation/Screens/menu/widgets/logout_button_widget.dart';
@@ -11,7 +10,7 @@ import 'package:glam_garb_admin/Presentation/Screens/menu/widgets/policy_dialog.
 import 'package:glam_garb_admin/Shared/constants/constants.dart';
 
 class MenuScreen extends StatefulWidget {
-  MenuScreen({super.key});
+  const MenuScreen({super.key});
 
   @override
   State<MenuScreen> createState() => _MenuScreenState();
@@ -23,13 +22,14 @@ class _MenuScreenState extends State<MenuScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: kblackcolor,
+      // backgroundColor: kblackcolor,
       body: Column(
         children: [
           const MenuBarWidget(),
           const SizedBox(
             height: 40,
           ),
+          Divider(color: kblackcolor,),
           MenuListTile(
             icon: Icons.person_4,
             title: 'Users',
@@ -39,7 +39,7 @@ class _MenuScreenState extends State<MenuScreen> {
                   builder: (context) => const UsersScreen(),
                 )),
           ),
-          kheight,
+          Divider(color: kblackcolor,),
           MenuListTile(
             icon: Icons.card_giftcard,
             title: 'Coupons',
@@ -49,7 +49,9 @@ class _MenuScreenState extends State<MenuScreen> {
                   builder: (context) => const CouponScreen(),
                 )),
           ),
-          kheight,
+          Divider(
+            color: kblackcolor,
+          ),
           MenuListTile(
             icon: Icons.screenshot,
             title: 'Banner',
@@ -59,7 +61,9 @@ class _MenuScreenState extends State<MenuScreen> {
                   builder: (context) => const BannerScreen(),
                 )),
           ),
-          kheight,
+          Divider(
+            color: kblackcolor,
+          ),
           MenuListTile(
               icon: Icons.branding_watermark,
               title: 'Privacy Policy',
@@ -70,7 +74,9 @@ class _MenuScreenState extends State<MenuScreen> {
                       return privacydialoge(mdFileName: 'privacy_policy.md');
                     });
               }),
-          kheight,
+          Divider(
+            color: kblackcolor,
+          ),
           // MenuListTile(
           //   icon: Icons.category,
           //   title: 'Terms And Conditions',

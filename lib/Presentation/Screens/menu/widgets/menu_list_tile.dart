@@ -28,7 +28,7 @@ class _MenuListTileState extends State<MenuListTile> {
         ),
         leading: Icon(
           widget.icon,
-          color: kwhite,
+          color: kblackcolor,
           size: 32,
         ),
         onTap: widget.ontap,

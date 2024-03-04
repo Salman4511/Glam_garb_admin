@@ -172,7 +172,7 @@ class _EditProductState extends State<EditProduct> {
   Widget build(BuildContext context) {
     var baseUrl = 'http://10.0.2.2:3000/admin/assets/imgs/products/';
     return Scaffold(
-      backgroundColor: kblackcolor,
+      // backgroundColor: kblackcolor,
       body: SafeArea(
         child: SingleChildScrollView(
           child: Form(
@@ -209,6 +209,7 @@ class _EditProductState extends State<EditProduct> {
                     decoration: BoxDecoration(
                       color: kwhite,
                       borderRadius: BorderRadius.circular(25),
+                      border: Border.all()
                     ),
                     buttonText: Text('     Select Colors'),
                     title: Text('Colors'),
@@ -302,7 +303,11 @@ class _EditProductState extends State<EditProduct> {
                     children: [
                       ElevatedButton(
                         onPressed: addMoreFields,
-                        child: const Text('Add more'),
+                        child: const Text('Add more',style: TextStyle(color: kwhite),),
+                                                style: ButtonStyle(
+                            backgroundColor:
+                                MaterialStatePropertyAll(baseColor.shade400)),
+
                       ),
                     ],
                   ),
@@ -312,7 +317,9 @@ class _EditProductState extends State<EditProduct> {
                       Container(
                         decoration: BoxDecoration(
                             color: kwhite,
-                            borderRadius: BorderRadius.circular(25)),
+                            borderRadius: BorderRadius.circular(25),
+                            border: Border.all()
+                            ),
                         child: DropdownButton<Category>(
                           dropdownColor: kwhite,
                           focusColor: kwhite,
@@ -337,7 +344,8 @@ class _EditProductState extends State<EditProduct> {
                       Container(
                         decoration: BoxDecoration(
                             color: kwhite,
-                            borderRadius: BorderRadius.circular(25)),
+                            borderRadius: BorderRadius.circular(25),
+                            border: Border.all()),
                         child: DropdownButton<Brands>(
                           dropdownColor: kwhite,
                           focusColor: kwhite,
@@ -610,7 +618,7 @@ class _EditProductState extends State<EditProduct> {
                         style: submitbuttonStyle,
                         child: Text(
                           'Submit',
-                          style: ktextstyleformenu,
+                          style: TextStyle(color: kwhite),
                         ),
                       );
                     },
@@ -627,5 +635,5 @@ class _EditProductState extends State<EditProduct> {
 
 Widget kBackBtn = const Icon(
   Icons.arrow_back_ios,
-  color: Colors.white,
+  color: kblackcolor,
 );

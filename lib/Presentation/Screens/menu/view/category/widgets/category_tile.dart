@@ -4,6 +4,7 @@ import 'package:glam_garb_admin/Application/cateory/category_bloc.dart';
 import 'package:glam_garb_admin/Domain/response_models/category_model/category_add_model/category.dart';
 import 'package:glam_garb_admin/Domain/response_models/category_model/category_add_model/category_model.dart';
 import 'package:glam_garb_admin/Presentation/Screens/menu/view/category/edit_category.dart';
+import 'package:glam_garb_admin/Shared/constants/constants.dart';
 
 class CategoryCard extends StatefulWidget {
   final String categoryName;
@@ -35,6 +36,7 @@ class _CategoryCardState extends State<CategoryCard> {
   @override
   Widget build(BuildContext context) {
     return Card(
+      color: baseColor.shade100,
       elevation: 4,
       margin: const EdgeInsets.symmetric(vertical: 8, horizontal: 16),
       child: ListTile(

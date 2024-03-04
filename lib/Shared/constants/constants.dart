@@ -14,6 +14,8 @@ const kwhite = Colors.white;
 final buttoncolorblue = Colors.blueAccent[700];
 const buttoncolorWhite = Colors.white;
 const kblackcolor = Colors.black;
+const baseColor = Colors.brown;
+
 const kheight = SizedBox(
   height: 10,
 );
@@ -45,7 +47,7 @@ BorderRadius kradius30 = BorderRadius.circular(30);
 //textstyles
 
 TextStyle ktextstyleformenu =
-    const TextStyle(color: kwhite, fontSize: 17, fontWeight: FontWeight.bold);
+    const TextStyle(color: kblackcolor, fontSize: 17, fontWeight: FontWeight.bold);
 TextStyle textstyle1 = const TextStyle(
     color: Colors.black, fontSize: 18, fontWeight: FontWeight.bold);
 
@@ -59,22 +61,22 @@ TextStyle ktextstyle4 = const TextStyle(
     fontSize: 16,
     fontWeight: FontWeight.bold,
     overflow: TextOverflow.fade,
-    color: kwhite);
+    color: kblackcolor);
 
 TextStyle ktextstyle5 = const TextStyle(
     fontSize: 20,
     fontWeight: FontWeight.bold,
     overflow: TextOverflow.fade,
-    color: kwhite);
+    color: kblackcolor);
 
 TextStyle ktextstyle6 = const TextStyle(
     fontSize: 15,
     // fontWeight: FontWeight.bold,
     overflow: TextOverflow.fade,
-    color: kwhite);
+    color: kblackcolor);
 
 TextStyle ktextStyleForAppBar = const TextStyle(
-    color: Colors.white, fontSize: 30, fontWeight: FontWeight.w900);
+    color: Colors.black, fontSize: 30, fontWeight: FontWeight.w900);
 
 TextStyle ktextStyleforstatus1 = const TextStyle(
     color: Colors.red, fontWeight: FontWeight.w900, fontSize: 15);
@@ -87,7 +89,7 @@ TextStyle ktextStyleforstatus3 = const TextStyle(
 //buttonStyle
 
 const submitbuttonStyle = ButtonStyle(
-    backgroundColor: MaterialStatePropertyAll(Colors.amber),
+    backgroundColor: MaterialStatePropertyAll(baseColor),
     elevation: MaterialStatePropertyAll(8),
     shadowColor: MaterialStatePropertyAll(Colors.white));
 
@@ -95,5 +97,5 @@ const submitbuttonStyle = ButtonStyle(
 
 const Widget kBackBtn = Icon(
   Icons.arrow_back_ios,
-  color: Colors.white,
+  
 );

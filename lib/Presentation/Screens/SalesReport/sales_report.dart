@@ -25,7 +25,7 @@ class _SalesReportState extends State<SalesReport> {
     return BlocBuilder<SalesReportBloc, SalesReportState>(
       builder: (context, state) {
         return Scaffold(
-          backgroundColor: kblackcolor,
+          // backgroundColor: kblackcolor,
           body: SafeArea(
             child: Stack(
               children: [
@@ -55,6 +55,7 @@ class _SalesReportState extends State<SalesReport> {
                                     physics:
                                         const NeverScrollableScrollPhysics(),
                                     itemCount: sales.sales!.length,
+                                    reverse: true,
                                     itemBuilder: (context, index) =>
                                         GestureDetector(
                                       onTap: () {

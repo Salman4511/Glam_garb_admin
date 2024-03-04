@@ -5,6 +5,7 @@ import 'package:glam_garb_admin/Application/banner/banner_bloc.dart';
 import 'package:glam_garb_admin/Application/coupon/coupon_bloc.dart';
 import 'package:glam_garb_admin/Domain/response_models/banner_model/banner_get_model/banner.dart';
 import 'package:glam_garb_admin/Presentation/Screens/menu/view/banner/edit_banner_screen.dart';
+import 'package:glam_garb_admin/Shared/constants/constants.dart';
 
 class BannerCardWidget extends StatefulWidget {
   final String mainHead;
@@ -39,6 +40,7 @@ class _BannerCardWidgetState extends State<BannerCardWidget> {
   Widget build(BuildContext context) {
     var baseUrl = 'http://10.0.2.2:3000/admin/assets/imgs/banner/';
     return Card(
+      color: baseColor.shade100,
         elevation: 4,
         margin: const EdgeInsets.symmetric(vertical: 8, horizontal: 16),
         child: Slidable(

@@ -48,6 +48,7 @@ class _ProductCardState extends State<ProductCard> {
     var baseUrl = 'http://10.0.2.2:3000/admin/assets/imgs/products/';
 
     return Card(
+      color: baseColor.shade100,
       elevation: 4,
       margin: const EdgeInsets.symmetric(vertical: 8, horizontal: 16),
       child: InkWell(
@@ -98,7 +99,7 @@ class _ProductCardState extends State<ProductCard> {
                   Column(
                     children: [
                       ElevatedButton.icon(
-                        icon: const Icon(Icons.edit),
+                        icon: const Icon(Icons.edit,color: kwhite,),
                         onPressed: () {
                           Navigator.push(
                               context,
@@ -116,10 +117,11 @@ class _ProductCardState extends State<ProductCard> {
                                 )),
                               ));
                         },
-                        label: const Text('Edit'),
+                        label: const Text('Edit',style: TextStyle(color: kwhite),),
+                        style: ButtonStyle(backgroundColor: MaterialStatePropertyAll(baseColor.shade400)),
                       ),
                       ElevatedButton.icon(
-                        icon: const Icon(Icons.delete),
+                        icon: const Icon(Icons.delete,color: kwhite,),
                         onPressed: () {
                           showDialog(
                             context: context,
@@ -130,14 +132,17 @@ class _ProductCardState extends State<ProductCard> {
                                   ElevatedButton(
                                       onPressed: () =>
                                           Navigator.pop(context, false),
-                                      child: Text("Cancel")),
+                                      child: Text("Cancel",style: TextStyle(color: kwhite),),
+                        style: ButtonStyle(backgroundColor: MaterialStatePropertyAll(baseColor.shade400)),
+
+                                      ),
                                   BlocConsumer<ProductBloc, ProductState>(
                                     listener: (context, state) {
                                       // TODO: implement listener
                                     },
                                     builder: (context, state) {
                                       return ElevatedButton.icon(
-                                        icon: const Icon(Icons.delete),
+                                        icon: const Icon(Icons.delete,color: kwhite,),
                                         onPressed: () {
                                           widget.isActive
                                               ? context.read<ProductBloc>().add(
@@ -156,14 +161,23 @@ class _ProductCardState extends State<ProductCard> {
                                         },
                                         label: Text(widget.isActive
                                             ? 'Delete'
-                                            : 'Blocked'),
+                                            : 'Blocked',style: TextStyle(color: kwhite),),
+                                        style: ButtonStyle(
+                                            backgroundColor:
+                                                MaterialStatePropertyAll(
+                                                    baseColor.shade400)),
+
                                       );
                                     },
                                   )
                                 ]),
                           );
                         },
-                        label: Text(widget.isActive ? 'Delete' : 'Blocked'),
+                        label: Text(widget.isActive ? 'Delete' : 'Blocked',style: TextStyle(color: kwhite),),
+                             style: ButtonStyle(
+                            backgroundColor:
+                                MaterialStatePropertyAll(baseColor.shade400)),
+                 
                       ),
                     ],
                   ),

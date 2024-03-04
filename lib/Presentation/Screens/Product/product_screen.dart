@@ -20,7 +20,7 @@ class _ProductScreenState extends State<ProductScreen> {
   Widget build(BuildContext context) {
     ProductRepoo repo = ProductRepoo();
     return Scaffold(
-      backgroundColor: kblackcolor,
+      // backgroundColor: kblackcolor,
       body: SafeArea(
           child: Stack(
         children: [
@@ -86,9 +86,9 @@ class _ProductScreenState extends State<ProductScreen> {
                       builder: (context) => AddProduct(),
                     ));
               },
-              style: const ButtonStyle(
+              style:  ButtonStyle(
                   shadowColor: MaterialStatePropertyAll(Colors.white),
-                  backgroundColor: MaterialStatePropertyAll(Colors.amberAccent),
+                  backgroundColor: MaterialStatePropertyAll(baseColor.shade800),
                   elevation: MaterialStatePropertyAll(10)),
               child: const Text(
                 'Add Product',

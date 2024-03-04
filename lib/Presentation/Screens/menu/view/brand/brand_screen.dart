@@ -15,7 +15,7 @@ class BrandScreen extends StatelessWidget {
     BrandRepo repo = BrandRepo();
 
     return Scaffold(
-      backgroundColor: kblackcolor,
+      // backgroundColor: kblackcolor,
       body: SafeArea(
         child: Stack(
           children: [
@@ -90,7 +90,7 @@ class BrandScreen extends StatelessWidget {
                 ),
                 style: ButtonStyle(
                   shadowColor: MaterialStatePropertyAll(Colors.white),
-                  backgroundColor: MaterialStatePropertyAll(Colors.amberAccent),
+                  backgroundColor: MaterialStatePropertyAll(baseColor),
                   elevation: MaterialStatePropertyAll(10),
                 ),
               ),

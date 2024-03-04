@@ -22,6 +22,7 @@ class _MyCardTileState extends State<MyCardTile> {
     final dateformat = widget.date.toString().split(' ');
     final formattedDate = dateformat[0].toString();
     return Card(
+      color: Colors.brown.shade100,
       child: ListTile(
         leading: Text(
           widget.id,

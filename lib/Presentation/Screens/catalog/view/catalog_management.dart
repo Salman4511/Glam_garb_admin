@@ -11,14 +11,14 @@ class CatalogScreen extends StatelessWidget {
     return DefaultTabController(
       length: 2,
       child: Scaffold(
-        backgroundColor: kblackcolor,
+        // backgroundColor: kwhite,
         appBar: AppBar(
-          backgroundColor: kblackcolor,
+          backgroundColor: baseColor.shade200,
           automaticallyImplyLeading: false,
           title: const Column(
             children: [
               Text('Catalog Management',
-                  style: TextStyle(fontFamily: 'Courier', color: kwhite)),
+                  style: TextStyle(fontFamily: 'Courier', color: kblackcolor)),
               // Text('Management',
               //     style: TextStyle(
               //         fontFamily: 'Courier',
@@ -33,9 +33,10 @@ class CatalogScreen extends StatelessWidget {
               isScrollable: true,
               labelStyle:
                   const TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
-              unselectedLabelColor: Colors.white,
+              unselectedLabelColor: kwhite,
+              
               indicator: BoxDecoration(
-                color: Color.fromARGB(255, 224, 249, 224),
+                color: baseColor.shade400,
                 borderRadius: BorderRadius.circular(15),
               ),
               tabs: const [

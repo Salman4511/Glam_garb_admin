@@ -28,13 +28,13 @@ class _AddBannerScreenState extends State<AddBannerScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: kblackcolor,
+      // backgroundColor: kblackcolor,
       appBar: AppBar(
           title: const Text(
             'Add Banner',
-            style: TextStyle(color: kwhite, fontWeight: FontWeight.bold),
+            style: TextStyle(color: kblackcolor, fontWeight: FontWeight.bold),
           ),
-          backgroundColor: kblackcolor,
+          backgroundColor: kwhite,
           // centerTitle: true,
           leading: IconButton(
               onPressed: () {
@@ -140,7 +140,7 @@ class _AddBannerScreenState extends State<AddBannerScreen> {
                               fontWeight: FontWeight.bold)),
                       style: const ButtonStyle(
                           backgroundColor:
-                              MaterialStatePropertyAll(Colors.amber)),
+                              MaterialStatePropertyAll(baseColor)),
                     );
                   },
                 )

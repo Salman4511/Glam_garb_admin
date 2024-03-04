@@ -41,6 +41,7 @@ class _RowTextFormFieldState extends State<RowTextFormField> {
             decoration: BoxDecoration(
               color: kwhite,
               borderRadius: BorderRadius.circular(25),
+              border: Border.all()
             ),
             child: DropdownButton<String>(
                 dropdownColor: kwhite,

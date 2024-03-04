@@ -28,19 +28,19 @@ class BrandCard extends StatelessWidget {
           width: width,
           height: 250,
           decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(30),
+              borderRadius: BorderRadius.circular(10),
               image: DecorationImage(
                   fit: BoxFit.cover, image: NetworkImage(baseurl + image))),
         ),
         Positioned(
-          left: 8,
-          top: 145,
+          left: 7,
+          top: 146,
           child: Container(
             decoration: BoxDecoration(
                 borderRadius: const BorderRadius.only(
-                    topRight: Radius.circular(30),
-                    bottomRight: Radius.circular(30),
-                    bottomLeft: Radius.circular(30)),
+                    topRight: Radius.circular(0),
+                    bottomRight: Radius.circular(10),
+                    bottomLeft: Radius.circular(10)),
                 color: Colors.white.withOpacity(0.8)),
             // color: Colors.amber,
             width: 180,
@@ -63,15 +63,15 @@ class BrandCard extends StatelessWidget {
           ),
         ),
         Positioned(
-          right: 2,
+          right: 10,
           child: Container(
             height: 50,
             width: 98,
             // color: Colors.amber,
             decoration: BoxDecoration(
                 borderRadius: const BorderRadius.only(
-                    topRight: Radius.circular(30),
-                    bottomRight: Radius.circular(30),
+                    topRight: Radius.circular(10),
+                    bottomRight: Radius.circular(0),
                     bottomLeft: Radius.circular(30)),
                 color: Colors.black.withOpacity(0.8)),
             child: Row(

@@ -160,7 +160,7 @@ class _AddProductState extends State<AddProduct> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: kblackcolor,
+      // backgroundColor: kblackcolor,
       body: SafeArea(
         child: SingleChildScrollView(
           child: Form(
@@ -199,6 +199,7 @@ class _AddProductState extends State<AddProduct> {
                     decoration: BoxDecoration(
                       color: kwhite,
                       borderRadius: BorderRadius.circular(25),
+                      border: Border.all()
                     ),
                     buttonText: Text('     Select Colors'),
                     title: Text('Colors'),
@@ -293,7 +294,11 @@ class _AddProductState extends State<AddProduct> {
                     children: [
                       ElevatedButton(
                         onPressed: addMoreFields,
-                        child: const Text('Add more'),
+                        child: const Text('Add more',style: TextStyle(color: kwhite),),
+                                                style: ButtonStyle(
+                            backgroundColor:
+                                MaterialStatePropertyAll(baseColor.shade400)),
+
                       ),
                     ],
                   ),
@@ -303,7 +308,8 @@ class _AddProductState extends State<AddProduct> {
                       Container(
                         decoration: BoxDecoration(
                             color: kwhite,
-                            borderRadius: BorderRadius.circular(25)),
+                            borderRadius: BorderRadius.circular(25),
+                            border: Border.all()),
                         child: DropdownButton<Category>(
                           dropdownColor: kwhite,
                           focusColor: kwhite,
@@ -324,11 +330,12 @@ class _AddProductState extends State<AddProduct> {
                           },
                         ),
                       ),
-                      SizedBox(width: 75),
+                      SizedBox(width: 70),
                       Container(
                         decoration: BoxDecoration(
                             color: kwhite,
-                            borderRadius: BorderRadius.circular(25)),
+                            borderRadius: BorderRadius.circular(25),
+                            border: Border.all()),
                         child: DropdownButton<Brands>(
                           dropdownColor: kwhite,
                           focusColor: kwhite,

@@ -26,21 +26,26 @@ class _CouponTextFieldWidgetState extends State<CouponTextFieldWidget> {
   @override
   Widget build(BuildContext context) {
     return TextFormField(
-      style: const TextStyle(color: kwhite),
+      style: const TextStyle(color: kblackcolor),
       onTap: widget.onTap,
       controller: widget.textFieldController,
       keyboardType: widget.keyboardType,
       decoration: InputDecoration(
         labelText: widget.labelText,
         suffixIcon: widget.suffixIcon,
-        suffixIconColor: kwhite,
+        suffixIconColor: kblackcolor,
+        focusColor: kblackcolor,
+        
         border: const OutlineInputBorder(
-          borderSide: BorderSide(color: Colors.grey),
+          borderSide: BorderSide(color:baseColor),
           borderRadius: BorderRadius.all(Radius.circular(30)),
+          
         ),
-        labelStyle: const TextStyle(color: Colors.grey),
+        labelStyle: const TextStyle(color: kblackcolor),
         helperText: widget.helperText,
         helperStyle: const TextStyle(color: kwhite),
+        fillColor: kwhite,
+        filled: true
       ),
     );
   }

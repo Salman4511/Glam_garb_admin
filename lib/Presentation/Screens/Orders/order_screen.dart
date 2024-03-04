@@ -29,7 +29,7 @@ class _OrderScreenState extends State<OrderScreen> {
     return BlocBuilder<SalesReportBloc, SalesReportState>(
       builder: (context, state) {
         return Scaffold(
-          backgroundColor: kblackcolor,
+          // backgroundColor: kblackcolor,
           body: SafeArea(
             child: Stack(
               children: [
@@ -58,6 +58,7 @@ class _OrderScreenState extends State<OrderScreen> {
                                     physics:
                                         const NeverScrollableScrollPhysics(),
                                     itemCount: orders.orders!.length,
+                                    reverse: true,
                                     itemBuilder: (context, index) =>
                                         GestureDetector(
                                             onTap: () {

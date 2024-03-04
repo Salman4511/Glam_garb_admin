@@ -40,12 +40,13 @@ class _navPageState extends State<navPage> {
       theme: Theme.of(context).copyWith(
         // primaryColor: Colors.deepPurple[400],
         colorScheme: ColorScheme.fromSwatch(
-          primarySwatch: Colors.blue,
-          cardColor: Colors.white,
+          primarySwatch: Colors.brown,
+          cardColor: Colors.black,
         ),
       ),
       home: Scaffold(
-        backgroundColor: Colors.black,
+        backgroundColor: Colors.
+        white,
         body: PageView(
           controller: _pageController,
           children: _pages,

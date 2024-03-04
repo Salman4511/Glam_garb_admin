@@ -44,7 +44,7 @@ class _EditCategoryState extends State<EditCategory> {
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
     return Scaffold(
-      backgroundColor: kblackcolor,
+      // backgroundColor: kblackcolor,
       body: SafeArea(
           child: SingleChildScrollView(
         child: Stack(children: [
@@ -68,7 +68,7 @@ class _EditCategoryState extends State<EditCategory> {
                 Text(
                   '  Edit Category',
                   style: TextStyle(
-                      color: Colors.white,
+                      // color: Colors.white,
                       fontSize: 30,
                       fontWeight: FontWeight.w900),
                 ),
@@ -180,7 +180,8 @@ class _EditCategoryState extends State<EditCategory> {
                     width: 500,
                     height: 60,
                     decoration: BoxDecoration(
-                        color: kwhite, borderRadius: BorderRadius.circular(25)),
+                        color: kwhite, borderRadius: BorderRadius.circular(25),
+                        border: Border.all()),
                     child: Padding(
                       padding: EdgeInsets.only(
                           right: size.width * 0.2, left: 25, top: 10),
@@ -277,8 +278,8 @@ class _EditCategoryState extends State<EditCategory> {
                         },
                         style: const ButtonStyle(
                             backgroundColor:
-                                MaterialStatePropertyAll(Colors.yellow)),
-                        child: const Text('Submit'),
+                                MaterialStatePropertyAll(baseColor)),
+                        child:  const Text('Submit',style: TextStyle(color: kwhite),),
                       );
                     },
                   ),

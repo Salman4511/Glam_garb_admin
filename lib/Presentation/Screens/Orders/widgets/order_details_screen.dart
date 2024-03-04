@@ -49,7 +49,7 @@ class _OrderDetailsScreenState extends State<OrderDetailsScreen> {
   Widget build(BuildContext context) {
     OrdersRepo repo = OrdersRepo();
     return Scaffold(
-      backgroundColor: kblackcolor,
+      // backgroundColor: kblackcolor,
       appBar: AppBar(
         leading: IconButton(
             onPressed: () {
@@ -57,9 +57,9 @@ class _OrderDetailsScreenState extends State<OrderDetailsScreen> {
             },
             icon: const Icon(
               Icons.arrow_back_ios,
-              color: kwhite,
+              // color: kwhite,
             )),
-        backgroundColor: kblackcolor,
+        backgroundColor: kwhite,
         title: Text(
           'Order Details',
           style: ktextStyleForAppBar,
@@ -287,6 +287,7 @@ class _OrderDetailsScreenState extends State<OrderDetailsScreen> {
                         child: Padding(
                           padding: const EdgeInsets.all(8.0),
                           child: Card(
+                            color: baseColor.shade100,
                             child: Row(
                               children: [
                                 kwidth,

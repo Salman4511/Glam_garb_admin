@@ -19,7 +19,7 @@ class _CategoryScreenState extends State<CategoryScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: kblackcolor,
+      // backgroundColor: kblackcolor,
       body: SafeArea(
         child: Stack(
           children: [
@@ -95,7 +95,7 @@ class _CategoryScreenState extends State<CategoryScreen> {
                 },
                 style: const ButtonStyle(
                   shadowColor: MaterialStatePropertyAll(Colors.white),
-                  backgroundColor: MaterialStatePropertyAll(Colors.amberAccent),
+                  backgroundColor: MaterialStatePropertyAll(baseColor),
                   elevation: MaterialStatePropertyAll(10),
                 ),
                 child: const Text(

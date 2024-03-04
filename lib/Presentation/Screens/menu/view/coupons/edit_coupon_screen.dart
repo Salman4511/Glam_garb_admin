@@ -37,13 +37,13 @@ class _EditCouponScreenState extends State<EditCouponScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: kblackcolor,
+      // backgroundColor: kblackcolor,
       appBar: AppBar(
           title: const Text(
             'Edit Coupon',
-            style: TextStyle(color: kwhite, fontWeight: FontWeight.bold),
+            style: TextStyle(color: kblackcolor, fontWeight: FontWeight.bold),
           ),
-          backgroundColor: kblackcolor,
+          backgroundColor: kwhite,
           // centerTitle: true,
           leading: IconButton(
               onPressed: () {

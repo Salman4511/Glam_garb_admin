@@ -36,7 +36,7 @@ class _EditBrandState extends State<EditBrand> {
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
     return Scaffold(
-      backgroundColor: kblackcolor,
+      // backgroundColor: kblackcolor,
       body: SafeArea(
         child: SingleChildScrollView(
           child: Stack(
@@ -60,7 +60,7 @@ class _EditBrandState extends State<EditBrand> {
                 child: Text(
                   '  Edit Brand',
                   style: TextStyle(
-                      color: Colors.white,
+                      // color: Colors.white,
                       fontSize: 30,
                       fontWeight: FontWeight.w900),
                 ),
@@ -88,6 +88,7 @@ class _EditBrandState extends State<EditBrand> {
                         decoration: BoxDecoration(
                           color: kwhite,
                           borderRadius: BorderRadius.circular(25),
+                          border: Border.all()
                         ),
                         child: Padding(
                           padding: EdgeInsets.only(
@@ -139,6 +140,7 @@ class _EditBrandState extends State<EditBrand> {
                         child: Container(
                           decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(25),
+                            border: Border.all(),
                             color: kwhite,
                           ),
                           height: 60,
@@ -228,9 +230,9 @@ class _EditBrandState extends State<EditBrand> {
                             },
                             style: const ButtonStyle(
                               backgroundColor:
-                                  MaterialStatePropertyAll(Colors.yellow),
+                                  MaterialStatePropertyAll(baseColor),
                             ),
-                            child: const Text('Submit'),
+                            child: const Text('Submit',style: TextStyle(color: kwhite),),
                           );
                         },
                       ),
