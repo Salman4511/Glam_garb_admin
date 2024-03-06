@@ -62,7 +62,7 @@ class _OrderCardWidgetState extends State<OrderCardWidget> {
     if (month == '12') {
       month = 'Dec';
     }
-                               
+
     return Card(
       color: baseColor.shade100,
       child: ListTile(

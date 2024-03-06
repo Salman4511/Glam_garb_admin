@@ -8,7 +8,11 @@ class OrdersEvent with _$OrdersEvent {
 
   factory OrdersEvent.editOrders(String id, String status) = _EditOrders;
 
-   factory OrdersEvent.acceptReturn(String id,) = _AcceptReturn;
+  factory OrdersEvent.acceptReturn(
+    String id,
+  ) = _AcceptReturn;
 
-    factory OrdersEvent.rejectReturn(String id,) = _RejectReturn;
+  factory OrdersEvent.rejectReturn(
+    String id,
+  ) = _RejectReturn;
 }

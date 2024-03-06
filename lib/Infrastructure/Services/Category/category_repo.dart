@@ -36,7 +36,7 @@ class CategoryRepo {
 
     CategoryModel category = CategoryModel(message: "");
     try {
-      final response = await Dio().post("http://10.0.2.2:3000/admin/categories",
+      final response = await Dio().post("https://www.elegancestores.online/admin/categories",
           data: <String, dynamic>{
             "categoryName": name,
             "status": active,
@@ -76,7 +76,7 @@ class CategoryRepo {
       //   },
       // ));
 
-      final response = await dio.get("http://10.0.2.2:3000/admin/categories");
+      final response = await dio.get("https://www.elegancestores.online/admin/categories");
 
       if (response.statusCode == 200) {
         print(response.data);
@@ -93,7 +93,7 @@ class CategoryRepo {
     CategoryDeleteModel delcategory = CategoryDeleteModel(message: "");
     try {
       final response = await Dio()
-          .delete('http://10.0.2.2:3000/admin/categories/delete/$categoryId');
+          .delete('https://www.elegancestores.online/admin/categories/delete/$categoryId');
 
       if (response.statusCode == 200) {
         print('Category deleted successfully');
@@ -117,7 +117,7 @@ class CategoryRepo {
     CategoryEditModel category = CategoryEditModel(message: "");
     try {
       final response = await Dio().put(
-          "http://10.0.2.2:3000/admin/categories/edit",
+          "https://www.elegancestores.online/admin/categories/edit",
           data: <String, dynamic>{
             "categoryName": name,
             "status": active,

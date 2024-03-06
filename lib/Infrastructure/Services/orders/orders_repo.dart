@@ -28,7 +28,7 @@ class OrdersRepo {
     }
 
     try {
-      final response = await dio.get("http://10.0.2.2:3000/admin/orders");
+      final response = await dio.get("https://www.elegancestores.online/admin/orders");
 
       if (response.statusCode == 200) {
         print(response.data);
@@ -47,7 +47,7 @@ class OrdersRepo {
     }
 
     try {
-      final response = await dio.post("http://10.0.2.2:3000/admin/edit-order",
+      final response = await dio.post("https://www.elegancestores.online/admin/edit-order",
           data: <String, dynamic>{"id": id, "status": status});
 
       if (response.statusCode == 200) {
@@ -62,14 +62,17 @@ class OrdersRepo {
     }
   }
 
-  Future<ReturnAcceptRejectModel> returnAccept(String id,) async {
+  Future<ReturnAcceptRejectModel> returnAccept(
+    String id,
+  ) async {
     if (_jwt.isEmpty) {
       await initialize();
     }
 
     try {
-      final response = await dio.get("http://10.0.2.2:3000/admin/acceptReturn?orderId=$id",
-          );
+      final response = await dio.get(
+        "https://www.elegancestores.online/admin/acceptReturn?orderId=$id",
+      );
 
       if (response.statusCode == 200) {
         print(response.data);
@@ -83,7 +86,7 @@ class OrdersRepo {
     }
   }
 
-   Future<ReturnAcceptRejectModel> returnReject(
+  Future<ReturnAcceptRejectModel> returnReject(
     String id,
   ) async {
     if (_jwt.isEmpty) {
@@ -92,7 +95,7 @@ class OrdersRepo {
 
     try {
       final response = await dio.get(
-        "http://10.0.2.2:3000/admin/rejectReturn?orderId=$id",
+        "https://www.elegancestores.online/admin/rejectReturn?orderId=$id",
       );
 
       if (response.statusCode == 200) {

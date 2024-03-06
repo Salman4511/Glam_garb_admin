@@ -34,7 +34,7 @@ class UserRepo {
       // ));
 
       final response =
-          await dio.get("http://10.0.2.2:3000/admin/user_management");
+          await dio.get("https://www.elegancestores.online/admin/user_management");
 
       if (response.statusCode == 200) {
         print(response.data);
@@ -59,7 +59,7 @@ class UserRepo {
       //   },
       // ));
 
-      final response = await dio.post("http://10.0.2.2:3000/admin/block/$id");
+      final response = await dio.post("https://www.elegancestores.online/admin/block/$id");
       print(response);
       if (response.statusCode == 200) {
         print(response.data);

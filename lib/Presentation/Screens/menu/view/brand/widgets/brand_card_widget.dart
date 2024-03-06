@@ -20,7 +20,8 @@ class BrandCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    var baseurl = 'https://www.elegancestores.online/admin/assets/imgs/brands/cropped/';
+    var baseurl =
+        'https://www.elegancestores.online/admin/assets/imgs/brands/cropped/';
     return Stack(
       children: [
         Container(

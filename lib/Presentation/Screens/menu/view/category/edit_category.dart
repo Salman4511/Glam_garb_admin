@@ -180,7 +180,8 @@ class _EditCategoryState extends State<EditCategory> {
                     width: 500,
                     height: 60,
                     decoration: BoxDecoration(
-                        color: kwhite, borderRadius: BorderRadius.circular(25),
+                        color: kwhite,
+                        borderRadius: BorderRadius.circular(25),
                         border: Border.all()),
                     child: Padding(
                       padding: EdgeInsets.only(
@@ -279,7 +280,10 @@ class _EditCategoryState extends State<EditCategory> {
                         style: const ButtonStyle(
                             backgroundColor:
                                 MaterialStatePropertyAll(baseColor)),
-                        child:  const Text('Submit',style: TextStyle(color: kwhite),),
+                        child: const Text(
+                          'Submit',
+                          style: TextStyle(color: kwhite),
+                        ),
                       );
                     },
                   ),

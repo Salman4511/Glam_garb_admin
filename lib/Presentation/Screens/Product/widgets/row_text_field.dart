@@ -39,10 +39,9 @@ class _RowTextFormFieldState extends State<RowTextFormField> {
         Expanded(
           child: Container(
             decoration: BoxDecoration(
-              color: kwhite,
-              borderRadius: BorderRadius.circular(25),
-              border: Border.all()
-            ),
+                color: kwhite,
+                borderRadius: BorderRadius.circular(25),
+                border: Border.all()),
             child: DropdownButton<String>(
                 dropdownColor: kwhite,
                 focusColor: kwhite,

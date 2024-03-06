@@ -86,7 +86,7 @@ class _ProductScreenState extends State<ProductScreen> {
                       builder: (context) => AddProduct(),
                     ));
               },
-              style:  ButtonStyle(
+              style: ButtonStyle(
                   shadowColor: MaterialStatePropertyAll(Colors.white),
                   backgroundColor: MaterialStatePropertyAll(baseColor.shade800),
                   elevation: MaterialStatePropertyAll(10)),

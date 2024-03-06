@@ -46,8 +46,8 @@ BorderRadius kradius30 = BorderRadius.circular(30);
 
 //textstyles
 
-TextStyle ktextstyleformenu =
-    const TextStyle(color: kblackcolor, fontSize: 17, fontWeight: FontWeight.bold);
+TextStyle ktextstyleformenu = const TextStyle(
+    color: kblackcolor, fontSize: 17, fontWeight: FontWeight.bold);
 TextStyle textstyle1 = const TextStyle(
     color: Colors.black, fontSize: 18, fontWeight: FontWeight.bold);
 
@@ -97,5 +97,4 @@ const submitbuttonStyle = ButtonStyle(
 
 const Widget kBackBtn = Icon(
   Icons.arrow_back_ios,
-  
 );

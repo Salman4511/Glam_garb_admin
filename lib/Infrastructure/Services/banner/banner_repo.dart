@@ -56,7 +56,7 @@ class BannerRepo {
       ));
 
       final response = await dio.post(
-        "http://10.0.2.2:3000/admin/banner",
+        "https://www.elegancestores.online/admin/banner",
         data: formData,
         options: Options(
           followRedirects: false, // Disable automatic redirection
@@ -89,7 +89,7 @@ class BannerRepo {
       //   },
       // ));
 
-      final response = await dio.get("http://10.0.2.2:3000/admin/banner");
+      final response = await dio.get("https://www.elegancestores.online/admin/banner");
 
       if (response.statusCode == 200) {
         print(response.data);
@@ -135,7 +135,7 @@ class BannerRepo {
       ));
 
       final response = await dio.put(
-        "http://10.0.2.2:3000/admin/editBanner",
+        "https://www.elegancestores.online/admin/editBanner",
         data: formData,
         options: Options(
           followRedirects: false, // Disable automatic redirection
@@ -164,7 +164,7 @@ class BannerRepo {
     try {
       // final dio = Dio(BaseOptions(headers: {'Cookie': _jwt}));
       final response = await dio
-          .delete('http://10.0.2.2:3000/admin/deleteBanner?bannerId=$bannerId');
+          .delete('https://www.elegancestores.online/admin/deleteBanner?bannerId=$bannerId');
 
       if (response.statusCode == 200) {
         print('banner deleted successfully');

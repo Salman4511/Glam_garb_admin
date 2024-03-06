@@ -226,7 +226,7 @@ class _OrderDetailsScreenState extends State<OrderDetailsScreen> {
                               builder: (context, state) {
                                 return ElevatedButton(
                                   onPressed: () {
-                                   context.read<OrdersBloc>().add(
+                                    context.read<OrdersBloc>().add(
                                         OrdersEvent.acceptReturn(widget.id));
                                   },
                                   child: Text('Accept'),

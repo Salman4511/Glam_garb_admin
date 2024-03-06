@@ -139,8 +139,7 @@ class _AddBannerScreenState extends State<AddBannerScreen> {
                               fontSize: 18,
                               fontWeight: FontWeight.bold)),
                       style: const ButtonStyle(
-                          backgroundColor:
-                              MaterialStatePropertyAll(baseColor)),
+                          backgroundColor: MaterialStatePropertyAll(baseColor)),
                     );
                   },
                 )

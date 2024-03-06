@@ -64,7 +64,7 @@ class ProductRepoo {
       });
 
       final response = await Dio().post(
-        "http://10.0.2.2:3000/admin/addproduct",
+        "https://www.elegancestores.online/admin/addproduct",
         data: formData,
       );
 
@@ -99,7 +99,7 @@ class ProductRepoo {
       //   },
       // ));
 
-      final response = await dio.get("http://10.0.2.2:3000/admin/products");
+      final response = await dio.get("https://www.elegancestores.online/admin/products");
 
       if (response.statusCode == 200) {
         print(response.data);
@@ -152,7 +152,7 @@ class ProductRepoo {
       });
 
       final response = await Dio().put(
-        "http://10.0.2.2:3000/admin/products/edit",
+        "https://www.elegancestores.online/admin/products/edit",
         data: formData,
       );
 
@@ -173,7 +173,7 @@ class ProductRepoo {
     ProductDeleteModel delProd = ProductDeleteModel(message: "");
     try {
       final response = await Dio()
-          .post('http://10.0.2.2:3000/admin/products/delete/$productId');
+          .post('https://www.elegancestores.online/admin/products/delete/$productId');
 
       if (response.statusCode == 200) {
         print('Product deleted successfully');

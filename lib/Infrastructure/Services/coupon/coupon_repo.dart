@@ -34,7 +34,7 @@ class CouponRepo {
       // final dio = Dio(BaseOptions(headers: {'Cookie': _jwt}));
 
       final response = await dio.post(
-        "http://10.0.2.2:3000/admin/coupons",
+        "https://www.elegancestores.online/admin/coupons",
         data: <String, dynamic>{
           "couponcode": couponCode,
           "coupondescription": couponDescr,
@@ -70,7 +70,7 @@ class CouponRepo {
       //   },
       // ));
 
-      final response = await dio.get("http://10.0.2.2:3000/admin/coupons");
+      final response = await dio.get("https://www.elegancestores.online/admin/coupons");
 
       if (response.statusCode == 200) {
         print(response.data);
@@ -100,7 +100,7 @@ class CouponRepo {
       // final dio = Dio(BaseOptions(headers: {'Cookie': _jwt}));
 
       final response = await dio.put(
-        "http://10.0.2.2:3000/admin/coupons/edit",
+        "https://www.elegancestores.online/admin/coupons/edit",
         data: <String, dynamic>{
           "couponId": couponId,
           "couponcode": couponCode,
@@ -134,7 +134,7 @@ class CouponRepo {
     try {
       // final dio = Dio(BaseOptions(headers: {'Cookie': _jwt}));
       final response = await dio.delete(
-          'http://10.0.2.2:3000/admin/coupons/delete?couponId=$couponId');
+          'https://www.elegancestores.online/admin/coupons/delete?couponId=$couponId');
 
       if (response.statusCode == 200) {
         print('Category deleted successfully');

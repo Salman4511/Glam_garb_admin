@@ -40,7 +40,7 @@ class BrandRepo {
         ),
       });
       final response =
-          await Dio().post("http://10.0.2.2:3000/admin/brands", data: formData);
+          await Dio().post("https://www.elegancestores.online/admin/brands", data: formData);
       if (response.statusCode == 201 || response.statusCode == 200) {
         print("the response get is oky");
         print(response.data);
@@ -74,7 +74,7 @@ class BrandRepo {
         },
       ));
 
-      final response = await dio.get("http://10.0.2.2:3000/admin/brands");
+      final response = await dio.get("https://www.elegancestores.online/admin/brands");
 
       if (response.statusCode == 200) {
         print(response.data);
@@ -91,7 +91,7 @@ class BrandRepo {
     BrandDeleteModel delBrand = BrandDeleteModel(message: "");
     try {
       final response = await Dio()
-          .delete('http://10.0.2.2:3000/admin/brands/delete/$brandId');
+          .delete('https://www.elegancestores.online/admin/brands/delete/$brandId');
 
       if (response.statusCode == 200) {
         print('brand deleted successfully');
@@ -119,7 +119,7 @@ class BrandRepo {
         "oldName": oldName,
       });
       final response = await Dio()
-          .put("http://10.0.2.2:3000/admin/brands/edit", data: formData);
+          .put("https://www.elegancestores.online/admin/brands/edit", data: formData);
       if (response.statusCode == 201 || response.statusCode == 200) {
         print("the response get is oky");
         print(response.data);

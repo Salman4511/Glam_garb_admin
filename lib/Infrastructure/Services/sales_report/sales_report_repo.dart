@@ -26,7 +26,7 @@ class SalesReportRepo {
     }
 
     try {
-      final response = await dio.get("http://10.0.2.2:3000/admin/sales-report");
+      final response = await dio.get("https://www.elegancestores.online/admin/sales-report");
 
       if (response.statusCode == 200) {
         print(response.data);
@@ -45,7 +45,7 @@ class SalesReportRepo {
     }
 
     try {
-      final response = await dio.post("http://10.0.2.2:3000/admin/sales-report",
+      final response = await dio.post("https://www.elegancestores.online/admin/sales-report",
           data: <String, dynamic>{"selectedDate": date});
 
       if (response.statusCode == 200) {

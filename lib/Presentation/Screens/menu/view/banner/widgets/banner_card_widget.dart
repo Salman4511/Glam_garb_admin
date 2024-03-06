@@ -40,7 +40,7 @@ class _BannerCardWidgetState extends State<BannerCardWidget> {
   Widget build(BuildContext context) {
     var baseUrl = 'https://www.elegancestores.online/admin/assets/imgs/banner/';
     return Card(
-      color: baseColor.shade100,
+        color: baseColor.shade100,
         elevation: 4,
         margin: const EdgeInsets.symmetric(vertical: 8, horizontal: 16),
         child: Slidable(

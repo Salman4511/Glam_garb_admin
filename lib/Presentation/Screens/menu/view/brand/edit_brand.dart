@@ -86,10 +86,9 @@ class _EditBrandState extends State<EditBrand> {
                         width: 500,
                         height: 60,
                         decoration: BoxDecoration(
-                          color: kwhite,
-                          borderRadius: BorderRadius.circular(25),
-                          border: Border.all()
-                        ),
+                            color: kwhite,
+                            borderRadius: BorderRadius.circular(25),
+                            border: Border.all()),
                         child: Padding(
                           padding: EdgeInsets.only(
                             right: size.width * 0.2,
@@ -232,7 +231,10 @@ class _EditBrandState extends State<EditBrand> {
                               backgroundColor:
                                   MaterialStatePropertyAll(baseColor),
                             ),
-                            child: const Text('Submit',style: TextStyle(color: kwhite),),
+                            child: const Text(
+                              'Submit',
+                              style: TextStyle(color: kwhite),
+                            ),
                           );
                         },
                       ),

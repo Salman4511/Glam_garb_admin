@@ -36,20 +36,19 @@ class _BannerTextFieldWidgetState extends State<BannerTextFieldWidget> {
       controller: widget.textFieldController,
       keyboardType: widget.keyboardType,
       decoration: InputDecoration(
-        floatingLabelBehavior: widget.floatingLabelBehavior,
-        labelText: widget.labelText,
-        suffixIcon: widget.suffixIcon,
-        suffixIconColor: kwhite,
-        border: const OutlineInputBorder(
-          borderSide: BorderSide(color: Colors.grey),
-          borderRadius: BorderRadius.all(Radius.circular(30)),
-        ),
-        labelStyle: const TextStyle(color: Colors.grey),
-        helperText: widget.helperText,
-        helperStyle: const TextStyle(color: kblackcolor),
-        fillColor: kwhite,
-        filled: true
-      ),
+          floatingLabelBehavior: widget.floatingLabelBehavior,
+          labelText: widget.labelText,
+          suffixIcon: widget.suffixIcon,
+          suffixIconColor: kwhite,
+          border: const OutlineInputBorder(
+            borderSide: BorderSide(color: Colors.grey),
+            borderRadius: BorderRadius.all(Radius.circular(30)),
+          ),
+          labelStyle: const TextStyle(color: Colors.grey),
+          helperText: widget.helperText,
+          helperStyle: const TextStyle(color: kblackcolor),
+          fillColor: kwhite,
+          filled: true),
     );
   }
 }

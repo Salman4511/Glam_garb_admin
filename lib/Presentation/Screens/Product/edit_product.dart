@@ -170,7 +170,8 @@ class _EditProductState extends State<EditProduct> {
 
   @override
   Widget build(BuildContext context) {
-    var baseUrl = 'https://www.elegancestores.online/admin/assets/imgs/products/';
+    var baseUrl =
+        'https://www.elegancestores.online/admin/assets/imgs/products/';
     return Scaffold(
       // backgroundColor: kblackcolor,
       body: SafeArea(
@@ -207,10 +208,9 @@ class _EditProductState extends State<EditProduct> {
                     validator: (value) =>
                         value == null ? "Please select category" : null,
                     decoration: BoxDecoration(
-                      color: kwhite,
-                      borderRadius: BorderRadius.circular(25),
-                      border: Border.all()
-                    ),
+                        color: kwhite,
+                        borderRadius: BorderRadius.circular(25),
+                        border: Border.all()),
                     buttonText: Text('     Select Colors'),
                     title: Text('Colors'),
                     onConfirm: (val) {
@@ -303,11 +303,13 @@ class _EditProductState extends State<EditProduct> {
                     children: [
                       ElevatedButton(
                         onPressed: addMoreFields,
-                        child: const Text('Add more',style: TextStyle(color: kwhite),),
-                                                style: ButtonStyle(
+                        child: const Text(
+                          'Add more',
+                          style: TextStyle(color: kwhite),
+                        ),
+                        style: ButtonStyle(
                             backgroundColor:
                                 MaterialStatePropertyAll(baseColor.shade400)),
-
                       ),
                     ],
                   ),
@@ -318,8 +320,7 @@ class _EditProductState extends State<EditProduct> {
                         decoration: BoxDecoration(
                             color: kwhite,
                             borderRadius: BorderRadius.circular(25),
-                            border: Border.all()
-                            ),
+                            border: Border.all()),
                         child: DropdownButton<Category>(
                           dropdownColor: kwhite,
                           focusColor: kwhite,

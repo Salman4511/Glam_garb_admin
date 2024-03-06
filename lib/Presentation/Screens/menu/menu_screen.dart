@@ -29,7 +29,9 @@ class _MenuScreenState extends State<MenuScreen> {
           const SizedBox(
             height: 40,
           ),
-          Divider(color: kblackcolor,),
+          Divider(
+            color: kblackcolor,
+          ),
           MenuListTile(
             icon: Icons.person_4,
             title: 'Users',
@@ -39,7 +41,9 @@ class _MenuScreenState extends State<MenuScreen> {
                   builder: (context) => const UsersScreen(),
                 )),
           ),
-          Divider(color: kblackcolor,),
+          Divider(
+            color: kblackcolor,
+          ),
           MenuListTile(
             icon: Icons.card_giftcard,
             title: 'Coupons',

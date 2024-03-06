@@ -31,22 +31,19 @@ class _CouponTextFieldWidgetState extends State<CouponTextFieldWidget> {
       controller: widget.textFieldController,
       keyboardType: widget.keyboardType,
       decoration: InputDecoration(
-        labelText: widget.labelText,
-        suffixIcon: widget.suffixIcon,
-        suffixIconColor: kblackcolor,
-        focusColor: kblackcolor,
-        
-        border: const OutlineInputBorder(
-          borderSide: BorderSide(color:baseColor),
-          borderRadius: BorderRadius.all(Radius.circular(30)),
-          
-        ),
-        labelStyle: const TextStyle(color: kblackcolor),
-        helperText: widget.helperText,
-        helperStyle: const TextStyle(color: kwhite),
-        fillColor: kwhite,
-        filled: true
-      ),
+          labelText: widget.labelText,
+          suffixIcon: widget.suffixIcon,
+          suffixIconColor: kblackcolor,
+          focusColor: kblackcolor,
+          border: const OutlineInputBorder(
+            borderSide: BorderSide(color: baseColor),
+            borderRadius: BorderRadius.all(Radius.circular(30)),
+          ),
+          labelStyle: const TextStyle(color: kblackcolor),
+          helperText: widget.helperText,
+          helperStyle: const TextStyle(color: kwhite),
+          fillColor: kwhite,
+          filled: true),
     );
   }
 }

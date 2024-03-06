@@ -27,7 +27,7 @@ class AuthRepo {
   Future<AdminLogin> singIn(String email, String password) async {
     AdminLogin logiAdmin = AdminLogin(email: "");
     try {
-      final response = await Dio().post("http://10.0.2.2:3000/admin/login",
+      final response = await Dio().post("https://www.elegancestores.online/admin/login",
           data: <String, dynamic>{"email": email, "password": password});
       if (response.statusCode == 201 || response.statusCode == 200) {
         print("the response get is oky");
@@ -64,7 +64,7 @@ class AuthRepo {
     LogoutModel model = LogoutModel(message: "");
     try {
       final response = await Dio().post(
-        "http://10.0.2.2:3000/logout",
+        "https://www.elegancestores.online/logout",
       );
       if (response.statusCode == 200 || response.statusCode == 201) {
         print('User logouted');

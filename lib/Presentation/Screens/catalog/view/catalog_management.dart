@@ -34,7 +34,6 @@ class CatalogScreen extends StatelessWidget {
               labelStyle:
                   const TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
               unselectedLabelColor: kwhite,
-              
               indicator: BoxDecoration(
                 color: baseColor.shade400,
                 borderRadius: BorderRadius.circular(15),

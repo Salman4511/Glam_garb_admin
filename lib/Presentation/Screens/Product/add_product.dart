@@ -197,10 +197,9 @@ class _AddProductState extends State<AddProduct> {
                     validator: (value) =>
                         value == null ? "Please select category" : null,
                     decoration: BoxDecoration(
-                      color: kwhite,
-                      borderRadius: BorderRadius.circular(25),
-                      border: Border.all()
-                    ),
+                        color: kwhite,
+                        borderRadius: BorderRadius.circular(25),
+                        border: Border.all()),
                     buttonText: Text('     Select Colors'),
                     title: Text('Colors'),
                     onConfirm: (val) {
@@ -294,11 +293,13 @@ class _AddProductState extends State<AddProduct> {
                     children: [
                       ElevatedButton(
                         onPressed: addMoreFields,
-                        child: const Text('Add more',style: TextStyle(color: kwhite),),
-                                                style: ButtonStyle(
+                        child: const Text(
+                          'Add more',
+                          style: TextStyle(color: kwhite),
+                        ),
+                        style: ButtonStyle(
                             backgroundColor:
                                 MaterialStatePropertyAll(baseColor.shade400)),
-
                       ),
                     ],
                   ),

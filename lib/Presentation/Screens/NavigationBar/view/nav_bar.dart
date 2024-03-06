@@ -45,8 +45,7 @@ class _navPageState extends State<navPage> {
         ),
       ),
       home: Scaffold(
-        backgroundColor: Colors.
-        white,
+        backgroundColor: Colors.white,
         body: PageView(
           controller: _pageController,
           children: _pages,
