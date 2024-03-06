@@ -38,7 +38,7 @@ class BannerCardWidget extends StatefulWidget {
 class _BannerCardWidgetState extends State<BannerCardWidget> {
   @override
   Widget build(BuildContext context) {
-    var baseUrl = 'http://10.0.2.2:3000/admin/assets/imgs/banner/';
+    var baseUrl = 'https://www.elegancestores.online/admin/assets/imgs/banner/';
     return Card(
       color: baseColor.shade100,
         elevation: 4,

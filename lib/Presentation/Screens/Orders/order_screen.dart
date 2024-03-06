@@ -4,14 +4,10 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:glam_garb_admin/Application/orders/orders_bloc.dart';
 import 'package:glam_garb_admin/Application/sales_report/sales_report_bloc.dart';
 import 'package:glam_garb_admin/Domain/response_models/orders_model/orders_get_model/orders_get_model.dart';
-import 'package:glam_garb_admin/Domain/response_models/sales_report_model/sales_report_model/sales_report_model.dart';
 import 'package:glam_garb_admin/Infrastructure/Services/orders/orders_repo.dart';
 import 'package:glam_garb_admin/Presentation/Screens/orders/widgets/order_card_widget.dart';
 import 'package:glam_garb_admin/Presentation/Screens/orders/widgets/order_details_screen.dart';
-import 'package:glam_garb_admin/Presentation/Screens/salesReport/widgets/card_widget.dart';
-import 'package:glam_garb_admin/Presentation/Screens/salesReport/widgets/detail_dialog.dart';
 import 'package:glam_garb_admin/Shared/constants/constants.dart';
-import 'package:intl/intl.dart';
 
 class OrderScreen extends StatefulWidget {
   const OrderScreen({super.key});
